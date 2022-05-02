@@ -16,16 +16,20 @@ from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton
 from AGUI.ui_registro import Register_Form as Register_Form
 
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(900, 500)
-        Form.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-        Form.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-        Form.setMinimumSize(QSize(900, 500))
-        Form.setMaximumSize(QSize(900, 500))
-        self.widget = QWidget(Form)
+class Login_Form(QWidget):
+    clicked = QtCore.pyqtSignal()
+    # def setupUi(self, Form):
+    #     if not Form.objectName():
+    #         Form.setObjectName(u"Form")
+    #     Form.resize(900, 500)
+    def __init__(self):
+        super(Login_Form, self).__init__()
+
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        self.setMinimumSize(QSize(900, 500))
+        self.setMaximumSize(QSize(900, 500))
+        self.widget = QWidget(self)
         self.widget.setObjectName(u"widget")
         self.widget.setGeometry(QRect(0, 10, 901, 491))
         self.widget.setStyleSheet(u"QPushButton{\n"
@@ -116,12 +120,12 @@ class Ui_Form(object):
         self.label_6.setObjectName(u"label_6")
         self.label_6.setGeometry(QRect(30, 150, 411, 301))
 
-        self.retranslateUi(Form)
+        self.retranslateUi(self)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(self)
 
         self.pushButtonLogin.clicked.connect(self.presentarUsuario)
-        self.pushButtonRegistrarse.clicked.connect(self.RegisterWindow)
+        self.pushButtonRegistrarse.clicked.connect(self.clicked)
 
     # setupUi
 

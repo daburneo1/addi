@@ -16,6 +16,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QSpinBox
 
 
 class Register_Form(QWidget):
+    clicked = QtCore.pyqtSignal()
     # def setupUi(self, Form):
     #     if not Form.objectName():
     #         Form.setObjectName(u"Form")

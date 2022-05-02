@@ -13,6 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QSize, QRect, QMetaObject, QCoreApplication
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton
+from AGUI.ui_registro import Register_Form as Register_Form
 
 
 class Ui_Form(object):
@@ -120,6 +121,8 @@ class Ui_Form(object):
         QMetaObject.connectSlotsByName(Form)
 
         self.pushButtonLogin.clicked.connect(self.presentarUsuario)
+        self.pushButtonRegistrarse.clicked.connect(self.RegisterWindow)
+
     # setupUi
 
     def retranslateUi(self, Form):
@@ -140,6 +143,12 @@ class Ui_Form(object):
     def presentarUsuario(self):
         print(self.lineEditUser.text())
         print(self.lineEditPass.text())
+
+    def RegisterWindow(self):
+        self.formRegister = QtWidgets.QWidget()
+        self.uiRegister = Register_Form()
+        self.uiRegister.setupUi(self.formRegister)
+        self.formRegister.show()
 
 # if __name__ == "__main__":
 #     app = QtWidgets.QApplication(sys.argv)

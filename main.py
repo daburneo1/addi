@@ -1,14 +1,18 @@
-import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QSize, QRect, QMetaObject, QCoreApplication
-from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton
+from AGUI import ui_login
 from AGUI.ui_login import *
+
+# from AGUI import ui_registro
+# from AGUI.ui_registro import *
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
+    Form = ui_login.QtWidgets.QWidget()
     ui = Ui_Form()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
+
+    # App = QtWidgets.QApplication(sys.argv)
+    # Wnd = Register_Form()
+    # Wnd.show()
+    # sys.exit(App.exec_())

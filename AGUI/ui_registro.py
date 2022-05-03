@@ -13,7 +13,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QSize, QRect, QMetaObject, QCoreApplication
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QSpinBox
+from tkinter import messagebox
 
+from CLASES.Usuario import *
+from BLOGICA.LOGUsuario import *
 
 class Register_Form(QWidget):
     clicked = QtCore.pyqtSignal()
@@ -166,6 +169,7 @@ class Register_Form(QWidget):
 
         QMetaObject.connectSlotsByName(self)
 
+        self.pushButtonRegistrarse.clicked.connect(self.registrarUsuario)
         self.pushButtonCancelar.clicked.connect(self.cerrarVentana)
 
     # setupUi
@@ -187,6 +191,61 @@ class Register_Form(QWidget):
         self.label_7.setText(QCoreApplication.translate("Form", u"Edad:", None))
         self.pushButtonCancelar.setText(QCoreApplication.translate("Form", u"Cancelar", None))
     # retranslateUi
+
+    def registrarUsuario(self):
+
+        campos_vacios = self.validarCamposVacios()
+        check_password = self.validarPassword()
+        print(self.lineEditUser.text())
+        print(self.lineEditPass.text())
+
+        usuario = Usuario(self.lineEditNombre.text(),
+                          self.lineEditApellido.text(),
+                          self.spinBox.text(),
+                          self.lineEditUser.text(),
+                          self.lineEditPass.text())
+
+        print(usuario.presentar_usuario())
+        if campos_vacios == 1 and check_password == 1:
+            print(usuario.presentar_usuario())
+            LOGUsuario.RegistrarUsuario(self, usuario)
+
+
+
+    def validarCamposVacios(self):
+        if not self.lineEditNombre.text():
+            messagebox.showinfo(message="Debe ingresar un nombre", title="Advertencia")
+            return 0
+
+        elif not self.lineEditApellido.text():
+            messagebox.showinfo(message="Debe ingresar un apellido", title="Advertencia")
+            return 0
+
+        elif not self.spinBox.text() or self.spinBox.text() == 0:
+            messagebox.showinfo(message="Debe ingresar su edad", title="Advertencia")
+            return 0
+
+        elif not self.lineEditUser.text():
+            messagebox.showinfo(message="Por favor ingrese una usuario", title="Advertencia")
+            return 0
+
+        elif not self.lineEditPass.text():
+            messagebox.showinfo(message="Por favor ingrese una contraseña", title="Advertencia")
+            return 0
+
+        elif not self.lineEditPass2.text():
+            messagebox.showinfo(message="Por favor repita su contraseña", title="Advertencia")
+            return 0
+
+        else:
+            return 1
+
+    def validarPassword(self):
+        if self.lineEditPass.text() == self.lineEditPass2.text():
+            return 1
+        else:
+            messagebox.showinfo(message="Las contraseñas ingresadas no coinciden", title="Advertencia")
+            return 0
 
     def cerrarVentana(self):
         self.close()

@@ -1,10 +1,10 @@
 class Usuario(object):
-    def __init__(self):
-        self.nombre = ""
-        self.apellido = ""
-        self.edad = ""
-        self.user = ""
-        self.password = ""
+    def __init__(self, nombre, apellido, edad, user, password):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.edad = edad
+        self.user = user
+        self.password = password
 
     def set_nombre(self, nombre):
         self.nombre = nombre
@@ -37,5 +37,5 @@ class Usuario(object):
         return self.password
 
     def presentar_usuario(self):
-        cadena = "\tUsuario: \nNombre: %s \tApellido: %s \tEdad: %s \tUsuario: %s \tPassword: %s" %(self.get_nombre(), self.get_apellido(), self.get_edad(), self.get_user, self.get_password)
+        return "\tUsuario: \nNombre: %s \tApellido: %s \tEdad: %s \tUsuario: %s \tPassword: %s" %(self.get_nombre(), self.get_apellido(), self.get_edad(), self.get_user, self.get_password)
 

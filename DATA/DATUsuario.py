@@ -12,8 +12,8 @@ cursor = connection.cursor()
 class DATUsuario():
 
     def RegistrarUsuario(self, usuario):
-        sql = "INSERT INTO Usuario (nombre, apellido, edad, user, pass) VALUES (" \
-              "'%s','%s','%s','%s','%s')" %(usuario.nombre, usuario.apellido, usuario.edad, usuario.user, usuario.password)
+        sql = "INSERT INTO Usuario (cedula, nombre, apellido, pass) VALUES (" \
+              "'%s','%s','%s','%s')" %(usuario.cedula, usuario.nombre, usuario.apellido, usuario.password)
 
         print(sql)
 
@@ -21,4 +21,5 @@ class DATUsuario():
         connection.commit()
 
     def BuscarUsuario(self, usuario):
+        pass
 

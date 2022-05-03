@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'registroKTomAw.ui'
+## Form generated from reading UI file 'registrooMIASN.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -20,11 +20,11 @@ from BLOGICA.LOGUsuario import *
 
 class Register_Form(QWidget):
     clicked = QtCore.pyqtSignal()
-    # def setupUi(self, Form):
-    #     if not Form.objectName():
-    #         Form.setObjectName(u"Form")
     def __init__(self):
         super(Register_Form, self).__init__()
+
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.resize(900, 500)
         self.setMinimumSize(QSize(900, 500))
         self.setMaximumSize(QSize(900, 500))
@@ -63,7 +63,7 @@ class Register_Form(QWidget):
 "")
         self.lineEditNombre = QLineEdit(self.widget)
         self.lineEditNombre.setObjectName(u"lineEditNombre")
-        self.lineEditNombre.setGeometry(QRect(310, 80, 241, 41))
+        self.lineEditNombre.setGeometry(QRect(310, 150, 241, 41))
         font = QFont()
         font.setPointSize(18)
         font.setBold(False)
@@ -76,7 +76,7 @@ class Register_Form(QWidget):
 "padding-bottom: 7px;")
         self.pushButtonRegistrarse = QPushButton(self.widget)
         self.pushButtonRegistrarse.setObjectName(u"pushButtonRegistrarse")
-        self.pushButtonRegistrarse.setGeometry(QRect(620, 390, 171, 51))
+        self.pushButtonRegistrarse.setGeometry(QRect(620, 380, 171, 61))
         font1 = QFont()
         font1.setPointSize(16)
         self.pushButtonRegistrarse.setFont(font1)
@@ -106,7 +106,7 @@ class Register_Form(QWidget):
         self.label_6.setStyleSheet(u"color:rgb(222, 222, 222)")
         self.lineEditApellido = QLineEdit(self.widget)
         self.lineEditApellido.setObjectName(u"lineEditApellido")
-        self.lineEditApellido.setGeometry(QRect(600, 80, 241, 41))
+        self.lineEditApellido.setGeometry(QRect(600, 150, 241, 41))
         font4 = QFont()
         font4.setPointSize(18)
         self.lineEditApellido.setFont(font4)
@@ -115,18 +115,9 @@ class Register_Form(QWidget):
 "border-bottom-color:rgba(46,82,101,200);\n"
 "color:rgb(0,0,0);\n"
 "padding-bottom: 7px;")
-        self.lineEditUser = QLineEdit(self.widget)
-        self.lineEditUser.setObjectName(u"lineEditUser")
-        self.lineEditUser.setGeometry(QRect(310, 210, 401, 31))
-        self.lineEditUser.setFont(font4)
-        self.lineEditUser.setStyleSheet(u"background-color:rgba(0,0,0,0);\n"
-"border:2px solid rgba(0,0,0,0);\n"
-"border-bottom-color:rgba(46,82,101,200);\n"
-"color:rgb(0,0,0);\n"
-"padding-bottom: 7px;")
         self.lineEditPass = QLineEdit(self.widget)
         self.lineEditPass.setObjectName(u"lineEditPass")
-        self.lineEditPass.setGeometry(QRect(310, 270, 401, 31))
+        self.lineEditPass.setGeometry(QRect(310, 220, 401, 31))
         self.lineEditPass.setFont(font4)
         self.lineEditPass.setStyleSheet(u"background-color:rgba(0,0,0,0);\n"
 "border:2px solid rgba(0,0,0,0);\n"
@@ -136,7 +127,7 @@ class Register_Form(QWidget):
         self.lineEditPass.setEchoMode(QLineEdit.Password)
         self.lineEditPass2 = QLineEdit(self.widget)
         self.lineEditPass2.setObjectName(u"lineEditPass2")
-        self.lineEditPass2.setGeometry(QRect(310, 330, 401, 31))
+        self.lineEditPass2.setGeometry(QRect(310, 290, 401, 31))
         self.lineEditPass2.setFont(font4)
         self.lineEditPass2.setStyleSheet(u"background-color:rgba(0,0,0,0);\n"
 "border:2px solid rgba(0,0,0,0);\n"
@@ -144,26 +135,19 @@ class Register_Form(QWidget):
 "color:rgb(0,0,0);\n"
 "padding-bottom: 7px;")
         self.lineEditPass2.setEchoMode(QLineEdit.Password)
-        self.spinBox = QSpinBox(self.widget)
-        self.spinBox.setObjectName(u"spinBox")
-        self.spinBox.setGeometry(QRect(370, 150, 111, 41))
-        self.spinBox.setFont(font4)
-        self.spinBox.setStyleSheet(u"background-color:rgba(0,0,0,0);\n"
-"border:2px solid rgba(0,0,0,0);\n"
-"border-bottom-color:rgba(46,82,101,200);\n"
-"color:rgb(127, 127, 127);\n"
-"padding-bottom: 7px;")
-        self.label_7 = QLabel(self.widget)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(300, 150, 101, 41))
-        self.label_7.setFont(font4)
-        self.label_7.setStyleSheet(u"background-color:rgba(0,0,0,0);\n"
-"border:2px solid rgba(0,0,0,0);\n"
-"color:rgb(127, 127, 127);")
         self.pushButtonCancelar = QPushButton(self.widget)
         self.pushButtonCancelar.setObjectName(u"pushButtonCancelar")
-        self.pushButtonCancelar.setGeometry(QRect(370, 390, 171, 51))
+        self.pushButtonCancelar.setGeometry(QRect(370, 380, 171, 61))
         self.pushButtonCancelar.setFont(font1)
+        self.lineEditCedula = QLineEdit(self.widget)
+        self.lineEditCedula.setObjectName(u"lineEditCedula")
+        self.lineEditCedula.setGeometry(QRect(310, 80, 241, 41))
+        self.lineEditCedula.setFont(font)
+        self.lineEditCedula.setStyleSheet(u"background-color:rgba(0,0,0,0);\n"
+"border:2px solid rgba(0,0,0,0);\n"
+"border-bottom-color:rgba(46,82,101,200);\n"
+"color:rgb(0,0,0);\n"
+"padding-bottom: 7px;")
 
         self.retranslateUi(self)
 
@@ -171,7 +155,6 @@ class Register_Form(QWidget):
 
         self.pushButtonRegistrarse.clicked.connect(self.registrarUsuario)
         self.pushButtonCancelar.clicked.connect(self.cerrarVentana)
-
     # setupUi
 
     def retranslateUi(self, Form):
@@ -185,24 +168,19 @@ class Register_Form(QWidget):
         self.label_5.setText(QCoreApplication.translate("Form", u"Bienvenido a tu asistente", None))
         self.label_6.setText(QCoreApplication.translate("Form", u"m\u00e9dico personalizado", None))
         self.lineEditApellido.setPlaceholderText(QCoreApplication.translate("Form", u"Apellido", None))
-        self.lineEditUser.setPlaceholderText(QCoreApplication.translate("Form", u"Usuario", None))
         self.lineEditPass.setPlaceholderText(QCoreApplication.translate("Form", u"Contrase\u00f1a", None))
         self.lineEditPass2.setPlaceholderText(QCoreApplication.translate("Form", u"Confirmar Contrase\u00f1a", None))
-        self.label_7.setText(QCoreApplication.translate("Form", u"Edad:", None))
         self.pushButtonCancelar.setText(QCoreApplication.translate("Form", u"Cancelar", None))
+        self.lineEditCedula.setPlaceholderText(QCoreApplication.translate("Form", u"C\u00e9dula", None))
     # retranslateUi
 
     def registrarUsuario(self):
-
         campos_vacios = self.validarCamposVacios()
         check_password = self.validarPassword()
-        print(self.lineEditUser.text())
-        print(self.lineEditPass.text())
 
-        usuario = Usuario(self.lineEditNombre.text(),
+        usuario = Usuario(self.lineEditCedula.text(),
+                          self.lineEditNombre.text(),
                           self.lineEditApellido.text(),
-                          self.spinBox.text(),
-                          self.lineEditUser.text(),
                           self.lineEditPass.text())
 
         print(usuario.presentar_usuario())
@@ -210,23 +188,16 @@ class Register_Form(QWidget):
             print(usuario.presentar_usuario())
             LOGUsuario.RegistrarUsuario(self, usuario)
 
-
-
     def validarCamposVacios(self):
-        if not self.lineEditNombre.text():
+        if not self.lineEditCedula.text():
+            messagebox.showinfo(message="Debe ingresar su número de cédula", title="Advertencia")
+
+        elif not self.lineEditNombre.text():
             messagebox.showinfo(message="Debe ingresar un nombre", title="Advertencia")
             return 0
 
         elif not self.lineEditApellido.text():
             messagebox.showinfo(message="Debe ingresar un apellido", title="Advertencia")
-            return 0
-
-        elif not self.spinBox.text() or self.spinBox.text() == 0:
-            messagebox.showinfo(message="Debe ingresar su edad", title="Advertencia")
-            return 0
-
-        elif not self.lineEditUser.text():
-            messagebox.showinfo(message="Por favor ingrese una usuario", title="Advertencia")
             return 0
 
         elif not self.lineEditPass.text():
@@ -249,4 +220,3 @@ class Register_Form(QWidget):
 
     def cerrarVentana(self):
         self.close()
-

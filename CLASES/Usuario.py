@@ -1,9 +1,8 @@
 class Usuario(object):
-    def __init__(self, nombre, apellido, edad, user, password):
+    def __init__(self, cedula, nombre, apellido, password):
+        self.cedula = cedula
         self.nombre = nombre
         self.apellido = apellido
-        self.edad = edad
-        self.user = user
         self.password = password
 
     def set_nombre(self, nombre):
@@ -12,11 +11,8 @@ class Usuario(object):
     def set_apellido(self, apellido):
         self.apellido = apellido
 
-    def set_edad(self, edad):
-        self.edad = edad
-
-    def set_user(self, user):
-        self.user = user
+    def set_cedula(self, cedula):
+        self.cedula = cedula
 
     def set_password(self, password):
         self.password = password
@@ -27,15 +23,12 @@ class Usuario(object):
     def get_apellido(self):
         return self.apellido
 
-    def get_edad(self):
-        return self.edad
-
-    def get_user(self):
-        return self.user
+    def get_cedula(self):
+        return self.cedula
 
     def get_password(self):
         return self.password
 
     def presentar_usuario(self):
-        return "\tUsuario: \nNombre: %s \tApellido: %s \tEdad: %s \tUsuario: %s \tPassword: %s" %(self.get_nombre(), self.get_apellido(), self.get_edad(), self.get_user, self.get_password)
+        return "\tUsuario: \nCedula: %s \tNombre: %s \tApellido: %s \tPassword: %s" %(self.get_cedula(), self.get_nombre(), self.get_apellido(), self.get_password)
 

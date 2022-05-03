@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'loginoVaSdW.ui'
+## Form generated from reading UI file 'loginWHWxEg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -18,15 +18,12 @@ from AGUI.ui_registro import Register_Form as Register_Form
 
 class Login_Form(QWidget):
     clicked = QtCore.pyqtSignal()
-    # def setupUi(self, Form):
-    #     if not Form.objectName():
-    #         Form.setObjectName(u"Form")
-    #     Form.resize(900, 500)
     def __init__(self):
         super(Login_Form, self).__init__()
 
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        self.resize(900, 500)
         self.setMinimumSize(QSize(900, 500))
         self.setMaximumSize(QSize(900, 500))
         self.widget = QWidget(self)
@@ -62,13 +59,13 @@ class Login_Form(QWidget):
         self.label_3.setStyleSheet(u"font: 75 20pt \"MS Shell Dlg 2\";\n"
 "color: rgb(0, 79, 86)\n"
 "")
-        self.lineEditUser = QLineEdit(self.widget)
-        self.lineEditUser.setObjectName(u"lineEditUser")
-        self.lineEditUser.setGeometry(QRect(500, 120, 361, 31))
+        self.lineEditCedula = QLineEdit(self.widget)
+        self.lineEditCedula.setObjectName(u"lineEditCedula")
+        self.lineEditCedula.setGeometry(QRect(500, 120, 361, 31))
         font = QFont()
         font.setPointSize(18)
-        self.lineEditUser.setFont(font)
-        self.lineEditUser.setStyleSheet(u"background-color:rgba(0,0,0,0);\n"
+        self.lineEditCedula.setFont(font)
+        self.lineEditCedula.setStyleSheet(u"background-color:rgba(0,0,0,0);\n"
 "border:2px solid rgba(0,0,0,0);\n"
 "border-bottom-color:rgba(46,82,101,200);\n"
 "color:rgb(0,0,0);\n"
@@ -126,7 +123,6 @@ class Login_Form(QWidget):
 
         self.pushButtonLogin.clicked.connect(self.buscarUsuario)
         self.pushButtonRegistrarse.clicked.connect(self.clicked)
-
     # setupUi
 
     def retranslateUi(self, Form):
@@ -134,7 +130,7 @@ class Login_Form(QWidget):
         self.label.setText("")
         self.label_2.setText("")
         self.label_3.setText(QCoreApplication.translate("Form", u"Inicio de Sesi\u00f3n", None))
-        self.lineEditUser.setPlaceholderText(QCoreApplication.translate("Form", u"Usuario", None))
+        self.lineEditCedula.setPlaceholderText(QCoreApplication.translate("Form", u"Cedula", None))
         self.lineEditPass.setPlaceholderText(QCoreApplication.translate("Form", u"Contrase\u00f1a", None))
         self.pushButtonLogin.setText(QCoreApplication.translate("Form", u"Iniciar Sesi\u00f3n", None))
         self.pushButtonRegistrarse.setText(QCoreApplication.translate("Form", u"Registrarse", None))
@@ -145,18 +141,10 @@ class Login_Form(QWidget):
     # retranslateUi
 
     def buscarUsuario(self):
-
+        pass
 
     def RegisterWindow(self):
         self.formRegister = QtWidgets.QWidget()
         self.uiRegister = Register_Form()
         self.uiRegister.setupUi(self.formRegister)
         self.formRegister.show()
-
-# if __name__ == "__main__":
-#     app = QtWidgets.QApplication(sys.argv)
-#     Form = QtWidgets.QWidget()
-#     ui = Ui_Form()
-#     ui.setupUi(Form)
-#     Form.show()
-#     sys.exit(app.exec_())

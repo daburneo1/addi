@@ -20,6 +20,7 @@ from BLOGICA.LOGUsuario import *
 
 class Register_Form(QWidget):
     clicked = QtCore.pyqtSignal()
+    log_usuario = LOGUsuario()
     def __init__(self):
         super(Register_Form, self).__init__()
 
@@ -186,7 +187,8 @@ class Register_Form(QWidget):
         print(usuario.presentar_usuario())
         if campos_vacios == 1 and check_password == 1:
             print(usuario.presentar_usuario())
-            LOGUsuario.RegistrarUsuario(self, usuario)
+            self.log_usuario.RegistrarUsuario(usuario)
+            # LOGUsuario.RegistrarUsuario(self, usuario)
 
     def validarCamposVacios(self):
         if not self.lineEditCedula.text():

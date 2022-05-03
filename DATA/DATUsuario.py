@@ -21,5 +21,13 @@ class DATUsuario():
         connection.commit()
 
     def BuscarUsuario(self, usuario):
-        pass
+        sql = "SELECT * FROM Usuario WHERE cedula = '%s'" %(usuario.cedula)
 
+        print(sql)
+
+        cursor.execute(sql)
+        datos = cursor.fetchall()
+        cursor.close()
+
+        for i in datos:
+            print(i)

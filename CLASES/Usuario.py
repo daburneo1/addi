@@ -1,4 +1,5 @@
 class Usuario(object):
+
     def __init__(self, cedula, nombre, apellido, password):
         self.cedula = cedula
         self.nombre = nombre

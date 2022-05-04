@@ -121,7 +121,7 @@ class Login_Form(QWidget):
 
         QMetaObject.connectSlotsByName(self)
 
-        self.pushButtonLogin.clicked.connect(self.buscarUsuario)
+        self.pushButtonLogin.clicked.connect(self.buscar_usuario)
         self.pushButtonRegistrarse.clicked.connect(self.clicked)
     # setupUi
 
@@ -140,7 +140,7 @@ class Login_Form(QWidget):
         self.label_6.setText("")
     # retranslateUi
 
-    def buscarUsuario(self):
+    def buscar_usuario(self):
         pass
 
     def RegisterWindow(self):

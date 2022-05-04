@@ -11,7 +11,7 @@ cursor = connection.cursor()
 
 class DATUsuario():
 
-    def RegistrarUsuario(self, usuario):
+    def registrar_usuario(self, usuario):
         sql = "INSERT INTO Usuario (cedula, nombre, apellido, pass) VALUES (" \
               "'%s','%s','%s','%s')" %(usuario.cedula, usuario.nombre, usuario.apellido, usuario.password)
 
@@ -20,14 +20,14 @@ class DATUsuario():
         cursor.execute(sql)
         connection.commit()
 
-    def BuscarUsuario(self, usuario):
+    def buscar_usuario(self, usuario):
         sql = "SELECT * FROM Usuario WHERE cedula = '%s'" %(usuario.cedula)
 
         print(sql)
 
         cursor.execute(sql)
         datos = cursor.fetchall()
-        cursor.close()
 
-        for i in datos:
-            print(i)
+        print(datos)
+
+        return datos

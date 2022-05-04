@@ -154,8 +154,8 @@ class Register_Form(QWidget):
 
         QMetaObject.connectSlotsByName(self)
 
-        self.pushButtonRegistrarse.clicked.connect(self.registrarUsuario)
-        self.pushButtonCancelar.clicked.connect(self.cerrarVentana)
+        self.pushButtonRegistrarse.clicked.connect(self.registrar_usuario)
+        self.pushButtonCancelar.clicked.connect(self.cerrar_ventana)
     # setupUi
 
     def retranslateUi(self, Form):
@@ -175,9 +175,9 @@ class Register_Form(QWidget):
         self.lineEditCedula.setPlaceholderText(QCoreApplication.translate("Form", u"C\u00e9dula", None))
     # retranslateUi
 
-    def registrarUsuario(self):
-        campos_vacios = self.validarCamposVacios()
-        check_password = self.validarPassword()
+    def registrar_usuario(self):
+        campos_vacios = self.validar_campos_vacios()
+        check_password = self.validar_password()
 
         usuario = Usuario(self.lineEditCedula.text(),
                           self.lineEditNombre.text(),
@@ -187,10 +187,10 @@ class Register_Form(QWidget):
         print(usuario.presentar_usuario())
         if campos_vacios == 1 and check_password == 1:
             print(usuario.presentar_usuario())
-            self.log_usuario.RegistrarUsuario(usuario)
+            self.log_usuario.registrar_usuario(usuario)
             # LOGUsuario.RegistrarUsuario(self, usuario)
 
-    def validarCamposVacios(self):
+    def validar_campos_vacios(self):
         if not self.lineEditCedula.text():
             messagebox.showinfo(message="Debe ingresar su número de cédula", title="Advertencia")
 
@@ -213,12 +213,12 @@ class Register_Form(QWidget):
         else:
             return 1
 
-    def validarPassword(self):
+    def validar_password(self):
         if self.lineEditPass.text() == self.lineEditPass2.text():
             return 1
         else:
             messagebox.showinfo(message="Las contraseñas ingresadas no coinciden", title="Advertencia")
             return 0
 
-    def cerrarVentana(self):
+    def cerrar_ventana(self):
         self.close()

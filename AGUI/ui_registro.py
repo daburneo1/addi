@@ -12,15 +12,15 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QSize, QRect, QMetaObject, QCoreApplication
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QSpinBox
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QSpinBox, QMainWindow
 from tkinter import messagebox
 
 from CLASES.Usuario import *
 from BLOGICA.LOGUsuario import *
 
-class Register_Form(QWidget):
-    clicked = QtCore.pyqtSignal()
-    log_usuario = LOGUsuario()
+class Register_Form(QMainWindow):
+    # clicked = QtCore.pyqtSignal()
+    # log_usuario = LOGUsuario()
     def __init__(self):
         super(Register_Form, self).__init__()
 
@@ -187,12 +187,19 @@ class Register_Form(QWidget):
         print(usuario.presentar_usuario())
         if campos_vacios == 1 and check_password == 1:
             print(usuario.presentar_usuario())
-            self.log_usuario.registrar_usuario(usuario)
-            # LOGUsuario.RegistrarUsuario(self, usuario)
+            registro = self.log_usuario.registrar_usuario(usuario)
+            if registro == 2:
+                messagebox.showerror(message="El número de cédula ingresado ya se encuentra registrado en el sistema", title="Error")
+            elif registro == 3:
+                messagebox.showerror(message="El número de cédula ingresado no es válido", title="Error")
+            elif registro == 1:
+                messagebox.showinfo(message="Usuario registrado", title="Atención")
+                self.cerrar_ventana()
 
     def validar_campos_vacios(self):
         if not self.lineEditCedula.text():
             messagebox.showinfo(message="Debe ingresar su número de cédula", title="Advertencia")
+            return 0
 
         elif not self.lineEditNombre.text():
             messagebox.showinfo(message="Debe ingresar un nombre", title="Advertencia")
@@ -209,7 +216,6 @@ class Register_Form(QWidget):
         elif not self.lineEditPass2.text():
             messagebox.showinfo(message="Por favor repita su contraseña", title="Advertencia")
             return 0
-
         else:
             return 1
 

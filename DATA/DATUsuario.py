@@ -1,4 +1,5 @@
 import pymysql
+from CLASES.Usuario import *
 
 connection = pymysql.connect(
     host="localhost",
@@ -20,14 +21,15 @@ class DATUsuario():
         cursor.execute(sql)
         connection.commit()
 
-    def buscar_usuario(self, usuario):
-        sql = "SELECT * FROM Usuario WHERE cedula = '%s'" %(usuario.cedula)
+    def buscar_usuario(self, credencial):
+        sql = "SELECT * FROM Usuario WHERE cedula = '%s'" %(credencial.cedula)
 
         print(sql)
 
         cursor.execute(sql)
         datos = cursor.fetchall()
 
-        print(datos)
-
-        return datos
+        if datos:
+            usuario = Usuario(datos[0][0], datos[0][1], datos[0][2], datos[0][3])
+            return usuario
+        return None

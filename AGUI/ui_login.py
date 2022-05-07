@@ -12,12 +12,20 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QSize, QRect, QMetaObject, QCoreApplication
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QMainWindow
+from tkinter import messagebox
+
+from AGUI.ui_bienvenida import Welcome_Form as Welcome_Form
+from AGUI.ui_bienvenida import Welcome_Form
 from AGUI.ui_registro import Register_Form as Register_Form
+from BLOGICA.LOGUsuario import *
+from CLASES.Usuario import *
 
 
-class Login_Form(QWidget):
+class Login_Form(QMainWindow):
     clicked = QtCore.pyqtSignal()
+    log_usuario = LOGUsuario()
+    c_usuario = Usuario("","","","")
     def __init__(self):
         super(Login_Form, self).__init__()
 
@@ -141,10 +149,34 @@ class Login_Form(QWidget):
     # retranslateUi
 
     def buscar_usuario(self):
-        pass
+        credenciales = Usuario(self.lineEditCedula.text(),
+                            "","",
+                            self.lineEditPass.text())
 
-    def RegisterWindow(self):
-        self.formRegister = QtWidgets.QWidget()
-        self.uiRegister = Register_Form()
-        self.uiRegister.setupUi(self.formRegister)
-        self.formRegister.show()
+        c_usuario = self.log_usuario.buscar_usuario(credenciales)
+
+        if(c_usuario):
+            credencial_valida = self.log_usuario.validar_credenciales(c_usuario, credenciales)
+            if credencial_valida == 1:
+                messagebox.showinfo(message="Acceso")
+                self.welcome_window()
+                self.set_welcome_info(c_usuario)
+            else:
+                messagebox.showerror(message="Contraseña incorrecta", title="Error")
+        else:
+            messagebox.showerror(message="La cédula ingresada no se encuentra registrada", title="Error")
+
+    def register_window(self):
+        self.form_register = QtWidgets.QMainWindow()
+        self.ui_register = Register_Form()
+        self.ui_register.setupUi(self.form_register)
+        self.form_register.show()
+
+    def set_welcome_info(self, c_usuario):
+        Welcome_Form.get_user(self, c_usuario)
+
+    def welcome_window(self):
+        self.form_welcome = QtWidgets.QMainWindow()
+        self.ui_welcome = Welcome_Form()
+        self.ui_welcome.show()
+        self.close()

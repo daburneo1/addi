@@ -1,10 +1,8 @@
 import sys
 
-from AGUI import ui_login
 from AGUI.ui_login import *
-
-from AGUI import ui_registro
 from AGUI.ui_registro import *
+from AGUI.ui_bienvenida import *
 
 if __name__ == "__main__":
     # app = QtWidgets.QApplication(sys.argv)
@@ -22,9 +20,10 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     login = Login_Form()
     register = Register_Form()
+    welcome = Welcome_Form()
 
-    login.clicked.connect(register.show)
-    register.clicked.connect(login.show)
+    login.pushButtonRegistrarse.clicked.connect(register.show)
+    # login.pushButtonLogin.clicked.connect(welcome.show)
 
     login.show()
     sys.exit(app.exec_())

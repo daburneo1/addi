@@ -1,27 +1,50 @@
+import math
+
 from DATA.DATUsuario import *
 from CLASES.Usuario import *
 
 class LOGUsuario():
 
-    def buscar_usuario(self, usuario):
-        data = DATUsuario.buscar_usuario(self, usuario)
-        busqueda_usuario = Usuario
-        if data:
-            busqueda_usuario(data[0][0], data[0][1], data[0][2], data[0][3])
-            return(busqueda_usuario)
+    c_usuario = Usuario
+
+    def buscar_usuario(self, credencial):
+        usuario = DATUsuario.buscar_usuario(self, credencial)
+        print(credencial)
+        if usuario:
+            return usuario
         else:
             return None
 
-    def registrar_usuario(self, usuario):
-        busqueda_usuario = self.buscar_usuario(usuario)
-        print('****')
-        print(type(busqueda_usuario))
-
-        if busqueda_usuario is None:
-            # DATUsuario.RegistrarUsuario(self, usuario)
-            print("No encontrado")
+    def validar_cedula(self, cedula):
+        if len(cedula) == 10:
             return 1
         else:
-            print("Encontrado")
+            return 0
+
+    def registrar_usuario(self, usuario):
+        cedula = usuario.get_cedula()
+        validar_cedula = self.validar_cedula(cedula)
+        busqueda_usuario = self.buscar_usuario(usuario)
+
+
+        if busqueda_usuario:
+            # DATUsuario.RegistrarUsuario(self, usuario)
+            print("Usuario existente")
+            return 2
+        elif validar_cedula == 0:
+            print("Cedula invalida")
+            return 3
+        else:
+            # DATUsuario.RegistrarUsuario(self, usuario)
+            print('ok')
+            return 1
+
+    def validar_credenciales(self, c_usuario, credenciales):
+        print(c_usuario.get_password)
+        print(credenciales.get_password)
+        if (c_usuario.get_password() == credenciales.get_password()):
+            print('Grant')
+            return 1
+        else:
             return 0
 

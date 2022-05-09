@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'bienvenidalczHiZ.ui'
+## Form generated from reading UI file 'bienvenidaBuGRRd.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -15,6 +15,7 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QMainWindow
 
 from CLASES.Usuario import Usuario
+
 
 class Welcome_Form(QMainWindow):
     clicked = QtCore.pyqtSignal()
@@ -81,7 +82,7 @@ class Welcome_Form(QMainWindow):
         self.pushButtonRecordatorio.setObjectName(u"pushButtonRecordatorio")
         self.pushButtonRecordatorio.setGeometry(QRect(380, 200, 191, 61))
         font3 = QFont()
-        font3.setPointSize(10)
+        font3.setPointSize(14)
         self.pushButtonRecordatorio.setFont(font3)
         self.pushButtonCumplimiento = QPushButton(self.widget)
         self.pushButtonCumplimiento.setObjectName(u"pushButtonCumplimiento")
@@ -94,17 +95,19 @@ class Welcome_Form(QMainWindow):
         self.pushButtonExamenLaboratorio = QPushButton(self.widget)
         self.pushButtonExamenLaboratorio.setObjectName(u"pushButtonExamenLaboratorio")
         self.pushButtonExamenLaboratorio.setGeometry(QRect(640, 300, 191, 61))
-        self.pushButtonExamenLaboratorio.setFont(font3)
+        font4 = QFont()
+        font4.setPointSize(12)
+        self.pushButtonExamenLaboratorio.setFont(font4)
         self.label_6 = QLabel(self.widget)
         self.label_6.setObjectName(u"label_6")
         self.label_6.setGeometry(QRect(400, 130, 141, 31))
-        font4 = QFont()
-        font4.setPointSize(16)
-        self.label_6.setFont(font4)
+        font5 = QFont()
+        font5.setPointSize(16)
+        self.label_6.setFont(font5)
         self.label_7 = QLabel(self.widget)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setGeometry(QRect(700, 130, 51, 31))
-        self.label_7.setFont(font4)
+        self.label_7.setFont(font5)
         self.pushButtonSalir = QPushButton(self.widget)
         self.pushButtonSalir.setObjectName(u"pushButtonSalir")
         self.pushButtonSalir.setGeometry(QRect(560, 400, 111, 41))
@@ -113,6 +116,8 @@ class Welcome_Form(QMainWindow):
         self.retranslateUi(self)
 
         QMetaObject.connectSlotsByName(self)
+
+        self.pushButtonCancelar.clicked.connect(self.cerrar_ventana)
     # setupUi
 
     def retranslateUi(self, Form):
@@ -123,7 +128,7 @@ class Welcome_Form(QMainWindow):
         self.label_5.setText(QCoreApplication.translate("Form", u"Tu asistente m\u00e9dico personalizado", None))
         self.label_Bienvenida.setText(QCoreApplication.translate("Form", u"Bienvenido", None))
         self.pushButtonRecordatorio.setText(QCoreApplication.translate("Form", u"Recordatorios", None))
-        self.pushButtonCumplimiento.setText(QCoreApplication.translate("Form", u"Revisa tu cumplimiento", None))
+        self.pushButtonCumplimiento.setText(QCoreApplication.translate("Form", u"Historial", None))
         self.pushButtonCitaMedica.setText(QCoreApplication.translate("Form", u"Citas M\u00e9dicas", None))
         self.pushButtonExamenLaboratorio.setText(QCoreApplication.translate("Form", u"Ex\u00e1menes de Laboratorio", None))
         self.label_6.setText(QCoreApplication.translate("Form", u"Medicamentos", None))
@@ -135,3 +140,7 @@ class Welcome_Form(QMainWindow):
         self.usuario = user
         print("///////////")
         print(self.usuario)
+
+    def cerrar_ventana(self):
+        self.close()
+

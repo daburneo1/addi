@@ -9,11 +9,12 @@
 ################################################################################
 
 import sys
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QSize, QRect, QMetaObject, QCoreApplication
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QMainWindow
 
+from AGUI.ui_medicamentos import Medicine_Form
 from CLASES.Usuario import Usuario
 
 
@@ -117,7 +118,8 @@ class Welcome_Form(QMainWindow):
 
         QMetaObject.connectSlotsByName(self)
 
-        self.pushButtonCancelar.clicked.connect(self.cerrar_ventana)
+        # self.pushButtonCancelar.clicked.connect(self.cerrar_ventana)
+        self.pushButtonRecordatorio.clicked.connect(self.medicine_window)
     # setupUi
 
     def retranslateUi(self, Form):
@@ -141,6 +143,13 @@ class Welcome_Form(QMainWindow):
         print("///////////")
         print(self.usuario)
 
+    def medicine_window(self):
+        # self.form_medicine = QtWidgets.QMainWindow()
+        self.ui_medicine = Medicine_Form()
+        self.ui_medicine.show()
+
     def cerrar_ventana(self):
         self.close()
+
+
 

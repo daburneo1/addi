@@ -36,6 +36,7 @@ class Medicine_Form(QWidget):
         self.pushButtonDB.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageDB))
         self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
+        self.pushButtonGuardar.clicked.connect(self.agregar_recordatorio)
 
         #ancho de columna
         self.tableMedicamentos.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -43,8 +44,34 @@ class Medicine_Form(QWidget):
     def page_data_base(self):
         pass
 
-    def page_agregar_recordatorio(self):
-        pass
+    def agregar_recordatorio(self):
+        medicamento = self.lineEditMedicamento.text().capitalize()
+        # tipo = self.comboBoxTipo.text()
+        frecuencia = self.obtener_frecuencia()
+        dosis = self.lineEditDosis.text()
+        veces_dia = self.spinBoxVecesDia.text()
+        numero_dias = self.spinBoxDias.text()
+
+        print(medicamento, frecuencia, dosis, veces_dia, numero_dias)
+
+    def obtener_frecuencia(self):
+        print('frecuencia')
+        frecuencia = []
+        if self.checkBoxLunes.isChecked():
+            frecuencia.append('Lunes')
+        if self.checkBoxMartes.isChecked():
+            frecuencia.append('Martes')
+        if self.checkBoxMiercoles.isChecked():
+            frecuencia.append('Miercoles')
+        if self.checkBoxJueves.isChecked():
+            frecuencia.append('Jueves')
+        if self.checkBoxViernes.isChecked():
+            frecuencia.append('Viernes')
+        if self.checkBoxSabado.isChecked():
+            frecuencia.append('Sabado')
+        if self.checkBoxDomingo.isChecked():
+            frecuencia.append('Domingo')
+        return frecuencia
 
     def page_editar_recordatorio(self):
         pass

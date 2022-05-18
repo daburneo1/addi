@@ -79,14 +79,38 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `addi`.`tipomedicamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `addi`.`tipomedicamento` (
+  `idtipomedicamento` INT NOT NULL AUTO_INCREMENT,
+  `tipoMedicamento` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idtipomedicamento`))
+ENGINE = InnoDB;
+
+INSERT INTO `addi`.`tipomedicamento` (tipoMedicamento)
+  VALUES  ('Pastilla'),
+          ('Capsula'),
+          ('Inyección'),
+          ('Suero'),
+          ('Otro');
+-- -----------------------------------------------------
 -- Table `addi`.`medicamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `addi`.`medicamento` (
   `idMedicamentos` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(15) NOT NULL,
-  `cantidad` INT(11) NOT NULL,
-  `tipo` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`idMedicamentos`))
+  `dosis` VARCHAR(40) NOT NULL,
+  `frecuencia` VARCHAR(45) NOT NULL,
+  `fecha_desde` DATE NOT NULL,
+  `fecha_hasta` DATE NULL,
+  `idtipomedicamento` INT NOT NULL,
+  PRIMARY KEY (`idMedicamentos`),
+  INDEX `fk_medicamento_tipomedicamento1_idx` (`idtipomedicamento` ASC),
+  CONSTRAINT `fk_medicamento_tipomedicamento1`
+    FOREIGN KEY (`idtipomedicamento`)
+    REFERENCES `addi`.`tipomedicamento` (`idtipomedicamento`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

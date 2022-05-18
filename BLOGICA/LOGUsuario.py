@@ -28,14 +28,14 @@ class LOGUsuario():
 
 
         if busqueda_usuario:
-            # DATUsuario.RegistrarUsuario(self, usuario)
+            DATUsuario.registrar_usuario(self, usuario)
             print("Usuario existente")
             return 2
         elif validar_cedula == 0:
             print("Cedula invalida")
             return 3
         else:
-            # DATUsuario.RegistrarUsuario(self, usuario)
+            DATUsuario.registrar_usuario(self, usuario)
             print('ok')
             return 1
 

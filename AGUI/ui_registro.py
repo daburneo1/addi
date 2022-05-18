@@ -19,8 +19,8 @@ from CLASES.Usuario import *
 from BLOGICA.LOGUsuario import *
 
 class Register_Form(QMainWindow):
-    # clicked = QtCore.pyqtSignal()
-    # log_usuario = LOGUsuario()
+    clicked = QtCore.pyqtSignal()
+    log_usuario = LOGUsuario()
     def __init__(self):
         super(Register_Form, self).__init__()
 

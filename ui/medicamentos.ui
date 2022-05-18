@@ -37,7 +37,7 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1">
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0">
       <item>
        <widget class="QFrame" name="frame_2">
         <property name="styleSheet">
@@ -650,10 +650,10 @@ QPushButton:hover{
                      <number>10</number>
                     </property>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit"/>
+                     <widget class="QLineEdit" name="lineEditMedicamento"/>
                     </item>
                     <item>
-                     <widget class="QComboBox" name="comboBox">
+                     <widget class="QComboBox" name="comboBoxTipo">
                       <property name="styleSheet">
                        <string notr="true">border-radius:5px</string>
                       </property>
@@ -662,49 +662,49 @@ QPushButton:hover{
                     <item>
                      <layout class="QHBoxLayout" name="horizontalLayout_3">
                       <item>
-                       <widget class="QCheckBox" name="checkBox">
+                       <widget class="QCheckBox" name="checkBoxLunes">
                         <property name="text">
                          <string>Lunes</string>
                         </property>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QCheckBox" name="checkBox_2">
+                       <widget class="QCheckBox" name="checkBoxMartes">
                         <property name="text">
                          <string>Martes</string>
                         </property>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QCheckBox" name="checkBox_3">
+                       <widget class="QCheckBox" name="checkBoxMiercoles">
                         <property name="text">
                          <string>Miercoles</string>
                         </property>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QCheckBox" name="checkBox_4">
+                       <widget class="QCheckBox" name="checkBoxJueves">
                         <property name="text">
                          <string>Jueves</string>
                         </property>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QCheckBox" name="checkBox_5">
+                       <widget class="QCheckBox" name="checkBoxViernes">
                         <property name="text">
                          <string>Viernes</string>
                         </property>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QCheckBox" name="checkBox_7">
+                       <widget class="QCheckBox" name="checkBoxSabado">
                         <property name="text">
                          <string>Sabado</string>
                         </property>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QCheckBox" name="checkBox_6">
+                       <widget class="QCheckBox" name="checkBoxDomingo">
                         <property name="text">
                          <string>Domingo</string>
                         </property>
@@ -713,12 +713,12 @@ QPushButton:hover{
                      </layout>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_3"/>
+                     <widget class="QLineEdit" name="lineEditDosis"/>
                     </item>
                     <item>
                      <layout class="QHBoxLayout" name="horizontalLayout_9">
                       <item>
-                       <widget class="QSpinBox" name="spinBox"/>
+                       <widget class="QSpinBox" name="spinBoxVecesDia"/>
                       </item>
                       <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -738,7 +738,7 @@ QPushButton:hover{
                            </widget>
                           </item>
                           <item>
-                           <widget class="QTimeEdit" name="timeEdit"/>
+                           <widget class="QTimeEdit" name="timeEdit_1"/>
                           </item>
                          </layout>
                         </item>
@@ -789,7 +789,7 @@ QPushButton:hover{
                      </layout>
                     </item>
                     <item>
-                     <widget class="QSpinBox" name="spinBox_2">
+                     <widget class="QSpinBox" name="spinBoxDias">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                         <horstretch>0</horstretch>

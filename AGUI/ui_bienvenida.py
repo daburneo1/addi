@@ -118,7 +118,7 @@ class Welcome_Form(QMainWindow):
 
         QMetaObject.connectSlotsByName(self)
 
-        # self.pushButtonCancelar.clicked.connect(self.cerrar_ventana)
+        self.pushButtonSalir.clicked.connect(self.cerrar_ventana)
         self.pushButtonRecordatorio.clicked.connect(self.medicine_window)
     # setupUi
 
@@ -149,6 +149,9 @@ class Welcome_Form(QMainWindow):
         self.ui_medicine.show()
 
     def cerrar_ventana(self):
+        # self.form_welcome = QtWidgets.QMainWindow()
+        self.ui_welcome = Welcome_Form()
+        self.ui_welcome.show()
         self.close()
 
 

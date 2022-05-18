@@ -33,9 +33,9 @@ class Medicine_Form(QWidget):
         self.grip.resize(self.gripSize, self.gripSize)
 
         #coneccion botones
-        self.pushButtonDB.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_data_base))
-        self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_agregar_recordatorio))
-        self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_editar_recordatorio))
+        self.pushButtonDB.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageDB))
+        self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
+        self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
 
         #ancho de columna
         self.tableMedicamentos.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)

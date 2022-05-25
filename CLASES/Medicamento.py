@@ -1,16 +1,24 @@
 class Medicamento(object):
-    def __init__(self):
-        self.nombre = ""
-        self.dosis = ""
-        self.frecuencia = []
-        self.fecha_desde = ""
-        self.fecha_hasta = ""
+    def __init__(self, nombre, tipo, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta):
+        self.nombre = nombre
+        self.tipo = tipo
+        self.dosis = dosis
+        self.veces_dia = veces_dia
+        self.frecuencia = frecuencia
+        self.fecha_desde = fecha_desde
+        self.fecha_hasta = fecha_hasta
 
     def set_nombre(self, nombre):
         self.nombre = nombre
 
+    def set_tipo(self, tipo):
+        self.tipo = tipo
+
     def set_dosis(self, dosis):
         self.dosis = dosis
+
+    def set_veces_dia(self, veces_dia):
+        self.veces_dia = veces_dia
 
     def set_frecuencia(self, frecuencia):
         self.frecuencia = frecuencia
@@ -24,8 +32,14 @@ class Medicamento(object):
     def get_nombre(self):
         return self.nombre
 
+    def get_tipo(self):
+        return self.tipo
+
     def get_dosis(self):
         return self.dosis
+
+    def get_veces_dia(self):
+        return self.veces_dia
 
     def get_frecuencia(self):
         return self.frecuencia
@@ -37,4 +51,4 @@ class Medicamento(object):
         return self.fecha_hasta
 
     def presentar_medicamento(self):
-        cadena = "\tMedicamento: \nNombre: %s \tDosis: %s \tFrecuencia: %s \tDesde: %s \tHasta: %s" %(self.get_nombre(), self.get_dosis(), self.get_frecuencia(), self.get_fecha_desde(), self.fecha_hasta)
+        cadena = "\tMedicamento: \nNombre: %s \tTipo: %s \tDosis: %s \tVeces por dia: %s \tFrecuencia: %s \tDesde: %s \tHasta: %s" %(self.get_nombre(), self.get_tipo(), self.get_dosis(), self.veces_dia(), self.get_frecuencia(), self.get_fecha_desde(), self.fecha_hasta)

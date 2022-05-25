@@ -1,14 +1,15 @@
 import pymysql
+from DATA.DATCursor import *
 from CLASES.Usuario import *
 
-connection = pymysql.connect(
-    host="localhost",
-    user="root",
-    password="",
-    db="addi"
-)
-
-cursor = connection.cursor()
+# connection = pymysql.connect(
+#     host="localhost",
+#     user="root",
+#     password="",
+#     db="addi"
+# )
+#
+# cursor = connection.cursor()
 
 class DATUsuario():
 

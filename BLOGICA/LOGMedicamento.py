@@ -21,4 +21,6 @@ class LOGMedicamento():
         DATMedicamento.agregar_medicamento(self, medicamento, usuario)
         # id_medicamento = DATMedicamento.consultar_id_medicamento(self, medicamento)
         # print('IdMedicamento: '+ id_medicamento)
-        # DATMedicamento.agregar_recordatorio(self, medicamento)
+        DATMedicamento.agregar_recordatorio(self, medicamento)
+
+

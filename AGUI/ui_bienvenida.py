@@ -147,8 +147,10 @@ class Welcome_Form(QMainWindow):
     def medicine_window(self):
         # self.form_medicine = QtWidgets.QMainWindow()
         self.ui_medicine = Medicine_Form()
-        # Medicine_Form.get_user(self.usuario)
         self.ui_medicine.show()
+
+    # def send_user(self):
+    #     # Medicine_Form.get_user(self, user)
 
     def cerrar_ventana(self):
         # self.form_welcome = QtWidgets.QMainWindow()

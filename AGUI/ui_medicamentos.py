@@ -3,15 +3,19 @@ import sys
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QHeaderView, QWidget, QVBoxLayout
 from PyQt5.uic import loadUi
+from tkinter import messagebox
 
 from BLOGICA.LOGMedicamento import *
 from CLASES.Usuario import *
 
+usuario = ""
+
 class Medicine_Form(QWidget):
-    usuario = Usuario
+
     def __init__(self):
         super(Medicine_Form, self).__init__()
         loadUi('./ui/medicamentos.ui', self)
+
 
         widget = QWidget()
         layout = QVBoxLayout()
@@ -48,8 +52,9 @@ class Medicine_Form(QWidget):
         self.tableMedicamentos.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
     def get_user(self, user):
-        self.usuario = user
-        print(self.usuario)
+        global usuario
+        usuario = user
+        # print(self.usuario)
 
     def cargar_tipo_medicina(self):
         tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
@@ -85,7 +90,15 @@ class Medicine_Form(QWidget):
         # print(medicamento, tipo, frecuencia, dosis, veces_dia, numero_dias)
         medicamento = Medicamento(nombre, tipo, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario)
         # print(medicamento.presentar_medicamento())
-        LOGMedicamento.agregar_medicamento(self, medicamento, self.usuario)
+        print(usuario)
+        registro = LOGMedicamento.agregar_medicamento(self, medicamento, usuario)
+
+        if registro:
+            messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
+            self.vaciar_campos()
+            self.stackedWidget.setCurrentWidget(self.pageDB)
+        else:
+            messagebox.showerror(message="Error, por favor revisar los campos ingresados", title="Error")
 
     def obtener_frecuencia(self):
         print('frecuencia')
@@ -108,32 +121,31 @@ class Medicine_Form(QWidget):
 
     def obtener_horario(self):
         value = int(self.spinBoxVecesDia.text())
-        hora_1 = ""
-        hora_2 = ""
-        hora_3 = ""
-        hora_4 = ""
-        horario = []
 
         if value == 1:
+            print("Veces: 1")
             hora_1 = self.timeEdit_1.text()
             horario = [hora_1]
             return horario
         elif value == 2:
+            print("Veces: 2")
             hora_1 = self.timeEdit_1.text()
-            hora_2 = self.timeEdit_1.text()
+            hora_2 = self.timeEdit_2.text()
             horario = [hora_1, hora_2]
             return horario
         elif value == 3:
+            print("Veces: 3")
             hora_1 = self.timeEdit_1.text()
-            hora_2 = self.timeEdit_1.text()
-            hora_3 = self.timeEdit_1.text()
+            hora_2 = self.timeEdit_2.text()
+            hora_3 = self.timeEdit_3.text()
             horario = [hora_1, hora_2, hora_3]
             return horario
         elif value == 4:
+            print("Veces: 4")
             hora_1 = self.timeEdit_1.text()
-            hora_2 = self.timeEdit_1.text()
-            hora_3 = self.timeEdit_1.text()
-            hora_4 = self.timeEdit_1.text()
+            hora_2 = self.timeEdit_2.text()
+            hora_3 = self.timeEdit_3.text()
+            hora_4 = self.timeEdit_4.text()
             horario = [hora_1, hora_2, hora_3, hora_4]
             return horario
 
@@ -143,7 +155,7 @@ class Medicine_Form(QWidget):
         return fecha
 
     def obtener_fecha_final(self, fecha_actual, numero_dias):
-        from datetime import date, timedelta
+        from datetime import timedelta
         td = timedelta(int(numero_dias))
         fecha_final = fecha_actual + td
         return fecha_final
@@ -186,6 +198,20 @@ class Medicine_Form(QWidget):
             self.label_time_3.setVisible(True)
             self.timeEdit_4.setVisible(True)
             self.label_time_4.setVisible(True)
+
+    def vaciar_campos(self):
+        self.lineEditMedicamento.setText('')
+        self.checkBoxLunes.setChecked(False)
+        self.checkBoxMartes.setChecked(False)
+        self.checkBoxMiercoles.setChecked(False)
+        self.checkBoxJueves.setChecked(False)
+        self.checkBoxViernes.setChecked(False)
+        self.checkBoxSabado.setChecked(False)
+        self.checkBoxDomingo.setChecked(False)
+        self.lineEditDosis.setText('')
+        self.spinBoxVecesDia.setValue(1)
+        self.spinBoxDias.setValue(1)
+
 
     def page_editar_recordatorio(self):
         pass

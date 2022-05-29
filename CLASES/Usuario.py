@@ -30,6 +30,9 @@ class Usuario(object):
     def get_password(self):
         return self.password
 
-    def presentar_usuario(self):
-        return "\tUsuario: \nCedula: %s \tNombre: %s \tApellido: %s \tPassword: %s" %(self.get_cedula(), self.get_nombre(), self.get_apellido(), self.get_password)
-
+    def __str__(self):
+        return "\tUsuario: \nCedula: %s \tNombre: %s \tApellido: %s \tPassword: %s" % (
+        self.get_cedula(), self.get_nombre(), self.get_apellido(), self.get_password)
+    # def presentar_usuario(self):
+    #     return "\tUsuario: \nCedula: %s \tNombre: %s \tApellido: %s \tPassword: %s" %(self.get_cedula(), self.get_nombre(), self.get_apellido(), self.get_password)
+    #

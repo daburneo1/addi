@@ -22,8 +22,8 @@ class DATMedicamento():
 
         print(sql)
 
-        cursor.execute(sql)
-        connection.commit()
+        # cursor.execute(sql)
+        # connection.commit()
 
     def consultar_id_medicamento(self, medicamento):
         sql = "SELECT idMedicamentos FROM medicamento WHERE nombre = '%s' AND dosis = '%s'" % (medicamento.nombre, medicamento.dosis)
@@ -37,4 +37,5 @@ class DATMedicamento():
     def agregar_recordatorio(self, medicamento):
         for x in medicamento.horario:
             sql = "INSERT INTO recordatoriomedicamento (hora, idMedicamentos, cedulaUsuario) VALUES (" \
-                  "'%s', '%s', '%s', )" %()
+                  "'%s', '%s', '%s')" %(x, '0', '1104745540')
+            print(sql)

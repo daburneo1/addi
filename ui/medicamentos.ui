@@ -396,7 +396,7 @@ QHeaderView::section{
                 <string notr="true">background-color: rgb(240, 255, 237)</string>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="pageDB">
                 <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -581,8 +581,8 @@ QPushButton:hover{
                   <rect>
                    <x>20</x>
                    <y>30</y>
-                   <width>645</width>
-                   <height>315</height>
+                   <width>687</width>
+                   <height>318</height>
                   </rect>
                  </property>
                  <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -669,11 +669,37 @@ QPushButton:hover{
                        </widget>
                       </item>
                       <item>
+                       <spacer name="horizontalSpacer_8">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
                        <widget class="QCheckBox" name="checkBoxMartes">
                         <property name="text">
                          <string>Martes</string>
                         </property>
                        </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_9">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
                       </item>
                       <item>
                        <widget class="QCheckBox" name="checkBoxMiercoles">
@@ -683,11 +709,37 @@ QPushButton:hover{
                        </widget>
                       </item>
                       <item>
+                       <spacer name="horizontalSpacer_10">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
                        <widget class="QCheckBox" name="checkBoxJueves">
                         <property name="text">
                          <string>Jueves</string>
                         </property>
                        </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_11">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
                       </item>
                       <item>
                        <widget class="QCheckBox" name="checkBoxViernes">
@@ -697,11 +749,37 @@ QPushButton:hover{
                        </widget>
                       </item>
                       <item>
+                       <spacer name="horizontalSpacer_12">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
                        <widget class="QCheckBox" name="checkBoxSabado">
                         <property name="text">
                          <string>Sabado</string>
                         </property>
                        </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_13">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
                       </item>
                       <item>
                        <widget class="QCheckBox" name="checkBoxDomingo">
@@ -718,7 +796,20 @@ QPushButton:hover{
                     <item>
                      <layout class="QHBoxLayout" name="horizontalLayout_9">
                       <item>
-                       <widget class="QSpinBox" name="spinBoxVecesDia"/>
+                       <widget class="QSpinBox" name="spinBoxVecesDia">
+                        <property name="maximumSize">
+                         <size>
+                          <width>90</width>
+                          <height>18</height>
+                         </size>
+                        </property>
+                        <property name="minimum">
+                         <number>1</number>
+                        </property>
+                        <property name="maximum">
+                         <number>4</number>
+                        </property>
+                       </widget>
                       </item>
                       <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -726,61 +817,154 @@ QPushButton:hover{
                          <number>0</number>
                         </property>
                         <item>
+                         <spacer name="horizontalSpacer_7">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
                          <layout class="QHBoxLayout" name="horizontalLayout_4">
                           <property name="spacing">
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QLabel" name="label_8">
+                           <widget class="QLabel" name="label_time_1">
                             <property name="text">
                              <string>1</string>
                             </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QTimeEdit" name="timeEdit_1"/>
+                           <widget class="QTimeEdit" name="timeEdit_1">
+                            <property name="maximumSize">
+                             <size>
+                              <width>70</width>
+                              <height>18</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <spacer name="horizontalSpacer_3">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>40</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
                           </item>
                          </layout>
                         </item>
                         <item>
                          <layout class="QHBoxLayout" name="horizontalLayout_5">
                           <item>
-                           <widget class="QLabel" name="label_9">
+                           <widget class="QLabel" name="label_time_2">
                             <property name="text">
                              <string>2</string>
                             </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QTimeEdit" name="timeEdit_2"/>
+                           <widget class="QTimeEdit" name="timeEdit_2">
+                            <property name="maximumSize">
+                             <size>
+                              <width>70</width>
+                              <height>18</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <spacer name="horizontalSpacer_5">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>40</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
                           </item>
                          </layout>
                         </item>
                         <item>
                          <layout class="QHBoxLayout" name="horizontalLayout_6">
                           <item>
-                           <widget class="QLabel" name="label_10">
+                           <widget class="QLabel" name="label_time_3">
                             <property name="text">
                              <string>3</string>
                             </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QTimeEdit" name="timeEdit_3"/>
+                           <widget class="QTimeEdit" name="timeEdit_3">
+                            <property name="maximumSize">
+                             <size>
+                              <width>70</width>
+                              <height>18</height>
+                             </size>
+                            </property>
+                           </widget>
                           </item>
                          </layout>
                         </item>
                         <item>
                          <layout class="QHBoxLayout" name="horizontalLayout_7">
                           <item>
-                           <widget class="QLabel" name="label_11">
+                           <spacer name="horizontalSpacer_6">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>40</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_time_4">
                             <property name="text">
                              <string>4</string>
                             </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QTimeEdit" name="timeEdit_4"/>
+                           <widget class="QTimeEdit" name="timeEdit_4">
+                            <property name="maximumSize">
+                             <size>
+                              <width>70</width>
+                              <height>18</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <spacer name="horizontalSpacer_4">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>40</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
                           </item>
                          </layout>
                         </item>

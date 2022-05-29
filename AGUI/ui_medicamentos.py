@@ -5,8 +5,10 @@ from PyQt5.QtWidgets import QMainWindow, QHeaderView, QWidget, QVBoxLayout
 from PyQt5.uic import loadUi
 
 from BLOGICA.LOGMedicamento import *
+from CLASES.Usuario import *
 
 class Medicine_Form(QWidget):
+    usuario = Usuario
     def __init__(self):
         super(Medicine_Form, self).__init__()
         loadUi('./ui/medicamentos.ui', self)
@@ -35,14 +37,19 @@ class Medicine_Form(QWidget):
         self.grip.resize(self.gripSize, self.gripSize)
 
         #coneccion botones
+        self.stackedWidget.setCurrentWidget(self.pageDB)
         self.pushButtonDB.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageDB))
-        self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
+        # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonRegistrar.clicked.connect(self.registrar)
         self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonGuardar.clicked.connect(self.agregar_recordatorio)
 
         #ancho de columna
         self.tableMedicamentos.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+    def get_user(self, user):
+        self.usuario = user
+        print(self.usuario)
 
     def cargar_tipo_medicina(self):
         tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
@@ -52,7 +59,10 @@ class Medicine_Form(QWidget):
         pass
 
     def registrar(self):
-        self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
+        self.stackedWidget.setCurrentWidget(self.pageRegistrar)
+        self.spinBoxVecesDia.setValue(1)
+        self.spinBoxVecesDia.valueChanged.connect(self.value_change)
+        # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
         print(tipo_medicina[2])
 
@@ -62,7 +72,7 @@ class Medicine_Form(QWidget):
 
     def agregar_recordatorio(self):
         nombre = self.lineEditMedicamento.text().capitalize()
-        tipo = self.comboBoxTipo.currentIndex()
+        tipo = self.comboBoxTipo.currentIndex() + 1
         frecuencia = self.obtener_frecuencia()
         dosis = self.lineEditDosis.text()
         veces_dia = self.spinBoxVecesDia.text()
@@ -70,11 +80,12 @@ class Medicine_Form(QWidget):
         numero_dias = self.spinBoxDias.text()
         fecha_hasta = self.obtener_fecha_final(fecha_desde, numero_dias)
 
-        # print(medicamento, tipo, frecuencia, dosis, veces_dia, numero_dias)
-        medicamento = Medicamento(nombre, tipo, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta)
-        # print(medicamento.presentar_medicamento())
+        horario = self.obtener_horario()
 
-        LOGMedicamento.agregar_medicamento(self, medicamento)
+        # print(medicamento, tipo, frecuencia, dosis, veces_dia, numero_dias)
+        medicamento = Medicamento(nombre, tipo, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario)
+        # print(medicamento.presentar_medicamento())
+        LOGMedicamento.agregar_medicamento(self, medicamento, self.usuario)
 
     def obtener_frecuencia(self):
         print('frecuencia')
@@ -95,6 +106,37 @@ class Medicine_Form(QWidget):
             frecuencia.append('Domingo')
         return frecuencia
 
+    def obtener_horario(self):
+        value = int(self.spinBoxVecesDia.text())
+        hora_1 = ""
+        hora_2 = ""
+        hora_3 = ""
+        hora_4 = ""
+        horario = []
+
+        if value == 1:
+            hora_1 = self.timeEdit_1.text()
+            horario = [hora_1]
+            return horario
+        elif value == 2:
+            hora_1 = self.timeEdit_1.text()
+            hora_2 = self.timeEdit_1.text()
+            horario = [hora_1, hora_2]
+            return horario
+        elif value == 3:
+            hora_1 = self.timeEdit_1.text()
+            hora_2 = self.timeEdit_1.text()
+            hora_3 = self.timeEdit_1.text()
+            horario = [hora_1, hora_2, hora_3]
+            return horario
+        elif value == 4:
+            hora_1 = self.timeEdit_1.text()
+            hora_2 = self.timeEdit_1.text()
+            hora_3 = self.timeEdit_1.text()
+            hora_4 = self.timeEdit_1.text()
+            horario = [hora_1, hora_2, hora_3, hora_4]
+            return horario
+
     def obtener_fecha_actual(self):
         from datetime import date
         fecha = date.today()
@@ -105,6 +147,45 @@ class Medicine_Form(QWidget):
         td = timedelta(int(numero_dias))
         fecha_final = fecha_actual + td
         return fecha_final
+
+    def value_change(self):
+        value = int(self.spinBoxVecesDia.text())
+        if value == 1:
+            self.timeEdit_1.setVisible(True)
+            self.label_time_1.setVisible(True)
+            self.timeEdit_2.setVisible(False)
+            self.label_time_2.setVisible(False)
+            self.timeEdit_3.setVisible(False)
+            self.label_time_3.setVisible(False)
+            self.timeEdit_4.setVisible(False)
+            self.label_time_4.setVisible(False)
+        elif value == 2:
+            self.timeEdit_1.setVisible(True)
+            self.label_time_1.setVisible(True)
+            self.timeEdit_2.setVisible(True)
+            self.label_time_2.setVisible(True)
+            self.timeEdit_3.setVisible(False)
+            self.label_time_3.setVisible(False)
+            self.timeEdit_4.setVisible(False)
+            self.label_time_4.setVisible(False)
+        elif value == 3:
+            self.timeEdit_1.setVisible(True)
+            self.label_time_1.setVisible(True)
+            self.timeEdit_2.setVisible(True)
+            self.label_time_2.setVisible(True)
+            self.timeEdit_3.setVisible(True)
+            self.label_time_3.setVisible(True)
+            self.timeEdit_4.setVisible(False)
+            self.label_time_4.setVisible(False)
+        elif value == 4:
+            self.timeEdit_1.setVisible(True)
+            self.label_time_1.setVisible(True)
+            self.timeEdit_2.setVisible(True)
+            self.label_time_2.setVisible(True)
+            self.timeEdit_3.setVisible(True)
+            self.label_time_3.setVisible(True)
+            self.timeEdit_4.setVisible(True)
+            self.label_time_4.setVisible(True)
 
     def page_editar_recordatorio(self):
         pass

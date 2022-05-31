@@ -44,6 +44,7 @@ class Medicine_Form(QWidget):
         self.stackedWidget.setCurrentWidget(self.pageDB)
         # self.pushButtonDB.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageDB))
         self.pushButtonDB.clicked.connect(self.page_db)
+        self.pushButtonActualizar.clicked.connect(self.page_db)
         # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonRegistrar.clicked.connect(self.registrar)
         self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
@@ -68,11 +69,11 @@ class Medicine_Form(QWidget):
         self.tableMedicamentos.setRowCount(i)
         tablerow = 0
         for row in medicamentos:
-            self.tableMedicamentos.setItem(tablerow, 0,QtWidgets.QTableWidgetItem(str(row[0])))
-            self.tableMedicamentos.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[5])))
-            self.tableMedicamentos.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[1])))
-            self.tableMedicamentos.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
-            self.tableMedicamentos.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[2])))
+            self.tableMedicamentos.setItem(tablerow, 0,QtWidgets.QTableWidgetItem(str(row[1])))
+            self.tableMedicamentos.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[6])))
+            self.tableMedicamentos.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+            self.tableMedicamentos.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[4])))
+            self.tableMedicamentos.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[3])))
             # self.tableMedicamentos.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(row[5]))
             tablerow+=1
 

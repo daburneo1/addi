@@ -184,9 +184,9 @@ class Register_Form(QMainWindow):
                           self.lineEditApellido.text(),
                           self.lineEditPass.text())
 
-        print(usuario.presentar_usuario())
+        print(usuario)
         if campos_vacios == 1 and check_password == 1:
-            print(usuario.presentar_usuario())
+            print(usuario)
             registro = self.log_usuario.registrar_usuario(usuario)
             if registro == 2:
                 messagebox.showerror(message="El número de cédula ingresado ya se encuentra registrado en el sistema", title="Error")

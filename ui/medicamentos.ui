@@ -539,10 +539,10 @@ QPushButton:hover{
                 <widget class="QPushButton" name="pushButtonGuardar">
                  <property name="geometry">
                   <rect>
-                   <x>534</x>
-                   <y>342</y>
+                   <x>540</x>
+                   <y>360</y>
                    <width>121</width>
-                   <height>41</height>
+                   <height>31</height>
                   </rect>
                  </property>
                  <property name="font">
@@ -582,7 +582,7 @@ QPushButton:hover{
                    <x>20</x>
                    <y>30</y>
                    <width>687</width>
-                   <height>318</height>
+                   <height>336</height>
                   </rect>
                  </property>
                  <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -650,7 +650,15 @@ QPushButton:hover{
                      <number>10</number>
                     </property>
                     <item>
-                     <widget class="QLineEdit" name="lineEditMedicamento"/>
+                     <widget class="QLineEdit" name="lineEditMedicamento">
+                      <property name="styleSheet">
+                       <string notr="true">background-color:rgba(0,0,0,0);
+border:2px solid rgba(0,0,0,0);
+border-bottom-color:rgba(46,82,101,200);
+color:rgb(0,0,0);
+padding-bottom: 7px;</string>
+                      </property>
+                     </widget>
                     </item>
                     <item>
                      <widget class="QComboBox" name="comboBoxTipo">
@@ -791,7 +799,15 @@ QPushButton:hover{
                      </layout>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEditDosis"/>
+                     <widget class="QLineEdit" name="lineEditDosis">
+                      <property name="styleSheet">
+                       <string notr="true">background-color:rgba(0,0,0,0);
+border:2px solid rgba(0,0,0,0);
+border-bottom-color:rgba(46,82,101,200);
+color:rgb(0,0,0);
+padding-bottom: 7px;</string>
+                      </property>
+                     </widget>
                     </item>
                     <item>
                      <layout class="QHBoxLayout" name="horizontalLayout_9">
@@ -849,6 +865,9 @@ QPushButton:hover{
                               <height>18</height>
                              </size>
                             </property>
+                            <property name="displayFormat">
+                             <string>h:mm</string>
+                            </property>
                            </widget>
                           </item>
                           <item>
@@ -882,6 +901,9 @@ QPushButton:hover{
                               <width>70</width>
                               <height>18</height>
                              </size>
+                            </property>
+                            <property name="displayFormat">
+                             <string>h:mm</string>
                             </property>
                            </widget>
                           </item>
@@ -917,6 +939,9 @@ QPushButton:hover{
                               <height>18</height>
                              </size>
                             </property>
+                            <property name="displayFormat">
+                             <string>h:mm</string>
+                            </property>
                            </widget>
                           </item>
                          </layout>
@@ -950,6 +975,9 @@ QPushButton:hover{
                               <width>70</width>
                               <height>18</height>
                              </size>
+                            </property>
+                            <property name="displayFormat">
+                             <string>h:mm</string>
                             </property>
                            </widget>
                           </item>

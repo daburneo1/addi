@@ -42,7 +42,8 @@ class Medicine_Form(QWidget):
 
         #coneccion botones
         self.stackedWidget.setCurrentWidget(self.pageDB)
-        self.pushButtonDB.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageDB))
+        # self.pushButtonDB.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageDB))
+        self.pushButtonDB.clicked.connect(self.page_db)
         # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonRegistrar.clicked.connect(self.registrar)
         self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
@@ -60,8 +61,20 @@ class Medicine_Form(QWidget):
         tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
         print(tipo_medicina)
 
-    def page_data_base(self):
-        pass
+    def page_db(self):
+        self.stackedWidget.setCurrentWidget(self.pageDB)
+        medicamentos = LOGMedicamento.cargar_medicamentos(self)
+        i = len(medicamentos)
+        self.tableMedicamentos.setRowCount(i)
+        tablerow = 0
+        for row in medicamentos:
+            self.tableMedicamentos.setItem(tablerow, 0,QtWidgets.QTableWidgetItem(str(row[0])))
+            self.tableMedicamentos.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[5])))
+            self.tableMedicamentos.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[1])))
+            self.tableMedicamentos.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
+            self.tableMedicamentos.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[2])))
+            # self.tableMedicamentos.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(row[5]))
+            tablerow+=1
 
     def registrar(self):
         self.stackedWidget.setCurrentWidget(self.pageRegistrar)
@@ -91,13 +104,14 @@ class Medicine_Form(QWidget):
         medicamento = Medicamento(nombre, tipo, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario)
         # print(medicamento.presentar_medicamento())
         print(usuario)
-        registro = LOGMedicamento.agregar_medicamento(self, medicamento, usuario)
-
-        if registro:
+        try:
+            LOGMedicamento.agregar_medicamento(self, medicamento, usuario)
+            LOGMedicamento.agregar_recordatorio(self, medicamento, usuario)
             messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
             self.vaciar_campos()
             self.stackedWidget.setCurrentWidget(self.pageDB)
-        else:
+        except Exception as e:
+            print(e)
             messagebox.showerror(message="Error, por favor revisar los campos ingresados", title="Error")
 
     def obtener_frecuencia(self):

@@ -140,8 +140,6 @@ class Welcome_Form(QMainWindow):
 
     def get_user(self, user):
         self.usuario = user
-        print("///////////")
-        print(self.usuario)
         Medicine_Form.get_user(self, user)
 
     def medicine_window(self):

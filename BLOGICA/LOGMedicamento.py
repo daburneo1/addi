@@ -44,4 +44,19 @@ class LOGMedicamento():
         else:
             return None
 
+    def buscar_medicamento(self, id):
+        medicamento = DATMedicamento.buscar_medicamento(self, id)
+        print(medicamento)
+        medicamento = Medicamento(medicamento[0][1], medicamento[0][6], medicamento[0][2], medicamento[0][3], medicamento[0][4], str(medicamento[0][7]), str(medicamento[0][8]), None)
+        print(type(medicamento))
+        return medicamento
 
+    def buscar_horario_recordatorio(self, medicamento, id):
+        horario = DATMedicamento.buscar_horario(self, id)
+
+        horario = list(horario)
+        horario_medicamento = []
+        for x in horario:
+            horario_medicamento.append(str(x[1]))
+        medicamento.horario = horario_medicamento
+        return medicamento

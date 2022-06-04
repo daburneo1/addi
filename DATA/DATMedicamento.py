@@ -55,3 +55,19 @@ class DATMedicamento():
             medicamentos.append(x)
         print(medicamentos)
         return medicamentos
+
+    def buscar_medicamento(self, id):
+        sql = "SELECT idMedicamentos, nombre, dosis, veces_dia, frecuencia, cedula, tipomedicamento, fecha_desde, fecha_hasta FROM medicamento INNER JOIN tipomedicamento ON medicamento.idtipomedicamento = tipomedicamento.idtipomedicamento WHERE idMedicamentos = %s;" % (id.text())
+
+        print(sql)
+        cursor.execute(sql)
+        medicamento = cursor.fetchall()
+        return medicamento
+
+    def buscar_horario(self, id):
+        sql = "SELECT * FROM recordatoriomedicamento WHERE medicamento_idMedicamentos = %s" % (id.text())
+
+        print(sql)
+        cursor.execute(sql)
+        horario = cursor.fetchall()
+        return(horario)

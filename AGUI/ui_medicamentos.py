@@ -46,9 +46,13 @@ class Medicine_Form(QWidget):
         self.pushButtonDB.clicked.connect(self.page_db)
         self.pushButtonActualizar.clicked.connect(self.page_db)
         # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
-        self.pushButtonRegistrar.clicked.connect(self.registrar)
-        self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
+        self.pushButtonRegistrar.clicked.connect(self.page_registrar)
+        # self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
+        self.pushButtonEditar.clicked.connect(self.page_editar)
         self.pushButtonGuardar.clicked.connect(self.agregar_recordatorio)
+
+        #qtable
+        self.tableMedicamentos.setSelectionBehavior(QtWidgets.QTableView.SelectRows)
 
         #ancho de columna
         self.tableMedicamentos.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -69,15 +73,15 @@ class Medicine_Form(QWidget):
         self.tableMedicamentos.setRowCount(i)
         tablerow = 0
         for row in medicamentos:
-            self.tableMedicamentos.setItem(tablerow, 0,QtWidgets.QTableWidgetItem(str(row[1])))
-            self.tableMedicamentos.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[6])))
+            self.tableMedicamentos.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+            self.tableMedicamentos.setItem(tablerow, 1,QtWidgets.QTableWidgetItem(str(row[1])))
             self.tableMedicamentos.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
             self.tableMedicamentos.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[4])))
             self.tableMedicamentos.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[3])))
-            # self.tableMedicamentos.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(row[5]))
+            # self.tableMedicamentos.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row[5])))
             tablerow+=1
 
-    def registrar(self):
+    def page_registrar(self):
         self.stackedWidget.setCurrentWidget(self.pageRegistrar)
         self.spinBoxVecesDia.setValue(1)
         self.spinBoxVecesDia.valueChanged.connect(self.value_change)
@@ -228,8 +232,17 @@ class Medicine_Form(QWidget):
         self.spinBoxDias.setValue(1)
 
 
-    def page_editar_recordatorio(self):
-        pass
+    def page_editar(self):
+        print('editar')
+        row = self.tableMedicamentos.currentRow()
+        id = self.tableMedicamentos.item(row, 0)
+        if id is not None:
+            self.stackedWidget.setCurrentWidget(self.pageRegistrar)
+            medicamento = LOGMedicamento.buscar_medicamento(self, id)
+            horario = LOGMedicamento.buscar_horario_recordatorio(self, medicamento, id)
+            # print(medicamento)
+            self.lineEditMedicamento.setText(medicamento.nombre)
+
 
     def eliminar_medicamento(self):
         pass

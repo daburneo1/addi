@@ -396,7 +396,7 @@ QHeaderView::section{
                 <string notr="true">background-color:#c7f5ff</string>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="pageDB">
                 <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -412,6 +412,9 @@ QHeaderView::section{
                  </item>
                  <item>
                   <widget class="QTableWidget" name="tableMedicamentos">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
                    <property name="font">
                     <font>
                      <pointsize>9</pointsize>
@@ -420,6 +423,15 @@ QHeaderView::section{
                    <property name="styleSheet">
                     <string notr="true">background-color:rgb(255,255,255);
 gridline-color:rgb(0, 206, 151);</string>
+                   </property>
+                   <property name="verticalScrollBarPolicy">
+                    <enum>Qt::ScrollBarAsNeeded</enum>
+                   </property>
+                   <property name="horizontalScrollBarPolicy">
+                    <enum>Qt::ScrollBarAsNeeded</enum>
+                   </property>
+                   <property name="sizeAdjustPolicy">
+                    <enum>QAbstractScrollArea::AdjustIgnored</enum>
                    </property>
                    <property name="showGrid">
                     <bool>true</bool>
@@ -430,11 +442,6 @@ gridline-color:rgb(0, 206, 151);</string>
                    <attribute name="verticalHeaderStretchLastSection">
                     <bool>false</bool>
                    </attribute>
-                   <column>
-                    <property name="text">
-                     <string>Id</string>
-                    </property>
-                   </column>
                    <column>
                     <property name="text">
                      <string>Medicamento</string>

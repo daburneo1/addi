@@ -12,7 +12,7 @@ from CLASES.Usuario import *
 
 usuario = ""
 medicamentos = []
-global_medicamento = ''
+global_medicamento = Medicamento('','','','','','','','','')
 
 class Medicine_Form(QWidget):
 
@@ -49,6 +49,7 @@ class Medicine_Form(QWidget):
         self.pushButtonRegistrar.clicked.connect(self.page_registrar)
         # self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonEditar.clicked.connect(self.page_editar)
+        self.pushButtonEliminar.clicked.connect(self.eliminar_medicamento)
         self.pushButtonGuardar.clicked.connect(self.agregar_recordatorio)
         self.pushButtonActualizar_2.clicked.connect(self.actualizar_recordatorio)
 
@@ -69,8 +70,9 @@ class Medicine_Form(QWidget):
 
     def page_db(self):
         global medicamentos
+        global usuario
         self.stackedWidget.setCurrentWidget(self.pageDB)
-        medicamentos = LOGMedicamento.cargar_medicamentos(self)
+        medicamentos = LOGMedicamento.cargar_medicamentos(self, usuario)
         print("medicamentos")
         print(medicamentos)
         i = len(medicamentos)
@@ -78,19 +80,22 @@ class Medicine_Form(QWidget):
         tablerow = 0
         for row in medicamentos:
             # print(row)
-            self.tableMedicamentos.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row.get_id())))
-            self.tableMedicamentos.setItem(tablerow, 1,QtWidgets.QTableWidgetItem(str(row.get_nombre())))
-            self.tableMedicamentos.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row.get_dosis())))
-            self.tableMedicamentos.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row.get_frecuencia())))
-            self.tableMedicamentos.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row.get_veces_dia())))
-            self.tableMedicamentos.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row.get_horario())))
+            # self.tableMedicamentos.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row.get_id())))
+            self.tableMedicamentos.setItem(tablerow, 0,QtWidgets.QTableWidgetItem(str(row.get_nombre())))
+            self.tableMedicamentos.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row.get_dosis())))
+            self.tableMedicamentos.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row.get_frecuencia())))
+            self.tableMedicamentos.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row.get_veces_dia())))
+            self.tableMedicamentos.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row.get_horario())))
             tablerow+=1
+        self.tableMedicamentos.resizeRowsToContents()
 
     def page_registrar(self):
+        self.label_12.setText('Registrar Recordatorio Medicamento')
         self.stackedWidget.setCurrentWidget(self.pageRegistrar)
         self.vaciar_campos()
         self.pushButtonGuardar.setVisible(True)
         self.pushButtonActualizar_2.setVisible(False)
+        self.spinBoxVecesDia.setEnabled(True)
         self.spinBoxVecesDia.setValue(1)
         self.spinBoxVecesDia.valueChanged.connect(self.value_change)
         # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
@@ -245,21 +250,24 @@ class Medicine_Form(QWidget):
         self.lineEditDosis.setText('')
         self.spinBoxVecesDia.setValue(1)
         self.spinBoxDias.setValue(1)
+        self.comboBoxTipo.clear()
 
     def page_editar(self):
+        global global_medicamento
         print('editar')
         try:
             row = self.tableMedicamentos.currentRow()
-            id = self.tableMedicamentos.item(row, 0).text()
+            nombre = self.tableMedicamentos.item(row, 0).text()
             medicamento = ''
-            if id is not None:
+            if nombre is not None:
                 for x in medicamentos:
-                    print(str(x.id), '=', id)
-                    if str(x.id) == str(id):
+                    print(str(x.nombre), '=', nombre)
+                    if str(x.nombre) == str(nombre):
                         medicamento = x
                         global_medicamento = x
 
                 if medicamento != '':
+                    self.label_12.setText('Editar Recordatorio Medicamento')
                     self.stackedWidget.setCurrentWidget(self.pageRegistrar)
                     self.cargar_combo_box()
                     self.lineEditMedicamento.setText(medicamento.nombre)
@@ -267,12 +275,12 @@ class Medicine_Form(QWidget):
                     self.seleccionar_frecuencia(medicamento)
                     self.lineEditDosis.setText(medicamento.dosis)
                     self.mostrar_horario(medicamento)
+                    self.spinBoxVecesDia.setEnabled(False)
                     self.label_7.setVisible(False)
                     self.spinBoxDias.setVisible(False)
                     self.spinBoxVecesDia.valueChanged.connect(self.value_change)
                     self.pushButtonGuardar.setVisible(False)
                     self.pushButtonActualizar_2.setVisible(True)
-                    # self.pushButtonActualizar_2.clicked.connect(self.actualizar_recordatorio(medicamento))
         except:
             messagebox.showerror(message="Debe seleccionar un medicamento", title="Info")
 
@@ -350,30 +358,52 @@ class Medicine_Form(QWidget):
             self.label_time_4.setVisible(True)
             self.timeEdit_4.setTime(QTime(int(horario[3].split(":")[0]),int(horario[3].split(":")[1])))
 
-    def actualizar_recordatorio(self, medicamento):
+    def actualizar_recordatorio(self):
 
         print('Actualizar')
+        nombre = self.lineEditMedicamento.text().capitalize()
+        tipo = self.comboBoxTipo.currentIndex() + 1
+        frecuencia = self.obtener_frecuencia()
+        dosis = self.lineEditDosis.text()
+        veces_dia = self.spinBoxVecesDia.text()
+        horario = self.obtener_horario()
         print(global_medicamento.id)
-        # nombre = self.lineEditMedicamento.text().capitalize()
-        # tipo = self.comboBoxTipo.currentIndex() + 1
-        # frecuencia = self.obtener_frecuencia()
-        # dosis = self.lineEditDosis.text()
-        # veces_dia = self.spinBoxVecesDia.text()
-        # horario = self.obtener_horario()
-        #
-        # nuevo_medicamento = Medicamento(medicamento.id, nombre, tipo, dosis, veces_dia, frecuencia, medicamento.fecha_desde, medicamento.fecha_hasta, horario)
-        # try:
-        #     LOGMedicamento.agregar_medicamento(self, nuevo_medicamento, usuario)
-        #     LOGMedicamento.agregar_recordatorio(self, nuevo_medicamento, usuario)
-        #     messagebox.showinfo(message="El recordatorio se ha actualizado exitosamente", title="Info")
-        #     self.vaciar_campos()
-        #     self.stackedWidget.setCurrentWidget(self.pageDB)
-        # except Exception as e:
-        #     print(e)
-        #     messagebox.showerror(message="Error, por favor revisar los campos ingresados", title="Error")
+        nuevo_medicamento = Medicamento(global_medicamento.id, nombre, tipo, dosis, veces_dia, frecuencia, global_medicamento.fecha_desde, global_medicamento.fecha_hasta, horario)
+        try:
+            LOGMedicamento.actualizar_medicamento(self, nuevo_medicamento)
+            LOGMedicamento.actualizar_recordatorio(self, nuevo_medicamento)
+            messagebox.showinfo(message="El recordatorio se ha actualizado exitosamente", title="Info")
+            self.vaciar_campos()
+            self.stackedWidget.setCurrentWidget(self.pageDB)
+        except Exception as e:
+            print(e)
+            messagebox.showerror(message="Error, por favor revisar los campos ingresados", title="Error")
 
     def eliminar_medicamento(self):
-        pass
+        global global_medicamento
+        print('editar')
+        try:
+            row = self.tableMedicamentos.currentRow()
+            nombre = self.tableMedicamentos.item(row, 0).text()
+            medicamento = ''
+            if nombre is not None:
+                for x in medicamentos:
+                    print(str(x.nombre), '=', nombre)
+                    if str(x.nombre) == str(nombre):
+                        medicamento = x
+
+                if medicamento != '':
+                    opcion = messagebox.askyesno(message="Desea eliminar el medicamento seleccionado?", title="Atención")
+                    if opcion == True:
+                        try:
+                            LOGMedicamento.eliminar_medicamento(medicamento)
+                            print('medicamento eliminado')
+                        except:
+                            messagebox.showerror(message="No se pudo eliminar el medicamento seleccionado",
+                                                 title="Error")
+        except:
+            messagebox.showerror(message="Debe seleccionar un medicamento", title="Info")
+        print("Done")
 
     def menu(self):
         pass

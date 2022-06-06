@@ -45,8 +45,8 @@ class LOGMedicamento():
         print('IdMedicamento: ' + id_medicamento)
         DATMedicamento.agregar_recordatorio(self, medicamento, id_medicamento)
 
-    def cargar_medicamentos(self):
-        medicamentos = DATMedicamento.buscar_medicamentos(self)
+    def cargar_medicamentos(self, usuario):
+        medicamentos = DATMedicamento.buscar_medicamentos(self, usuario)
         lista_medicamentos = []
         for x in medicamentos:
             id = x[0]
@@ -71,5 +71,18 @@ class LOGMedicamento():
     #     for x in horario:
     #         horario_medicamento.append(str(x[1]))
     #     return horario_medicamento
+
+    def actualizar_medicamento(self, medicamento):
+        convertir_lista_frecuencia(medicamento)
+        DATMedicamento.actualizar_medicamento(self, medicamento)
+
+    def actualizar_recordatorio(self, medicamento):
+        DATMedicamento.eliminar_recordatorio(self, medicamento)
+        DATMedicamento.agregar_recordatorio(self, medicamento, medicamento.id)
+
+    @classmethod
+    def eliminar_medicamento(self, medicamento):
+        DATMedicamento.eliminar_recordatorio(self, medicamento)
+        DATMedicamento.eliminar_medicamento(medicamento)
 
 

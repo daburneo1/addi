@@ -1,6 +1,14 @@
 import pymysql
 from DATA.DATCursor import *
 
+def buscar_horario(id):
+    sql = "SELECT * FROM recordatoriomedicamento WHERE medicamento_idMedicamentos = %s" % (id)
+
+    print(sql)
+    cursor.execute(sql)
+    horario = cursor.fetchall()
+    return (horario)
+
 class DATMedicamento():
 
     def buscar_tipo_medicamento(self):
@@ -43,8 +51,8 @@ class DATMedicamento():
             cursor.execute(sql)
         connection.commit()
 
-    def buscar_medicamentos(self):
-        sql = "SELECT idMedicamentos, nombre, dosis, veces_dia, frecuencia, cedula, tipomedicamento, fecha_desde, fecha_hasta FROM medicamento INNER JOIN tipomedicamento ON medicamento.idtipomedicamento = tipomedicamento.idtipomedicamento;"
+    def buscar_medicamentos(self, usuario):
+        sql = "SELECT idMedicamentos, nombre, dosis, veces_dia, frecuencia, cedula, tipomedicamento, fecha_desde, fecha_hasta FROM medicamento INNER JOIN tipomedicamento ON medicamento.idtipomedicamento = tipomedicamento.idtipomedicamento WHERE cedula = %s;" % (usuario.cedula)
 
         print(sql)
         cursor.execute(sql)
@@ -63,13 +71,22 @@ class DATMedicamento():
         medicamento = cursor.fetchall()
         return medicamento
 
-    # def buscar_horario(self, id):
-    #     sql = "SELECT * FROM recordatoriomedicamento WHERE medicamento_idMedicamentos = %s" % (id.text())
-    #
-    #     print(sql)
-    #     cursor.execute(sql)
-    #     horario = cursor.fetchall()
-    #     return (horario)
+    def actualizar_medicamento(self, medicamento):
+        sql = "UPDATE medicamento SET nombre = '%s', dosis = '%s', veces_dia = '%s', frecuencia = '%s', idtipomedicamento = '%s' WHERE idMedicamentos = '%s'" % (
+            medicamento.nombre, medicamento.dosis, medicamento.veces_dia, medicamento.frecuencia, medicamento.tipo, medicamento.id)
+
+        print(sql)
+        cursor.execute(sql)
+        cursor.fetchall()
+        connection.commit()
+
+    def eliminar_recordatorio(self, medicamento):
+        sql = "DELETE FROM recordatoriomedicamento WHERE medicamento_idMedicamentos = %s" % (medicamento.id)
+
+        print(sql)
+        cursor.execute(sql)
+        cursor.fetchall()
+        connection.commit()
 
     @classmethod
     def buscar_horario(cls, id):
@@ -80,3 +97,11 @@ class DATMedicamento():
         horario = cursor.fetchall()
         return (horario)
 
+    @classmethod
+    def eliminar_medicamento(cls, medicamento):
+        sql = "DELETE FROM medicamento WHERE idMedicamentos = %s" % (medicamento.id)
+
+        print(sql)
+        cursor.execute(sql)
+        cursor.fetchall()
+        connection.commit()

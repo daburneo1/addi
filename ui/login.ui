@@ -77,8 +77,10 @@ border-radius:10px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0.494, y1:0, x2:0.489, y2:1, stop:0 rgba(19, 84, 0, 255), stop:1 rgba(255, 255, 255, 255));
-border-radius:10px;</string>
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0.494, y1:0, x2:0.489, y2:1, stop:0 rgb(0, 207, 224), stop:1 rgba(255, 255, 255, 255));
+border-radius:10px;
+
+</string>
     </property>
     <property name="text">
      <string/>
@@ -224,7 +226,7 @@ padding-bottom: 7px;</string>
      </font>
     </property>
     <property name="text">
-     <string>ADDI</string>
+     <string>Addi</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
@@ -244,7 +246,7 @@ padding-bottom: 7px;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(222, 222, 222)</string>
+     <string notr="true">color:rgb(0, 0, 0)</string>
     </property>
     <property name="text">
      <string>Bienvenido a tu asistente médico personalizado</string>

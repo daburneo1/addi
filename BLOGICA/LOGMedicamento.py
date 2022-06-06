@@ -15,6 +15,15 @@ def convertir_tupla_consulta(id_medicamento):
     print(cadena)
     return(cadena)
 
+def buscar_horario_recordatorio(id):
+    print('ID: ', id)
+    horario = DATMedicamento.buscar_horario(id)
+    horario = list(horario)
+    horario_medicamento = []
+    for x in horario:
+        horario_medicamento.append(str(x[1]))
+    return horario_medicamento
+
 class LOGMedicamento():
     c_medicamento = Medicamento
 
@@ -38,25 +47,29 @@ class LOGMedicamento():
 
     def cargar_medicamentos(self):
         medicamentos = DATMedicamento.buscar_medicamentos(self)
-
-        if medicamentos:
-            return medicamentos
+        lista_medicamentos = []
+        for x in medicamentos:
+            id = x[0]
+            horario_medicamento = buscar_horario_recordatorio(id)
+            medicamento = Medicamento(id, x[1], x[6], x[2], x[3], x[4], str(x[7]), str(x[8]), horario_medicamento)
+            lista_medicamentos.append(medicamento)
+        if lista_medicamentos:
+            return lista_medicamentos
         else:
             return None
 
     def buscar_medicamento(self, id):
         medicamento = DATMedicamento.buscar_medicamento(self, id)
         print(medicamento)
-        medicamento = Medicamento(medicamento[0][1], medicamento[0][6], medicamento[0][2], medicamento[0][3], medicamento[0][4], str(medicamento[0][7]), str(medicamento[0][8]), None)
-        print(type(medicamento))
+        medicamento = Medicamento(medicamento[0][0], medicamento[0][1], medicamento[0][6], medicamento[0][2], medicamento[0][3], medicamento[0][4], str(medicamento[0][7]), str(medicamento[0][8]), None)
         return medicamento
 
-    def buscar_horario_recordatorio(self, medicamento, id):
-        horario = DATMedicamento.buscar_horario(self, id)
+    # def buscar_horario_recordatorio(self, id):
+    #     horario = DATMedicamento.buscar_horario(self, id)
+    #     horario = list(horario)
+    #     horario_medicamento = []
+    #     for x in horario:
+    #         horario_medicamento.append(str(x[1]))
+    #     return horario_medicamento
 
-        horario = list(horario)
-        horario_medicamento = []
-        for x in horario:
-            horario_medicamento.append(str(x[1]))
-        medicamento.horario = horario_medicamento
-        return medicamento
+

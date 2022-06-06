@@ -1,6 +1,7 @@
 import sys
 
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtCore import QTime
 from PyQt5.QtWidgets import QMainWindow, QHeaderView, QWidget, QVBoxLayout
 from PyQt5.uic import loadUi
 from tkinter import messagebox
@@ -9,6 +10,8 @@ from BLOGICA.LOGMedicamento import *
 from CLASES.Usuario import *
 
 usuario = ""
+medicamentos = []
+global_medicamento = ''
 
 class Medicine_Form(QWidget):
 
@@ -50,6 +53,7 @@ class Medicine_Form(QWidget):
         # self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonEditar.clicked.connect(self.page_editar)
         self.pushButtonGuardar.clicked.connect(self.agregar_recordatorio)
+        self.pushButtonActualizar_2.clicked.connect(self.actualizar_recordatorio)
 
         #qtable
         self.tableMedicamentos.setSelectionBehavior(QtWidgets.QTableView.SelectRows)
@@ -67,33 +71,47 @@ class Medicine_Form(QWidget):
         print(tipo_medicina)
 
     def page_db(self):
+        global medicamentos
         self.stackedWidget.setCurrentWidget(self.pageDB)
         medicamentos = LOGMedicamento.cargar_medicamentos(self)
+        print("medicamentos")
+        print(medicamentos)
         i = len(medicamentos)
         self.tableMedicamentos.setRowCount(i)
         tablerow = 0
         for row in medicamentos:
-            self.tableMedicamentos.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
-            self.tableMedicamentos.setItem(tablerow, 1,QtWidgets.QTableWidgetItem(str(row[1])))
-            self.tableMedicamentos.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
-            self.tableMedicamentos.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[4])))
-            self.tableMedicamentos.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[3])))
-            # self.tableMedicamentos.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row[5])))
+            # print(row)
+            self.tableMedicamentos.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row.get_id())))
+            self.tableMedicamentos.setItem(tablerow, 1,QtWidgets.QTableWidgetItem(str(row.get_nombre())))
+            self.tableMedicamentos.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row.get_dosis())))
+            self.tableMedicamentos.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row.get_frecuencia())))
+            self.tableMedicamentos.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row.get_veces_dia())))
+            self.tableMedicamentos.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row.get_horario())))
             tablerow+=1
 
     def page_registrar(self):
         self.stackedWidget.setCurrentWidget(self.pageRegistrar)
+        self.vaciar_campos()
+        self.pushButtonGuardar.setVisible(True)
+        self.pushButtonActualizar_2.setVisible(False)
         self.spinBoxVecesDia.setValue(1)
         self.spinBoxVecesDia.valueChanged.connect(self.value_change)
         # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
-        tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
-        print(tipo_medicina[2])
+        self.cargar_combo_box()
+        # tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
+        # print(tipo_medicina[2])
+        #
+        # for x in tipo_medicina:
+        #     self.comboBoxTipo.addItem(x[1])
+        #     # self.comboBoxTipo.setCurrentIndex(-1)
 
+    def cargar_combo_box(self):
+        tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
         for x in tipo_medicina:
             self.comboBoxTipo.addItem(x[1])
-            # self.comboBoxTipo.setCurrentIndex(-1)
 
     def agregar_recordatorio(self):
+        id = 0
         nombre = self.lineEditMedicamento.text().capitalize()
         tipo = self.comboBoxTipo.currentIndex() + 1
         frecuencia = self.obtener_frecuencia()
@@ -106,7 +124,7 @@ class Medicine_Form(QWidget):
         horario = self.obtener_horario()
 
         # print(medicamento, tipo, frecuencia, dosis, veces_dia, numero_dias)
-        medicamento = Medicamento(nombre, tipo, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario)
+        medicamento = Medicamento(id, nombre, tipo, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario)
         # print(medicamento.presentar_medicamento())
         print(usuario)
         try:
@@ -231,18 +249,131 @@ class Medicine_Form(QWidget):
         self.spinBoxVecesDia.setValue(1)
         self.spinBoxDias.setValue(1)
 
-
     def page_editar(self):
         print('editar')
-        row = self.tableMedicamentos.currentRow()
-        id = self.tableMedicamentos.item(row, 0)
-        if id is not None:
-            self.stackedWidget.setCurrentWidget(self.pageRegistrar)
-            medicamento = LOGMedicamento.buscar_medicamento(self, id)
-            horario = LOGMedicamento.buscar_horario_recordatorio(self, medicamento, id)
-            # print(medicamento)
-            self.lineEditMedicamento.setText(medicamento.nombre)
+        try:
+            row = self.tableMedicamentos.currentRow()
+            id = self.tableMedicamentos.item(row, 0).text()
+            medicamento = ''
+            if id is not None:
+                for x in medicamentos:
+                    print(str(x.id), '=', id)
+                    if str(x.id) == str(id):
+                        medicamento = x
+                        global_medicamento = x
 
+                if medicamento != '':
+                    self.stackedWidget.setCurrentWidget(self.pageRegistrar)
+                    self.cargar_combo_box()
+                    self.lineEditMedicamento.setText(medicamento.nombre)
+                    self.comboBoxTipo.setCurrentText(str(medicamento.tipo))
+                    self.seleccionar_frecuencia(medicamento)
+                    self.lineEditDosis.setText(medicamento.dosis)
+                    self.mostrar_horario(medicamento)
+                    self.label_7.setVisible(False)
+                    self.spinBoxDias.setVisible(False)
+                    self.spinBoxVecesDia.valueChanged.connect(self.value_change)
+                    self.pushButtonGuardar.setVisible(False)
+                    self.pushButtonActualizar_2.setVisible(True)
+                    # self.pushButtonActualizar_2.clicked.connect(self.actualizar_recordatorio(medicamento))
+        except:
+            messagebox.showerror(message="Debe seleccionar un medicamento", title="Info")
+
+
+    def seleccionar_frecuencia(self, medicamento):
+        frecuencia = medicamento.frecuencia
+        if 'Lunes' in frecuencia:
+            self.checkBoxLunes.setChecked(True)
+        if 'Martes' in frecuencia:
+            self.checkBoxMartes.setChecked(True)
+        if 'Miercoles' in frecuencia:
+            self.checkBoxMiercoles.setChecked(True)
+        if 'Jueves' in frecuencia:
+            self.checkBoxJueves.setChecked(True)
+        if 'Viernes' in frecuencia:
+            self.checkBoxViernes.setChecked(True)
+        if 'Sabado' in frecuencia:
+            self.checkBoxSabado.setChecked(True)
+        if 'Domingo' in frecuencia:
+            self.checkBoxDomingo.setChecked(True)
+
+    def mostrar_horario(self, medicamento):
+        veces_dia = medicamento.veces_dia
+        horario = medicamento.horario
+
+        self.spinBoxVecesDia.setValue(int(veces_dia))
+        print(horario)
+        print(veces_dia)
+        print(self.spinBoxVecesDia.text())
+        if self.spinBoxVecesDia.text() == '1':
+            self.timeEdit_1.setVisible(True)
+            self.label_time_1.setVisible(True)
+            self.timeEdit_1.setTime(QTime(int(horario[0].split(":")[0]),int(horario[0].split(":")[1])))
+            self.timeEdit_2.setVisible(False)
+            self.label_time_2.setVisible(False)
+            self.timeEdit_3.setVisible(False)
+            self.label_time_3.setVisible(False)
+            self.timeEdit_4.setVisible(False)
+            self.label_time_4.setVisible(False)
+        elif self.spinBoxVecesDia.text() == '2':
+            print("dsadasdasdasd")
+            self.timeEdit_1.setVisible(True)
+            self.label_time_1.setVisible(True)
+            self.timeEdit_1.setTime(QTime(int(horario[0].split(":")[0]),int(horario[0].split(":")[1])))
+            self.timeEdit_2.setVisible(True)
+            self.label_time_2.setVisible(True)
+            self.timeEdit_2.setTime(QTime(int(horario[1].split(":")[0]),int(horario[1].split(":")[1])))
+            self.timeEdit_3.setVisible(False)
+            self.label_time_3.setVisible(False)
+            self.timeEdit_4.setVisible(False)
+            self.label_time_4.setVisible(False)
+        elif self.spinBoxVecesDia.text() == '3':
+            self.timeEdit_1.setVisible(True)
+            self.label_time_1.setVisible(True)
+            self.timeEdit_1.setTime(QTime(int(horario[0].split(":")[0]),int(horario[0].split(":")[1])))
+            self.timeEdit_2.setVisible(True)
+            self.label_time_2.setVisible(True)
+            self.timeEdit_2.setTime(QTime(int(horario[1].split(":")[0]),int(horario[1].split(":")[1])))
+            self.timeEdit_3.setVisible(True)
+            self.label_time_3.setVisible(True)
+            self.timeEdit_3.setTime(QTime(int(horario[2].split(":")[0]),int(horario[2].split(":")[1])))
+            self.timeEdit_4.setVisible(False)
+            self.label_time_4.setVisible(False)
+        elif self.spinBoxVecesDia.text() == '4':
+            self.timeEdit_1.setVisible(True)
+            self.label_time_1.setVisible(True)
+            self.timeEdit_1.setTime(QTime(int(horario[0].split(":")[0]),int(horario[0].split(":")[1])))
+            self.timeEdit_2.setVisible(True)
+            self.label_time_2.setVisible(True)
+            self.timeEdit_2.setTime(QTime(int(horario[1].split(":")[0]),int(horario[1].split(":")[1])))
+            self.timeEdit_3.setVisible(True)
+            self.label_time_3.setVisible(True)
+            self.timeEdit_3.setTime(QTime(int(horario[2].split(":")[0]),int(horario[2].split(":")[1])))
+            self.timeEdit_4.setVisible(True)
+            self.label_time_4.setVisible(True)
+            self.timeEdit_4.setTime(QTime(int(horario[3].split(":")[0]),int(horario[3].split(":")[1])))
+
+    def actualizar_recordatorio(self, medicamento):
+
+        print('Actualizar')
+        print(global_medicamento.id)
+        # nombre = self.lineEditMedicamento.text().capitalize()
+        # tipo = self.comboBoxTipo.currentIndex() + 1
+        # frecuencia = self.obtener_frecuencia()
+        # dosis = self.lineEditDosis.text()
+        # veces_dia = self.spinBoxVecesDia.text()
+        # horario = self.obtener_horario()
+        #
+        # nuevo_medicamento = Medicamento(medicamento.id, nombre, tipo, dosis, veces_dia, frecuencia, medicamento.fecha_desde, medicamento.fecha_hasta, horario)
+        # try:
+        #     LOGMedicamento.agregar_medicamento(self, nuevo_medicamento, usuario)
+        #     LOGMedicamento.agregar_recordatorio(self, nuevo_medicamento, usuario)
+        #     messagebox.showinfo(message="El recordatorio se ha actualizado exitosamente", title="Info")
+        #     self.vaciar_campos()
+        #     self.stackedWidget.setCurrentWidget(self.pageDB)
+        # except Exception as e:
+        #     print(e)
+        #     messagebox.showerror(message="Error, por favor revisar los campos ingresados", title="Error")
 
     def eliminar_medicamento(self):
         pass

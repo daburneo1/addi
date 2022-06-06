@@ -41,7 +41,7 @@
       <item>
        <widget class="QFrame" name="frame_2">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(240, 255, 237)</string>
+         <string notr="true">background-color:rgb(199, 245, 255)</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -160,7 +160,7 @@ QPushButton:hover{
             </property>
             <property name="styleSheet">
              <string notr="true">QFrame{
-	background-color: rgb(240, 255, 237);
+	background-color: #c7f5ff;
 }
 QPushButton{
 	background-color:rgba(0, 52, 59, 1);
@@ -329,12 +329,12 @@ QPushButton:hover{
            <widget class="QFrame" name="frame_tabla">
             <property name="styleSheet">
              <string notr="true">QFrame{
-	background-color: rgb(240, 255, 237)
+	background-color: #c7f5ff
 }
 
 QLabel{
 	font: 87 12pt &quot;Arial Black&quot;;
-	color:rgb(0, 206, 151);
+	color:#004ec1;
 	border: 0px solid #14C8DC;
 }
 
@@ -393,7 +393,7 @@ QHeaderView::section{
              <item>
               <widget class="QStackedWidget" name="stackedWidget">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(240, 255, 237)</string>
+                <string notr="true">background-color:#c7f5ff</string>
                </property>
                <property name="currentIndex">
                 <number>1</number>
@@ -534,46 +534,6 @@ QPushButton:hover{
                  </property>
                  <property name="text">
                   <string>Registrar Recordatorio Medicamento</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="pushButtonGuardar">
-                 <property name="geometry">
-                  <rect>
-                   <x>540</x>
-                   <y>350</y>
-                   <width>121</width>
-                   <height>41</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QPushButton{
-	background-color:rgba(0, 52, 59, 1);
-	color:rgba(255,255,255,200);
-	border-top-left-radius: 20px;
-	border-bottom-left-radius: 20px
-}
-QPushButton:pressed{
-	padding-left:5px;
-	padding-top:5px;
-	background-color:rgba(0, 119, 123, 1);
-	background-position:calc(100% - 10px)center;
-	border-top-left-radius: 20px;
-	border-bottom-left-radius: 20px
-}
-QPushButton:hover{
-	background-color:rgba(0, 174, 173, 1);
-	border-top-left-radius: 20px;
-	border-bottom-left-radius: 20px
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>Guardar</string>
                  </property>
                 </widget>
                 <widget class="QWidget" name="layoutWidget">
@@ -1038,6 +998,86 @@ padding-bottom: 5px;</string>
                    </spacer>
                   </item>
                  </layout>
+                </widget>
+                <widget class="QPushButton" name="pushButtonActualizar_2">
+                 <property name="geometry">
+                  <rect>
+                   <x>400</x>
+                   <y>350</y>
+                   <width>121</width>
+                   <height>41</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+	background-color:rgba(0, 52, 59, 1);
+	color:rgba(255,255,255,200);
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px
+}
+QPushButton:pressed{
+	padding-left:5px;
+	padding-top:5px;
+	background-color:rgba(0, 119, 123, 1);
+	background-position:calc(100% - 10px)center;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px
+}
+QPushButton:hover{
+	background-color:rgba(0, 174, 173, 1);
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Actualizar</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="pushButtonGuardar">
+                 <property name="geometry">
+                  <rect>
+                   <x>530</x>
+                   <y>350</y>
+                   <width>121</width>
+                   <height>41</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+	background-color:rgba(0, 52, 59, 1);
+	color:rgba(255,255,255,200);
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px
+}
+QPushButton:pressed{
+	padding-left:5px;
+	padding-top:5px;
+	background-color:rgba(0, 119, 123, 1);
+	background-position:calc(100% - 10px)center;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px
+}
+QPushButton:hover{
+	background-color:rgba(0, 174, 173, 1);
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Guardar</string>
+                 </property>
                 </widget>
                </widget>
               </widget>

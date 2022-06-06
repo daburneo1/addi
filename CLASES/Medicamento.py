@@ -1,5 +1,6 @@
 class Medicamento(object):
-    def __init__(self, nombre, tipo, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario):
+    def __init__(self, id, nombre, tipo, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario):
+        self.id = id
         self.nombre = nombre
         self.tipo = tipo
         self.dosis = dosis
@@ -8,6 +9,9 @@ class Medicamento(object):
         self.fecha_desde = fecha_desde
         self.fecha_hasta = fecha_hasta
         self.horario = horario
+
+    def set_id(self, id):
+        self.id = id
 
     def set_nombre(self, nombre):
         self.nombre = nombre
@@ -32,6 +36,9 @@ class Medicamento(object):
 
     def set_horario(self, horario):
         self.horario = horario
+
+    def get_id(self):
+        return self.id
 
     def get_nombre(self):
         return self.nombre
@@ -58,4 +65,4 @@ class Medicamento(object):
         return self.horario
 
     def __str__(self):
-        return "\tMedicamento: \nNombre: %s \tTipo: %s \tDosis: %s \tVeces por dia: %s \tFrecuencia: %s \tDesde: %s \tHasta: %s \tHorario: %s" %(self.get_nombre(), self.get_tipo(), self.get_dosis(), self.veces_dia(), self.get_frecuencia(), self.get_fecha_desde(), self.fecha_hasta, self.horario)
+        return "\tMedicamento: \nId: %s, \nNombre: %s \tTipo: %s \tDosis: %s \tVeces por dia: %s \tFrecuencia: %s \tDesde: %s \tHasta: %s \tHorario: %s" %(self.get_id(), self.get_nombre(), self.get_tipo(), self.get_dosis(), self.veces_dia(), self.get_frecuencia(), self.get_fecha_desde(), self.fecha_hasta, self.horario)

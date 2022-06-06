@@ -44,7 +44,7 @@ class DATMedicamento():
         connection.commit()
 
     def buscar_medicamentos(self):
-        sql = "SELECT idMedicamentos, nombre, dosis, veces_dia, frecuencia, cedula, tipomedicamento FROM medicamento INNER JOIN tipomedicamento ON medicamento.idtipomedicamento = tipomedicamento.idtipomedicamento;"
+        sql = "SELECT idMedicamentos, nombre, dosis, veces_dia, frecuencia, cedula, tipomedicamento, fecha_desde, fecha_hasta FROM medicamento INNER JOIN tipomedicamento ON medicamento.idtipomedicamento = tipomedicamento.idtipomedicamento;"
 
         print(sql)
         cursor.execute(sql)
@@ -53,7 +53,6 @@ class DATMedicamento():
 
         for x in data:
             medicamentos.append(x)
-        print(medicamentos)
         return medicamentos
 
     def buscar_medicamento(self, id):
@@ -64,10 +63,20 @@ class DATMedicamento():
         medicamento = cursor.fetchall()
         return medicamento
 
-    def buscar_horario(self, id):
-        sql = "SELECT * FROM recordatoriomedicamento WHERE medicamento_idMedicamentos = %s" % (id.text())
+    # def buscar_horario(self, id):
+    #     sql = "SELECT * FROM recordatoriomedicamento WHERE medicamento_idMedicamentos = %s" % (id.text())
+    #
+    #     print(sql)
+    #     cursor.execute(sql)
+    #     horario = cursor.fetchall()
+    #     return (horario)
+
+    @classmethod
+    def buscar_horario(cls, id):
+        sql = "SELECT * FROM recordatoriomedicamento WHERE medicamento_idMedicamentos = %s" % (id)
 
         print(sql)
         cursor.execute(sql)
         horario = cursor.fetchall()
-        return(horario)
+        return (horario)
+

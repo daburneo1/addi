@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QTime
 from PyQt5.QtWidgets import QMainWindow, QHeaderView, QWidget, QVBoxLayout
 from PyQt5.uic import loadUi
+from PyQt5 import QtCore
 from tkinter import messagebox
 
 from BLOGICA.LOGMedicamento import *
@@ -23,12 +24,8 @@ class Medicine_Form(QWidget):
         widget = QWidget()
         layout = QVBoxLayout()
 
-        # widget.setLayout(layout)
-        # self.setCentralWidget(widget)
-
         self.pushButtonEliminar.clicked.connect(self.eliminar_medicamento)
         self.pushButtonMenu.clicked.connect(self.menu)
-
 
         self.pushButtonActualizar.clicked.connect(self.actualizar_tabla)
         self.pushButtonGuardar.clicked.connect(self.guardar_recordatorio)

@@ -6,6 +6,7 @@ from PyQt5.uic import loadUi
 
 from tkinter import messagebox
 
+
 from AGUI.ui_registro import Register_Form as Register_Form
 from BLOGICA.LOGUsuario import *
 from CLASES.Usuario import *
@@ -16,7 +17,6 @@ class Login_Form(QWidget):
     def __init__(self):
         super(Login_Form, self).__init__()
         loadUi('./ui/login.ui', self)
-
         widget = QWidget()
         layout = QVBoxLayout()
 
@@ -25,6 +25,7 @@ class Login_Form(QWidget):
 
         self.pushButtonLogin.clicked.connect(self.buscar_usuario)
         self.pushButtonRegistrarse.clicked.connect(self.register_window)
+        self.pushButtonCerrar.clicked.connect(self.close_window)
 
     def buscar_usuario(self):
         credenciales = Usuario(self.lineEditCedula.text(),
@@ -56,4 +57,10 @@ class Login_Form(QWidget):
         self.form_welcome = QtWidgets.QMainWindow()
         self.ui_welcome = Welcome_Form()
         self.ui_welcome.show()
+        self.close()
+
+    def close_window(self):
+        from AGUI.ui_ihr import Ihr_Form
+        self.ui_ihr = Ihr_Form()
+        self.ui_ihr.show()
         self.close()

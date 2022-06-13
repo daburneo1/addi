@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `addi`.`citamedica` (
   `especialidad` VARCHAR(20) NOT NULL,
   `ubicacion` VARCHAR(100) NULL DEFAULT NULL,
   `notas` VARCHAR(200) NULL DEFAULT NULL,
-  `fecha_hora` DATETIME NULL,
+  `fecha_hora` DATETIME NULL DEFAULT NULL,
   `cedula` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`idCitasMedicas`),
   INDEX `fk_citamedica_usuario1_idx` (`cedula` ASC),
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `addi`.`citaslaboratorio` (
   `laboratorio` VARCHAR(30) NULL DEFAULT NULL,
   `ubicacion` VARCHAR(60) NULL DEFAULT NULL,
   `notas` VARCHAR(200) NULL DEFAULT NULL,
-  `fecha_hora` DATETIME NULL,
+  `fecha_hora` DATETIME NULL DEFAULT NULL,
   `cedula` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`idCitasLaboratorio`),
   INDEX `fk_citaslaboratorio_usuario1_idx` (`cedula` ASC),
@@ -78,10 +78,12 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `addi`.`tipomedicamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `addi`.`tipomedicamento` (
-  `idtipomedicamento` INT NOT NULL AUTO_INCREMENT,
+  `idtipomedicamento` INT(11) NOT NULL AUTO_INCREMENT,
   `tipoMedicamento` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idtipomedicamento`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -91,11 +93,11 @@ CREATE TABLE IF NOT EXISTS `addi`.`medicamento` (
   `idMedicamentos` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(15) NOT NULL,
   `dosis` VARCHAR(40) NOT NULL,
-  `veces_dia` INT NOT NULL,
+  `veces_dia` INT(11) NOT NULL,
   `frecuencia` VARCHAR(45) NOT NULL,
   `fecha_desde` DATE NOT NULL,
-  `fecha_hasta` DATE NULL,
-  `idtipomedicamento` INT NOT NULL,
+  `fecha_hasta` DATE NULL DEFAULT NULL,
+  `idtipomedicamento` INT(11) NOT NULL,
   `cedula` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`idMedicamentos`),
   INDEX `fk_medicamento_tipomedicamento1_idx` (`idtipomedicamento` ASC),
@@ -111,6 +113,7 @@ CREATE TABLE IF NOT EXISTS `addi`.`medicamento` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -155,6 +158,7 @@ CREATE TABLE IF NOT EXISTS `addi`.`recordatoriomedicamento` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8;
 
 

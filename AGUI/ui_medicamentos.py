@@ -75,19 +75,20 @@ class Medicine_Form(QWidget):
         medicamentos = LOGMedicamento.cargar_medicamentos(self, usuario)
         print("medicamentos")
         print(medicamentos)
-        i = len(medicamentos)
-        self.tableMedicamentos.setRowCount(i)
-        tablerow = 0
-        for row in medicamentos:
-            # print(row)
-            # self.tableMedicamentos.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row.get_id())))
-            self.tableMedicamentos.setItem(tablerow, 0,QtWidgets.QTableWidgetItem(str(row.get_nombre())))
-            self.tableMedicamentos.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row.get_dosis())))
-            self.tableMedicamentos.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row.get_frecuencia())))
-            self.tableMedicamentos.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row.get_veces_dia())))
-            self.tableMedicamentos.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row.get_horario())))
-            tablerow+=1
-        self.tableMedicamentos.resizeRowsToContents()
+        if medicamentos:
+            i = len(medicamentos)
+            self.tableMedicamentos.setRowCount(i)
+            tablerow = 0
+            for row in medicamentos:
+                # print(row)
+                # self.tableMedicamentos.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row.get_id())))
+                self.tableMedicamentos.setItem(tablerow, 0,QtWidgets.QTableWidgetItem(str(row.get_nombre())))
+                self.tableMedicamentos.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row.get_dosis())))
+                self.tableMedicamentos.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row.get_frecuencia())))
+                self.tableMedicamentos.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row.get_veces_dia())))
+                self.tableMedicamentos.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row.get_horario())))
+                tablerow+=1
+            self.tableMedicamentos.resizeRowsToContents()
 
     def page_registrar(self):
         self.label_12.setText('Registrar Recordatorio Medicamento')

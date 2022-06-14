@@ -13,7 +13,7 @@ class LOGIhr():
 
         # recordatorios = DATIhr.consultar_recordatorios(self, fecha_actual, hora_futura.strftime('%H:%M:00'))
 
-        recordatorios = DATIhr.consultar_recordatorios(self, '2022-06-09', '20:00:00')
+        recordatorios = DATIhr.consultar_recordatorios(self, '2022-06-20', '20:00:00')
 
         if recordatorios:
             # for recordatorio in recordatorios:

@@ -5,7 +5,7 @@ from CLASES.Usuario import *
 class DATUsuario():
 
     def registrar_usuario(self, usuario):
-        sql = "INSERT INTO Usuario (cedula, nombre, apellido, pass) VALUES (" \
+        sql = "INSERT INTO usuario (cedula, nombre, apellido, pass) VALUES (" \
               "'%s','%s','%s','%s')" %(usuario.cedula, usuario.nombre, usuario.apellido, usuario.password)
 
         print(sql)
@@ -14,7 +14,7 @@ class DATUsuario():
         connection.commit()
 
     def buscar_usuario(self, credencial):
-        sql = "SELECT * FROM Usuario WHERE cedula = '%s'" %(credencial.cedula)
+        sql = "SELECT * FROM usuario WHERE cedula = '%s'" %(credencial.cedula)
 
         print(sql)
 

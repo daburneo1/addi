@@ -1,6 +1,8 @@
 from threading import Thread, enumerate, Event
 from queue import Queue, Empty
 import time
+
+from inputimeout import inputimeout, TimeoutOccurred
 from pynput.keyboard import Key, Controller
 
 
@@ -44,8 +46,12 @@ class PromptManager(Thread):
 
     def _prompter(self):
         """Prompting target function for execution in prompter-thread."""
-        self._in_queue.put(input(f"[{time.ctime()}] >$ "))
-        self._prompter_exit.set()
+        try:
+            self._in_queue.put(inputimeout(f"[{time.ctime()}] >$ ", timeout=5))
+            self._prompter_exit.set()
+        except TimeoutOccurred:
+            print('timeout')
+            self._prompter_exit.set()
 
     def _poll(self):
         """Get forwarded inputs from the manager-thread executing `run()`

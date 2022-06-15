@@ -20,8 +20,8 @@ if __name__ == "__main__":
 
     app = QtWidgets.QApplication(sys.argv)
     ihr = Ihr_Form()
-    hilo = threading.Thread(target=ejecucion_horaria)
-    hilo.start()
+    # hilo = threading.Thread(target=ejecucion_horaria)
+    # hilo.start()
     # login = Login_Form()
     # register = Register_Form()
     # welcome = Welcome_Form()

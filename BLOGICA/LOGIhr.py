@@ -9,21 +9,22 @@ class LOGIhr():
         fecha_actual = datetime.today().strftime('%Y-%m-%d')
         hora_actual = datetime.today()
         hora_futura = hora_actual.replace(minute=int(hora_actual.strftime('%M'))+5)
-        # OJO, cambiar por las variables definidas
 
-        # recordatorios = DATIhr.consultar_recordatorios(self, fecha_actual, hora_futura.strftime('%H:%M:00'))
-
-        recordatorios = DATIhr.consultar_recordatorios(self, '2022-06-20', '20:00:00')
+        recordatorios = DATIhr.consultar_recordatorios(self, fecha_actual, hora_futura.strftime('%H:%M:00'))
+        # prueba
+        # recordatorios = DATIhr.consultar_recordatorios(self, '2022-06-20', '20:00:00')
 
         if recordatorios:
             # for recordatorio in recordatorios:
             s = "mustnotchange"
             while(True):
                 s = self.input_with_timeout(s, 5, recordatorios[0])
+                print(s)
                 if s == "mustnotchange":
                     print(f"\n[{time.ctime()}] Recordatorio en 5 minutos.")
                     time.sleep(5)
-                else:
+                elif s != "mustnotchange":
+                    print(s)
                     print("Gracias, hasta la próxima")
                     break
         print('Fin')

@@ -24,6 +24,34 @@ def buscar_horario_recordatorio(id):
         horario_medicamento.append(str(x[1]))
     return horario_medicamento
 
+
+def convertir_horario(horario):
+    horario_final = []
+    for x in horario:
+        hora = int(x.split(':')[0])
+        minuto = int(x.split(':')[1])
+        if(minuto >= 0 and minuto <=5):
+            horario_final.append('%s:%s'% (str(hora), '00'))
+        elif(minuto > 5 and minuto < 14):
+            minuto = 10
+            horario_final.append('%s:%s' % (str(hora), str(minuto)))
+        elif (minuto > 15 and minuto < 24):
+            minuto = 20
+            horario_final.append('%s:%s' % (str(hora), str(minuto)))
+        elif (minuto > 25 and minuto < 34):
+            minuto = 30
+            horario_final.append('%s:%s' % (str(hora), str(minuto)))
+        elif (minuto > 35 and minuto < 44):
+            minuto = 40
+            horario_final.append('%s:%s' % (str(hora), str(minuto)))
+        elif (minuto > 45 and minuto < 59):
+            minuto = 50
+            horario_final.append('%s:%s' % (str(hora), str(minuto)))
+        else :
+            horario_final.append('%s:%s' % (str(hora), '00'))
+    print(horario_final)
+    return horario_final
+
 class LOGMedicamento():
     c_medicamento = Medicamento
 
@@ -37,9 +65,11 @@ class LOGMedicamento():
 
     def agregar_medicamento(self, medicamento, usuario):
         convertir_lista_frecuencia(medicamento)
+        medicamento.tipo = DATMedicamento.consultar_id_tipo_medicamento(medicamento)
         DATMedicamento.agregar_medicamento(self, medicamento, usuario)
 
     def agregar_recordatorio(self, medicamento, usuario):
+        medicamento.horario = convertir_horario(medicamento.horario)
         id_medicamento = DATMedicamento.consultar_id_medicamento(self, medicamento, usuario)
         id_medicamento = convertir_tupla_consulta(id_medicamento)
         print('IdMedicamento: ' + id_medicamento)

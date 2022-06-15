@@ -9,7 +9,7 @@ class DATIhr():
         sql = "SELECT idRecordatorio, idMedicamentos, hora, nombre, dosis, frecuencia " \
               "FROM recordatoriomedicamento " \
               "INNER JOIN medicamento ON medicamento.idmedicamentos = recordatoriomedicamento.Medicamento_idMedicamentos " \
-              "WHERE hora = '%s' and fecha_hasta < '%s'" %(hora_futura, fecha_actual)
+              "WHERE hora = '%s' and fecha_hasta > '%s'" %(hora_futura, fecha_actual)
 
         print(sql)
 

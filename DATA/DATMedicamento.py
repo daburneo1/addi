@@ -25,7 +25,7 @@ class DATMedicamento():
 
     def agregar_medicamento(self, medicamento, usuario):
         sql = "INSERT INTO medicamento (nombre, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, idtipomedicamento, cedula) VALUES ("\
-              "'%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" %(medicamento.nombre, medicamento.dosis, medicamento.veces_dia, medicamento.frecuencia, medicamento.fecha_desde, medicamento.fecha_hasta, medicamento.tipo, usuario.cedula)
+              "'%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" %(medicamento.nombre, medicamento.dosis, medicamento.veces_dia, medicamento.frecuencia, medicamento.fecha_desde, medicamento.fecha_hasta, medicamento.tipo[0], usuario.cedula)
 
         print(sql)
 
@@ -105,3 +105,13 @@ class DATMedicamento():
         cursor.execute(sql)
         cursor.fetchall()
         connection.commit()
+
+    @classmethod
+    def consultar_id_tipo_medicamento(cls, medicamento):
+        sql = "SELECT idtipomedicamento FROM tipomedicamento WHERE tipoMedicamento = '%s'" % (medicamento.tipo)
+
+        print(sql)
+
+        cursor.execute(sql)
+        id_tipo_medicamento = cursor.fetchall()
+        return id_tipo_medicamento[0]

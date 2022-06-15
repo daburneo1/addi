@@ -15,7 +15,6 @@ medicamentos = []
 global_medicamento = Medicamento('','','','','','','','','')
 
 class Medicine_Form(QWidget):
-
     def __init__(self):
         super(Medicine_Form, self).__init__()
         loadUi('./ui/medicamentos.ui', self)
@@ -99,7 +98,7 @@ class Medicine_Form(QWidget):
         self.spinBoxVecesDia.setEnabled(True)
         self.spinBoxVecesDia.setValue(1)
         self.spinBoxVecesDia.valueChanged.connect(self.value_change)
-        # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
+        # # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.cargar_combo_box()
         # tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
         # print(tipo_medicina[2])
@@ -116,7 +115,7 @@ class Medicine_Form(QWidget):
     def agregar_recordatorio(self):
         id = 0
         nombre = self.lineEditMedicamento.text().capitalize()
-        tipo = self.comboBoxTipo.currentIndex() + 1
+        tipo = self.comboBoxTipo.currentText()
         frecuencia = self.obtener_frecuencia()
         dosis = self.lineEditDosis.text()
         veces_dia = self.spinBoxVecesDia.text()
@@ -414,9 +413,3 @@ class Medicine_Form(QWidget):
 
     def guardar_recordatorio(self):
         pass
-
-
-
-
-
-

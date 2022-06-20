@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from DATA.DATIhr import *
 from BLOGICA.PromptManager import *
@@ -8,11 +8,8 @@ class LOGIhr():
     def consultar_db(self):
         fecha_actual = datetime.today().strftime('%Y-%m-%d')
         hora_actual = datetime.today()
-        if int(hora_actual.strftime('%M')) < 55:
-            hora_futura = hora_actual.replace(minute=int(hora_actual.strftime('%M')) + 5)
-            recordatorios = DATIhr.consultar_recordatorios(self, fecha_actual, hora_futura.strftime('%H:%M:00'))
-            return recordatorios
-        else:
-            return None
+        hora_futura = hora_actual + timedelta(minutes=5)
+        recordatorios = DATIhr.consultar_recordatorios(self, fecha_actual, hora_futura.strftime('%H:%M:00'))
+        return recordatorios
 
 

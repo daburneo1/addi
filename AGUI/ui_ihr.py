@@ -8,7 +8,6 @@ from PyQt5 import QtCore
 
 
 class Ihr_Form(QWidget):
-
     def __init__(self):
         super(Ihr_Form, self).__init__()
         loadUi('./ui/ihr.ui', self)
@@ -62,13 +61,13 @@ class Ihr_Form(QWidget):
         print('Presiona Enter para confirmar')
         pm = PromptManager(timeout)
         ans = pm.start()
+        self.pushButtonConfirmar.clicked.connect(self.confirmar)
         if isinstance(ans, str):
             return ans
         else:
             return default
 
     def calcular_espera(self):
-        print()
         hora_actual = datetime.today()
         h1 = hora_actual.time()
         print(h1.strftime('%H-%M-%S'))
@@ -80,7 +79,7 @@ class Ihr_Form(QWidget):
         pass
 
     def confirmar(self):
-        pass
+        print('CONFIRMAR')
 
     def cancelar(self):
         pass

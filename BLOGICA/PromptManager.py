@@ -5,11 +5,14 @@ import time
 from inputimeout import inputimeout, TimeoutOccurred
 from pynput.keyboard import Key, Controller
 
+from AGUI import ui_ihr
+
 
 SENTINEL = None
 
 
 class PromptManager(Thread):
+    ihr = ui_ihr
     msg = None
     def __init__(self, timeout):
         super().__init__()
@@ -30,11 +33,6 @@ class PromptManager(Thread):
             txt = self._in_queue.get(timeout=self.timeout)
         except Empty:
             self._out_queue.put(SENTINEL)
-            # without usage of _prompter_exit() and Enter, the
-            # prompt-thread would stay alive until the whole program ends
-            keyboard = Controller()
-            keyboard.press(Key.enter)
-            keyboard.release(Key.enter)
             self._prompter_exit.wait()
         else:
             self._out_queue.put(txt)

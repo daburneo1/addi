@@ -548,8 +548,8 @@ QPushButton:hover{
                   <rect>
                    <x>0</x>
                    <y>30</y>
-                   <width>687</width>
-                   <height>336</height>
+                   <width>794</width>
+                   <height>348</height>
                   </rect>
                  </property>
                  <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -832,8 +832,14 @@ padding-bottom: 5px;</string>
                               <height>18</height>
                              </size>
                             </property>
+                            <property name="currentSection">
+                             <enum>QDateTimeEdit::HourSection</enum>
+                            </property>
                             <property name="displayFormat">
                              <string>h:mm</string>
+                            </property>
+                            <property name="calendarPopup">
+                             <bool>false</bool>
                             </property>
                            </widget>
                           </item>

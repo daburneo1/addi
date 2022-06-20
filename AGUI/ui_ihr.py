@@ -31,6 +31,8 @@ class Ihr_Form(QWidget):
             recordatorios = log_ihr.consultar_db()
             if recordatorios:
                 self.ejecutar_recordatorio(recordatorios)
+                seconds = self.calcular_espera()
+                time.sleep(seconds)
             else:
                 print(f"[{time.ctime()}] >$ ", 'sleep')
                 time.sleep(60)
@@ -50,7 +52,7 @@ class Ihr_Form(QWidget):
             if s == "mustnotchange":
                 print(f"\n[{time.ctime()}] Recordatorio en 5 minutos.")
                 time.sleep(5)
-            elif s != "mustnotchange":
+            else:
                 print(s)
                 print("Gracias, hasta la próxima")
                 break
@@ -64,6 +66,15 @@ class Ihr_Form(QWidget):
             return ans
         else:
             return default
+
+    def calcular_espera(self):
+        print()
+        hora_actual = datetime.today()
+        h1 = hora_actual.time()
+        print(h1.strftime('%H-%M-%S'))
+        seconds = 60 - int(h1.strftime('%S'))
+        print(seconds)
+        return seconds
 
     def posponer(self):
         pass

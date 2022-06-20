@@ -10,7 +10,7 @@ SENTINEL = None
 
 
 class PromptManager(Thread):
-
+    msg = None
     def __init__(self, timeout):
         super().__init__()
         self.timeout = timeout
@@ -51,12 +51,16 @@ class PromptManager(Thread):
             self._prompter_exit.set()
         except TimeoutOccurred:
             print('timeout')
+            msg = None
             self._prompter_exit.set()
 
     def _poll(self):
+        global msg
         """Get forwarded inputs from the manager-thread executing `run()`
         and process them in the parent-thread.
         """
+        msg = None
         msg =  self._out_queue.get()
         self.join()
+        print('msg: ', msg)
         return msg

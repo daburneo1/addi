@@ -10,16 +10,22 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore
 
-class Worker(QObject):
-    finished = pyqtSignal()
-    progress = pyqtSignal(int)
+class Ihr_Form(QWidget):
+    def __init__(self):
+        super(Ihr_Form, self).__init__()
+        loadUi('./ui/ihr.ui', self)
 
-    def run(self):
-        """Long-running task."""
-        for i in range(5):
-            time.sleep(2)
-            self.progress.emit(i + 1)
-        self.finished.emit()
+        hilo = threading.Thread(target=self.ejecucion_horaria)
+        hilo.start()
+
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+        self.pushButtonAcceso.clicked.connect(self.acceso)
+        self.pushButtonPosponer.clicked.connect(self.posponer)
+        self.pushButtonConfirmar.clicked.connect(self.stop)
+        self.pushButtonCancelar.clicked.connect(self.cancelar)
+
 
     def ejecucion_horaria(self):
         log_ihr = LOGIhr
@@ -44,7 +50,8 @@ class Worker(QObject):
         self._go = True
         while (self._go):
             print('Bucle')
-            ihr.iniciar_emocion_alegria(medicine)
+            ihr.iniciar_emocion_alegria(self, medicine)
+            time.sleep(5)
             # self.labelRecordatorio.setText('Hola, te recuerdo que debes tomar en este momento ' + medicine.nombre)
             # self.movie = QMovie("./Iconos/giphy.gif")
             # self.Emoji.setMovie(self.movie)
@@ -58,31 +65,6 @@ class Worker(QObject):
         seconds = 60 - int(h1.strftime('%S'))
         print(seconds)
         return seconds
-
-
-class Ihr_Form(QWidget):
-    def __init__(self):
-        super(Ihr_Form, self).__init__()
-        loadUi('./ui/ihr.ui', self)
-
-        # hilo = threading.Thread(target=self.ejecucion_horaria)
-        # hilo.start()
-
-        self.thread = QThread()
-        self.worker = Worker()
-        self.worker.moveToThread(self.thread)
-        self.thread.started.connect(self.worker.ejecucion_horaria)
-        self.thread.start()
-
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-
-        self.pushButtonAcceso.clicked.connect(self.acceso)
-        self.pushButtonPosponer.clicked.connect(self.posponer)
-        self.pushButtonConfirmar.clicked.connect(self.stop)
-        self.pushButtonCancelar.clicked.connect(self.cancelar)
-
-
 
     def acceso(self):
         from AGUI.ui_login import Login_Form
@@ -107,9 +89,9 @@ class Ihr_Form(QWidget):
 
     def iniciar_emocion_alegria(self, medicine):
         self.labelRecordatorio.setText('Hola, te recuerdo que debes tomar en este momento ' + medicine.nombre)
-        self.movie = QMovie("./Iconos/giphy.gif")
-        self.Emoji.setMovie(self.movie)
-        self.movie.start()
+        # self.movie = QMovie("./Iconos/giphy.gif")
+        # self.Emoji.setMovie(self.movie)
+        # self.movie.start()
 
     def terminar_emocion_alegria(self):
         self.movie.stop()
@@ -145,7 +127,7 @@ class Ihr_Form(QWidget):
 
     def stop(self):
         self._go = False
-        self.terminar_emocion_alegria()
+        # self.terminar_emocion_alegria()
 
     def posponer(self):
         pass

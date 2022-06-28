@@ -9,15 +9,6 @@ from AGUI.ui_bienvenida import *
 
 if __name__ == "__main__":
 
-    def ejecucion_horaria():
-        log_ihr = LOGIhr
-        while(True):
-            print(f"[{time.ctime()}] >$ ", 'start')
-            log_ihr.consultar_db()
-            print(f"[{time.ctime()}] >$ ", 'sleep')
-            time.sleep(60)
-            print(f"[{time.ctime()}] >$ ", 'return')
-
     app = QtWidgets.QApplication(sys.argv)
     ihr = Ihr_Form()
     # hilo = threading.Thread(target=ejecucion_horaria)

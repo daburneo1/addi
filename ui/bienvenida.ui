@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -30,8 +30,8 @@
     <rect>
      <x>0</x>
      <y>10</y>
-     <width>901</width>
-     <height>491</height>
+     <width>991</width>
+     <height>581</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -53,10 +53,10 @@ QPushButton:hover{
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>20</y>
-      <width>561</width>
-      <height>441</height>
+      <x>370</x>
+      <y>10</y>
+      <width>621</width>
+      <height>561</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -72,8 +72,8 @@ border-radius:10px;</string>
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>341</width>
-      <height>481</height>
+      <width>401</width>
+      <height>581</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -87,7 +87,7 @@ border-radius:10px;</string>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>130</x>
       <y>30</y>
       <width>131</width>
       <height>61</height>
@@ -107,7 +107,7 @@ border-radius:10px;</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>50</x>
       <y>100</y>
       <width>301</width>
       <height>51</height>
@@ -148,8 +148,8 @@ border-radius:10px;</string>
    <widget class="QPushButton" name="pushButtonRecordatorio">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>200</y>
+      <x>440</x>
+      <y>210</y>
       <width>191</width>
       <height>61</height>
      </rect>
@@ -166,8 +166,8 @@ border-radius:10px;</string>
    <widget class="QPushButton" name="pushButtonCumplimiento">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>300</y>
+      <x>440</x>
+      <y>330</y>
       <width>191</width>
       <height>61</height>
      </rect>
@@ -184,8 +184,8 @@ border-radius:10px;</string>
    <widget class="QPushButton" name="pushButtonCitaMedica">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>200</y>
+      <x>720</x>
+      <y>210</y>
       <width>191</width>
       <height>61</height>
      </rect>
@@ -202,8 +202,8 @@ border-radius:10px;</string>
    <widget class="QPushButton" name="pushButtonExamenLaboratorio">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>300</y>
+      <x>720</x>
+      <y>330</y>
       <width>191</width>
       <height>61</height>
      </rect>
@@ -220,7 +220,7 @@ border-radius:10px;</string>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>460</x>
       <y>130</y>
       <width>141</width>
       <height>31</height>
@@ -238,7 +238,7 @@ border-radius:10px;</string>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>780</x>
       <y>130</y>
       <width>51</width>
       <height>31</height>
@@ -256,8 +256,8 @@ border-radius:10px;</string>
    <widget class="QPushButton" name="pushButtonSalir">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>400</y>
+      <x>620</x>
+      <y>470</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -274,8 +274,8 @@ border-radius:10px;</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>150</y>
+      <x>90</x>
+      <y>190</y>
       <width>231</width>
       <height>291</height>
      </rect>

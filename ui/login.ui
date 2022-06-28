@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -30,8 +30,8 @@
     <rect>
      <x>0</x>
      <y>10</y>
-     <width>901</width>
-     <height>491</height>
+     <width>991</width>
+     <height>581</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -55,8 +55,8 @@ QPushButton:hover{
      <rect>
       <x>460</x>
       <y>20</y>
-      <width>431</width>
-      <height>441</height>
+      <width>521</width>
+      <height>541</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -72,8 +72,8 @@ border-radius:10px;</string>
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>461</width>
-      <height>481</height>
+      <width>511</width>
+      <height>581</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -89,9 +89,9 @@ border-radius:10px;
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>630</x>
       <y>60</y>
-      <width>191</width>
+      <width>231</width>
       <height>31</height>
      </rect>
     </property>
@@ -107,9 +107,9 @@ color: rgb(0, 79, 86)
    <widget class="QLineEdit" name="lineEditCedula">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>120</y>
-      <width>361</width>
+      <x>540</x>
+      <y>160</y>
+      <width>411</width>
       <height>31</height>
      </rect>
     </property>
@@ -132,9 +132,9 @@ padding-bottom: 7px;</string>
    <widget class="QLineEdit" name="lineEditPass">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>200</y>
-      <width>361</width>
+      <x>540</x>
+      <y>240</y>
+      <width>411</width>
       <height>31</height>
      </rect>
     </property>
@@ -160,9 +160,9 @@ padding-bottom: 7px;</string>
    <widget class="QPushButton" name="pushButtonLogin">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>260</y>
-      <width>361</width>
+      <x>540</x>
+      <y>320</y>
+      <width>411</width>
       <height>71</height>
      </rect>
     </property>
@@ -176,9 +176,9 @@ padding-bottom: 7px;</string>
    <widget class="QPushButton" name="pushButtonRegistrarse">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>350</y>
-      <width>171</width>
+      <x>540</x>
+      <y>420</y>
+      <width>191</width>
       <height>71</height>
      </rect>
     </property>
@@ -194,9 +194,9 @@ padding-bottom: 7px;</string>
    <widget class="QPushButton" name="pushButtonForgot">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>350</y>
-      <width>171</width>
+      <x>750</x>
+      <y>420</y>
+      <width>201</width>
       <height>71</height>
      </rect>
     </property>
@@ -212,8 +212,8 @@ padding-bottom: 7px;</string>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>30</y>
+      <x>190</x>
+      <y>50</y>
       <width>131</width>
       <height>61</height>
      </rect>
@@ -232,8 +232,8 @@ padding-bottom: 7px;</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>100</y>
+      <x>60</x>
+      <y>130</y>
       <width>421</width>
       <height>51</height>
      </rect>
@@ -268,8 +268,8 @@ padding-bottom: 7px;</string>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>130</y>
+      <x>130</x>
+      <y>200</y>
       <width>271</width>
       <height>331</height>
      </rect>
@@ -287,7 +287,7 @@ padding-bottom: 7px;</string>
    <widget class="QPushButton" name="pushButtonCerrar">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>910</x>
       <y>30</y>
       <width>51</width>
       <height>41</height>

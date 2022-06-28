@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -30,8 +30,8 @@
     <rect>
      <x>0</x>
      <y>10</y>
-     <width>901</width>
-     <height>491</height>
+     <width>991</width>
+     <height>581</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -53,10 +53,10 @@ QPushButton:hover{
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>310</x>
       <y>20</y>
-      <width>631</width>
-      <height>441</height>
+      <width>681</width>
+      <height>541</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -72,8 +72,8 @@ border-radius:10px;</string>
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>271</width>
-      <height>481</height>
+      <width>321</width>
+      <height>571</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -89,7 +89,7 @@ border-radius:10px;</string>
      <rect>
       <x>450</x>
       <y>40</y>
-      <width>291</width>
+      <width>331</width>
       <height>31</height>
      </rect>
     </property>
@@ -105,9 +105,9 @@ color: rgb(0, 79, 86)
    <widget class="QLineEdit" name="lineEditNombre">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>350</x>
       <y>150</y>
-      <width>241</width>
+      <width>571</width>
       <height>41</height>
      </rect>
     </property>
@@ -132,8 +132,8 @@ padding-bottom: 7px;</string>
    <widget class="QPushButton" name="pushButtonRegistrarse">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>380</y>
+      <x>700</x>
+      <y>440</y>
       <width>171</width>
       <height>61</height>
      </rect>
@@ -220,9 +220,9 @@ padding-bottom: 7px;</string>
    <widget class="QLineEdit" name="lineEditApellido">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>150</y>
-      <width>241</width>
+      <x>350</x>
+      <y>220</y>
+      <width>571</width>
       <height>41</height>
      </rect>
     </property>
@@ -245,9 +245,9 @@ padding-bottom: 7px;</string>
    <widget class="QLineEdit" name="lineEditPass">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>220</y>
-      <width>401</width>
+      <x>350</x>
+      <y>290</y>
+      <width>571</width>
       <height>31</height>
      </rect>
     </property>
@@ -273,9 +273,9 @@ padding-bottom: 7px;</string>
    <widget class="QLineEdit" name="lineEditPass2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>290</y>
-      <width>401</width>
+      <x>350</x>
+      <y>360</y>
+      <width>571</width>
       <height>31</height>
      </rect>
     </property>
@@ -301,8 +301,8 @@ padding-bottom: 7px;</string>
    <widget class="QPushButton" name="pushButtonCancelar">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>380</y>
+      <x>400</x>
+      <y>440</y>
       <width>171</width>
       <height>61</height>
      </rect>
@@ -319,9 +319,9 @@ padding-bottom: 7px;</string>
    <widget class="QLineEdit" name="lineEditCedula">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>80</y>
-      <width>241</width>
+      <x>350</x>
+      <y>90</y>
+      <width>571</width>
       <height>41</height>
      </rect>
     </property>

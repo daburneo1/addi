@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>900</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>600</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -30,8 +30,8 @@
     <rect>
      <x>0</x>
      <y>10</y>
-     <width>901</width>
-     <height>491</height>
+     <width>991</width>
+     <height>581</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -72,8 +72,8 @@ border-radius:10px;</string>
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>881</width>
-      <height>481</height>
+      <width>981</width>
+      <height>581</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -90,8 +90,8 @@ border-radius:10px;
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>390</y>
-      <width>171</width>
+      <y>440</y>
+      <width>231</width>
       <height>71</height>
      </rect>
     </property>
@@ -107,9 +107,9 @@ border-radius:10px;
    <widget class="QPushButton" name="pushButtonConfirmar">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>390</y>
-      <width>171</width>
+      <x>400</x>
+      <y>440</y>
+      <width>231</width>
       <height>71</height>
      </rect>
     </property>
@@ -125,8 +125,8 @@ border-radius:10px;
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>0</y>
+      <x>470</x>
+      <y>30</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -145,9 +145,9 @@ border-radius:10px;
    <widget class="QPushButton" name="pushButtonCancelar">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>390</y>
-      <width>171</width>
+      <x>710</x>
+      <y>440</y>
+      <width>231</width>
       <height>71</height>
      </rect>
     </property>
@@ -163,9 +163,9 @@ border-radius:10px;
    <widget class="QLabel" name="Emoji">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>50</y>
-      <width>371</width>
+      <x>240</x>
+      <y>80</y>
+      <width>561</width>
       <height>291</height>
      </rect>
     </property>
@@ -176,8 +176,8 @@ border-radius:10px;
    <widget class="QLabel" name="labelRecordatorio">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>350</y>
+      <x>190</x>
+      <y>400</y>
       <width>671</width>
       <height>20</height>
      </rect>
@@ -189,10 +189,10 @@ border-radius:10px;
    <widget class="QPushButton" name="pushButtonAcceso">
     <property name="geometry">
      <rect>
-      <x>820</x>
+      <x>890</x>
       <y>10</y>
-      <width>61</width>
-      <height>21</height>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">

@@ -48,3 +48,7 @@ class LOGUsuario():
         else:
             return 0
 
+    def buscar_usuario_recordatorio(self, recordatorio):
+        usuario = DATUsuario.buscar_usuario_recordatorio(self, recordatorio)
+        return usuario
+

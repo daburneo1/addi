@@ -15,6 +15,7 @@ class DATIhr():
 
         cursor.execute(sql)
         data = cursor.fetchall()
+        connection.commit()
         recordatorios = []
 
         for x in data:

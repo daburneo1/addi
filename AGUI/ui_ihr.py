@@ -1,6 +1,7 @@
 import threading
 import time
 
+import pyttsx3
 from PyQt5.QtCore import QTimer, QDateTime, QThread, QObject, pyqtSignal
 from PyQt5.QtGui import QMovie
 
@@ -9,6 +10,9 @@ from BLOGICA.LOGIhr import *
 from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore
+
+from BLOGICA.LOGUsuario import *
+
 
 class Ihr_Form(QWidget):
     def __init__(self):
@@ -29,12 +33,15 @@ class Ihr_Form(QWidget):
 
     def ejecucion_horaria(self):
         log_ihr = LOGIhr
+        log_usuario = LOGUsuario
         self._go = True
         while(self._go):
             print(f"[{time.ctime()}] >$ ", 'start')
             recordatorios = log_ihr.consultar_db()
             if recordatorios:
-                self.ejecutar_recordatorio(recordatorios)
+                recordatorio = recordatorios[0]
+                usuario = log_usuario.buscar_usuario_recordatorio(self, recordatorio)
+                self.ejecutar_recordatorio(recordatorio, usuario)
                 print('OK')
                 seconds = self.calcular_espera()
                 time.sleep(seconds)
@@ -44,19 +51,45 @@ class Ihr_Form(QWidget):
                 time.sleep(seconds)
                 print(f"[{time.ctime()}] >$ ", 'return')
 
-    def ejecutar_recordatorio(self, recordatorios):
+    def ejecutar_recordatorio(self, recordatorio, usuario):
         ihr = Ihr_Form
-        medicine = recordatorios[0]
         self._go = True
-        while (self._go):
-            print('Bucle')
-            ihr.iniciar_emocion_alegria(self, medicine)
-            time.sleep(5)
+        self.contador = 1
+        while (self._go and self.contador <= 4):
+            if self.contador <= 3:
+                ihr.iniciar_emocion(self, recordatorio, usuario, self.contador)
+                time.sleep(5)
+                self.contador += 1
+            else:
+                print('posponer')
+                break
             # self.labelRecordatorio.setText('Hola, te recuerdo que debes tomar en este momento ' + medicine.nombre)
             # self.movie = QMovie("./Iconos/giphy.gif")
             # self.Emoji.setMovie(self.movie)
             # self.iniciar_emocion_alegria()
             # time.sleep(5)
+
+    def iniciar_emocion(self, recordatorio, usuario, contador):
+        engine = pyttsx3.init()
+        engine.setProperty('voice', 'spanish-latin-am')
+        if contador == 1:
+            print('alegria')
+            self.labelRecordatorio.setText('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
+            data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
+            engine.say(data)
+            engine.runAndWait()
+        elif contador == 2:
+            print('neutro')
+            self.labelRecordatorio.setText('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
+            data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
+            engine.say(data)
+            engine.runAndWait()
+        elif contador == 3:
+            print('tristeza')
+            self.labelRecordatorio.setText('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos de tu horario' % (usuario.nombre, recordatorio.nombre))
+            data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos de tu horario' % (usuario.nombre, recordatorio.nombre))
+            engine.say(data)
+            engine.runAndWait()
 
     def calcular_espera(self):
         hora_actual = datetime.today()
@@ -87,29 +120,8 @@ class Ihr_Form(QWidget):
     #             print("Gracias, hasta la próxima")
     #             break
 
-    def iniciar_emocion_alegria(self, medicine):
-        self.labelRecordatorio.setText('Hola, te recuerdo que debes tomar en este momento ' + medicine.nombre)
-        # self.movie = QMovie("./Iconos/giphy.gif")
-        # self.Emoji.setMovie(self.movie)
-        # self.movie.start()
-
     def terminar_emocion_alegria(self):
         self.movie.stop()
-
-    def input_with_timeout(self, default, timeout, medicine):
-        print('Hola, te recuerdo que debes tomar en este momento ' + medicine.nombre)
-        print('Presiona Enter para confirmar')
-        pm = PromptManager(timeout)
-        ans = pm.start()
-        if isinstance(ans, str):
-            return ans
-        else:
-            return default
-
-    # def input_with_timeout(self, default, timeout, medicine):
-    #     pm = threading.Thread(target=self.recordatorio(timeout, medicine))
-    #     ans = pm.start()
-    #     return ans
 
     def recordatorio(self, timeout, medicine):
         a = True

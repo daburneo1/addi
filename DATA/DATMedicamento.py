@@ -7,6 +7,7 @@ def buscar_horario(id):
     print(sql)
     cursor.execute(sql)
     horario = cursor.fetchall()
+    connection.commit()
     return (horario)
 
 class DATMedicamento():
@@ -17,6 +18,7 @@ class DATMedicamento():
 
         cursor.execute(sql)
         data = cursor.fetchall()
+        connection.commit()
         tipo_medicamento = []
 
         for x in data:
@@ -40,6 +42,7 @@ class DATMedicamento():
         cursor.execute(sql)
         id_medicamento = cursor.fetchall()
         print(id_medicamento)
+        connection.commit()
         return id_medicamento
 
     def agregar_recordatorio(self, medicamento, id_medicamento):
@@ -57,6 +60,7 @@ class DATMedicamento():
         print(sql)
         cursor.execute(sql)
         data = cursor.fetchall()
+        connection.commit()
         medicamentos = []
 
         for x in data:
@@ -69,6 +73,7 @@ class DATMedicamento():
         print(sql)
         cursor.execute(sql)
         medicamento = cursor.fetchall()
+        connection.commit()
         return medicamento
 
     def actualizar_medicamento(self, medicamento):
@@ -95,6 +100,7 @@ class DATMedicamento():
         print(sql)
         cursor.execute(sql)
         horario = cursor.fetchall()
+        connection.commit()
         return (horario)
 
     @classmethod
@@ -114,4 +120,5 @@ class DATMedicamento():
 
         cursor.execute(sql)
         id_tipo_medicamento = cursor.fetchall()
+        connection.commit()
         return id_tipo_medicamento[0]

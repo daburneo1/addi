@@ -124,20 +124,22 @@ class Appointment_Form(QWidget):
             cita_medica = ''
             if nombre is not None:
                 for x in citas_medicas:
-                    print(str(x.medico), '=', nombre)
-                    if str(x.medico) == str(nombre):
+                    print(str(x.nombreMedico), '=', nombre)
+                    if str(x.nombreMedico) == str(nombre):
                         cita_medica = x
                         global_cita_medica = x
 
                 if cita_medica != '':
                     self.label_12.setText('Editar Cita Médica')
+                    self.stackedWidget.setCurrentWidget(self.pageRegistrar)
                     self.lineEditMedico.setText(cita_medica.nombreMedico)
                     self.lineEditEspecialidad.setText(cita_medica.especialidad)
                     self.lineEditUbicacion.setText(cita_medica.ubicacion)
                     self.lineEditNotas.setText(cita_medica.notas)
                     self.pushButtonGuardar.setVisible(False)
                     self.pushButtonActualizar_2.setVisible(True)
-        except:
+        except Exception as e:
+            print(e)
             messagebox.showerror(message="Debe seleccionar una cita médica", title="Info")
 
     def actualizar_recordatorio(self):

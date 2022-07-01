@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore
 
+from AGUI.ui_cita_medica import Appointment_Form
 from AGUI.ui_login import Login_Form
 from AGUI.ui_medicamentos import Medicine_Form
 from CLASES.Usuario import Usuario
@@ -21,15 +22,21 @@ class Welcome_Form(QWidget):
 
         self.pushButtonSalir.clicked.connect(self.cerrar_ventana)
         self.pushButtonRecordatorio.clicked.connect(self.medicine_window)
+        self.pushButtonCitaMedica.clicked.connect(self.appointment_window)
 
     def get_user(self, user):
         global usuario
         usuario = user
         Medicine_Form.get_user(self, user)
+        Appointment_Form.get_user(self, user)
 
     def medicine_window(self):
         self.ui_medicine = Medicine_Form()
         self.ui_medicine.show()
+
+    def appointment_window(self):
+        self.ui_appointment = Appointment_Form()
+        self.ui_appointment.show()
 
     def cerrar_ventana(self):
         self.ui_login = Login_Form()

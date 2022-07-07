@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `addi`.`citamedica` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -66,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `addi`.`citaslaboratorio` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -77,6 +79,7 @@ CREATE TABLE IF NOT EXISTS `addi`.`tipomedicamento` (
   `tipoMedicamento` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idtipomedicamento`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -107,6 +110,7 @@ CREATE TABLE IF NOT EXISTS `addi`.`medicamento` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -115,6 +119,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `addi`.`confirmaciones` (
   `idConfirmaciones` INT(11) NOT NULL AUTO_INCREMENT,
+  `fecha` DATE NOT NULL,
   `horaProgramada` TIME NOT NULL,
   `horaConfirmacion` TIME NOT NULL,
   `cedula` VARCHAR(10) NOT NULL,
@@ -151,12 +156,14 @@ CREATE TABLE IF NOT EXISTS `addi`.`recordatoriomedicamento` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 
 INSERT INTO `addi`.`tipomedicamento` (tipoMedicamento)

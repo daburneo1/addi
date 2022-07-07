@@ -15,6 +15,9 @@ from BLOGICA.LOGUsuario import *
 
 
 class Ihr_Form(QWidget):
+    recordatrio = Recordatorio
+    usuario = Usuario
+
     def __init__(self):
         super(Ihr_Form, self).__init__()
         loadUi('./ui/ihr.ui', self)
@@ -26,12 +29,13 @@ class Ihr_Form(QWidget):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
         self.pushButtonAcceso.clicked.connect(self.acceso)
-        self.pushButtonPosponer.clicked.connect(self.posponer)
-        self.pushButtonConfirmar.clicked.connect(self.stop)
+        self.pushButtonConfirmar.clicked.connect(self.confirmar)
         self.pushButtonCancelar.clicked.connect(self.cancelar)
 
 
     def ejecucion_horaria(self):
+        global recordatorio
+        global usuario
         log_ihr = LOGIhr
         log_usuario = LOGUsuario
         self._go = True
@@ -53,9 +57,9 @@ class Ihr_Form(QWidget):
 
     def ejecutar_recordatorio(self, recordatorio, usuario):
         ihr = Ihr_Form
-        self._go = True
+        self._reminder = True
         self.contador = 1
-        while (self._go and self.contador <= 4):
+        while (self._reminder and self.contador <= 4):
             if self.contador <= 3:
                 ihr.iniciar_emocion(self, recordatorio, usuario, self.contador)
                 time.sleep(5)
@@ -123,29 +127,28 @@ class Ihr_Form(QWidget):
     def terminar_emocion_alegria(self):
         self.movie.stop()
 
-    def recordatorio(self, timeout, medicine):
-        a = True
-        while a:
-            self.pushButtonConfirmar.clicked.connect(self.stop)
-            # if ans == 'ok':
-            #     break
-
-            # try:
-            #     ans = inputimeout(f"[{time.ctime()}] >$ ", timeout=5)
-            # except TimeoutOccurred:
-            #     ans = ''
-            # if ans != '':
-            #     return 'ok'
-
-    def stop(self):
-        self._go = False
-        # self.terminar_emocion_alegria()
-
-    def posponer(self):
-        pass
+    # def recordatorio(self, timeout, medicine):
+    #     a = True
+    #     while a:
+    #         self.pushButtonConfirmar.clicked.connect(self.stop)
+    #         # if ans == 'ok':
+    #         #     break
+    #
+    #         # try:
+    #         #     ans = inputimeout(f"[{time.ctime()}] >$ ", timeout=5)
+    #         # except TimeoutOccurred:
+    #         #     ans = ''
+    #         # if ans != '':
+    #         #     return 'ok'
 
     def confirmar(self):
-        pass
+        global recordatorio
+        global usuario
+        self._reminder = False
+        hora_actual = datetime.now().time()
+
+        LOGIhr.confirmar_medicamento(recordatorio, usuario, self.contador, hora_actual)
+        # self.terminar_emocion_alegria()
 
     def cancelar(self):
         pass

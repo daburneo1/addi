@@ -22,3 +22,18 @@ class DATIhr():
             recordatorio = Recordatorio(x[0], x[1], x[2], x[3], x[4], x[5])
             recordatorios.append(recordatorio)
         return recordatorios
+
+    @classmethod
+    def confirmar_medicamento(cls, fecha_actual, hora_programada, hora_actual, usuario, recordatorio):
+        # sql = "INSERT INTO confirmaciones (fecha, horaProgramada, horaConfirmacion, cedula, idMedicamentos) VALUES (" \
+        #       "'%s', '%s', '%s', '%s', '%s')" %(fecha_actual, hora_programada, hora_actual, usuario.cedula, recordatorio.idMedicamento)
+
+        sql = "INSERT INTO confirmaciones (horaProgramada, horaConfirmacion, cedula, idMedicamentos) VALUES (" \
+              "'%s', '%s', '%s', '%s')" % (
+              hora_programada, hora_actual, usuario.cedula, recordatorio.idMedicamento)
+
+        print(sql)
+
+        cursor.execute(sql)
+        connection.commit()
+

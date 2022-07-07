@@ -411,7 +411,7 @@ QHeaderView::section{
                   </widget>
                  </item>
                  <item>
-                  <widget class="QTableWidget" name="tableMedicamentos">
+                  <widget class="QTableWidget" name="tableCitasLaboratorio">
                    <property name="enabled">
                     <bool>true</bool>
                    </property>
@@ -444,27 +444,32 @@ gridline-color:rgb(0, 206, 151);</string>
                    </attribute>
                    <column>
                     <property name="text">
-                     <string>Medicamento</string>
+                     <string>Tipo de Exámen</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Dosis</string>
+                     <string>Laboratorio</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Frecuencia</string>
+                     <string>Ubicación</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Veces por día</string>
+                     <string>Fecha</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Horario</string>
+                     <string>Hora</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Notas</string>
                     </property>
                    </column>
                   </widget>
@@ -535,7 +540,7 @@ QPushButton:hover{
                   <rect>
                    <x>240</x>
                    <y>0</y>
-                   <width>271</width>
+                   <width>291</width>
                    <height>21</height>
                   </rect>
                  </property>
@@ -628,7 +633,7 @@ QPushButton:hover{
                   <rect>
                    <x>1</x>
                    <y>31</y>
-                   <width>141</width>
+                   <width>145</width>
                    <height>341</height>
                   </rect>
                  </property>
@@ -688,7 +693,7 @@ QPushButton:hover{
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout">
                   <item>
-                   <widget class="QLineEdit" name="lineEditMedicamento">
+                   <widget class="QLineEdit" name="lineEditTipoExamen">
                     <property name="styleSheet">
                      <string notr="true">background-color:rgba(0,0,0,0);
 border:2px solid rgba(0,0,0,0);
@@ -699,7 +704,7 @@ padding-bottom: 5px;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEditMedicamento_3">
+                   <widget class="QLineEdit" name="lineEditLaboratorio">
                     <property name="styleSheet">
                      <string notr="true">background-color:rgba(0,0,0,0);
 border:2px solid rgba(0,0,0,0);
@@ -710,7 +715,7 @@ padding-bottom: 5px;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEditMedicamento_2">
+                   <widget class="QLineEdit" name="lineEditUbicacion">
                     <property name="styleSheet">
                      <string notr="true">background-color:rgba(0,0,0,0);
 border:2px solid rgba(0,0,0,0);
@@ -721,45 +726,28 @@ padding-bottom: 5px;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QTimeEdit" name="timeEdit_1">
-                    <property name="maximumSize">
-                     <size>
-                      <width>70</width>
-                      <height>18</height>
-                     </size>
+                   <widget class="QDateEdit" name="dateEdit">
+                    <property name="displayFormat">
+                     <string>yyyy/d/M</string>
                     </property>
-                    <property name="currentSection">
-                     <enum>QDateTimeEdit::HourSection</enum>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QTimeEdit" name="timeEdit">
+                    <property name="minimumTime">
+                     <time>
+                      <hour>0</hour>
+                      <minute>0</minute>
+                      <second>0</second>
+                     </time>
                     </property>
                     <property name="displayFormat">
                      <string>h:mm</string>
                     </property>
-                    <property name="calendarPopup">
-                     <bool>false</bool>
-                    </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QTimeEdit" name="timeEdit_2">
-                    <property name="maximumSize">
-                     <size>
-                      <width>70</width>
-                      <height>18</height>
-                     </size>
-                    </property>
-                    <property name="currentSection">
-                     <enum>QDateTimeEdit::HourSection</enum>
-                    </property>
-                    <property name="displayFormat">
-                     <string>h:mm</string>
-                    </property>
-                    <property name="calendarPopup">
-                     <bool>false</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="lineEditDosis">
+                   <widget class="QLineEdit" name="lineEditNotas">
                     <property name="styleSheet">
                      <string notr="true">background-color:rgba(0,0,0,0);
 border:2px solid rgba(0,0,0,0);

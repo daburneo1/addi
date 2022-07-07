@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 
 from DATA.DATIhr import *
 from DATA.DATUsuario import *
-from BLOGICA.PromptManager import *
 
 class LOGIhr():
     @classmethod

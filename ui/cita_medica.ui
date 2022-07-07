@@ -726,7 +726,11 @@ padding-bottom: 5px;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QDateEdit" name="dateEdit"/>
+                   <widget class="QDateEdit" name="dateEdit">
+                    <property name="displayFormat">
+                     <string>yyyy/d/M</string>
+                    </property>
+                   </widget>
                   </item>
                   <item>
                    <widget class="QTimeEdit" name="timeEdit">

@@ -258,6 +258,7 @@ class Medicine_Form(QWidget):
         try:
             row = self.tableMedicamentos.currentRow()
             nombre = self.tableMedicamentos.item(row, 0).text()
+            print(nombre)
             medicamento = ''
             if nombre is not None:
                 for x in medicamentos:

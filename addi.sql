@@ -27,7 +27,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `addi`.`citamedica`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `addi`.`citamedica` (
-  `idCitasMedicas` INT(11) NOT NULL,
+  `idCitasMedicas` INT(11) NOT NULL AUTO_INCREMENT,
   `nombreMedico` VARCHAR(40) NOT NULL,
   `especialidad` VARCHAR(20) NOT NULL,
   `ubicacion` VARCHAR(100) NULL DEFAULT NULL,
@@ -77,7 +77,6 @@ CREATE TABLE IF NOT EXISTS `addi`.`tipomedicamento` (
   `tipoMedicamento` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idtipomedicamento`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -108,7 +107,6 @@ CREATE TABLE IF NOT EXISTS `addi`.`medicamento` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -153,12 +151,13 @@ CREATE TABLE IF NOT EXISTS `addi`.`recordatoriomedicamento` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 INSERT INTO `addi`.`tipomedicamento` (tipoMedicamento)
   VALUES  ('Pastilla'),

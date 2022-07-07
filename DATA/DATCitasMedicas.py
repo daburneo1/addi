@@ -39,3 +39,9 @@ def actualizar_cita_medica(cita_medica):
 
 def eliminar_cita_medica(cita_medica):
     sql = "DELETE FROM citamedica WHERE citamedica.idCitasMedicas = '%s'" % (cita_medica.id)
+
+    print(sql)
+
+    cursor.execute(sql)
+    cursor.fetchall()
+    connection.commit()

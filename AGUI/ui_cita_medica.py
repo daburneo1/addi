@@ -1,4 +1,5 @@
 import sys
+from datetime import datetime, date, time
 
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QTime
@@ -15,6 +16,7 @@ from CLASES.Usuario import *
 usuario = ""
 citas_medicas = []
 global_cita_medica = CitaMedica('','','','','','','')
+row = -1
 
 class Appointment_Form(QWidget):
     def __init__(self):
@@ -105,6 +107,7 @@ class Appointment_Form(QWidget):
             messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
             self.vaciar_campos()
             self.stackedWidget.setCurrentWidget(self.pageDB)
+            row = -1
         except Exception as e:
             print(e)
             messagebox.showerror(message="Error, por favor revisar los campos ingresados", title="Error")
@@ -113,6 +116,8 @@ class Appointment_Form(QWidget):
         self.lineEditMedico.setText('')
         self.lineEditEspecialidad.setText('')
         self.lineEditUbicacion.setText('')
+        self.dateEdit.setDate(date.today())
+        self.timeEdit.setTime(time(8,00))
         self.lineEditNotas.setText('')
 
     def page_editar(self):
@@ -129,15 +134,17 @@ class Appointment_Form(QWidget):
                         cita_medica = x
                         global_cita_medica = x
 
-                if cita_medica != '':
-                    self.label_12.setText('Editar Cita Médica')
-                    self.stackedWidget.setCurrentWidget(self.pageRegistrar)
-                    self.lineEditMedico.setText(cita_medica.nombreMedico)
-                    self.lineEditEspecialidad.setText(cita_medica.especialidad)
-                    self.lineEditUbicacion.setText(cita_medica.ubicacion)
-                    self.lineEditNotas.setText(cita_medica.notas)
-                    self.pushButtonGuardar.setVisible(False)
-                    self.pushButtonActualizar_2.setVisible(True)
+            if cita_medica != '':
+                self.label_12.setText('Editar Cita Médica')
+                self.stackedWidget.setCurrentWidget(self.pageRegistrar)
+                self.lineEditMedico.setText(cita_medica.nombreMedico)
+                self.lineEditEspecialidad.setText(cita_medica.especialidad)
+                self.lineEditUbicacion.setText(cita_medica.ubicacion)
+                self.dateEdit.setDate(cita_medica.fecha)
+                self.timeEdit.setTime(cita_medica.hora)
+                self.lineEditNotas.setText(cita_medica.notas)
+                self.pushButtonGuardar.setVisible(False)
+                self.pushButtonActualizar_2.setVisible(True)
         except Exception as e:
             print(e)
             messagebox.showerror(message="Debe seleccionar una cita médica", title="Info")
@@ -156,6 +163,7 @@ class Appointment_Form(QWidget):
             LOGCitasMedicas.actualizar_cita_medica(nueva_cita_medica)
             messagebox.showinfo(message="El recordatorio se ha actualizado exitosamente", title="Info")
             self.vaciar_campos()
+            row = -1
             self.stackedWidget.setCurrentWidget(self.pageDB)
         except Exception as e:
             print(e)
@@ -179,7 +187,8 @@ class Appointment_Form(QWidget):
                     if opcion == True:
                         try:
                             LOGCitasMedicas.eliminar_cita_medica(cita_medica)
-                            print('Cita eliminada eliminado')
+                            print('Cita eliminada')
+                            row = -1
                         except:
                             messagebox.showerror(message="No se pudo eliminar la cita seleccionada",
                                                  title="Error")

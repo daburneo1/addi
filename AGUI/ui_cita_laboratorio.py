@@ -139,7 +139,7 @@ class Laboratory_Form(QWidget):
                 self.lineEditLaboratorio.setText(cita_laboratorio.laboratorio)
                 self.lineEditUbicacion.setText(cita_laboratorio.ubicacion)
                 self.dateEdit.setDate(cita_laboratorio.fecha)
-                # self.timeEdit.setTime(cita_laboratorio.hora)
+                self.timeEdit.setTime(QTime(int(cita_laboratorio.hora.split(":")[0]), int(cita_laboratorio.hora.split(":")[1])))
                 self.lineEditNotas.setText(cita_laboratorio.notas)
                 self.pushButtonGuardar.setVisible(False)
                 self.pushButtonActualizar_2.setVisible(True)

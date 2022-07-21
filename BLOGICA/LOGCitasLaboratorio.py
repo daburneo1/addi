@@ -7,7 +7,7 @@ def cargar_citas_laboratorio(usuario):
     lista_citas_laboratorio = []
     for x in citas_laboratorio:
         id = x[0]
-        cita_laboratorio = CitaLaboratorio(id, x[1], x[2], x[3], x[4], x[5], x[6])
+        cita_laboratorio = CitaLaboratorio(id, x[1], x[2], x[3], str(x[4]), x[5], x[6])
         lista_citas_laboratorio.append(cita_laboratorio)
     if lista_citas_laboratorio:
         return lista_citas_laboratorio

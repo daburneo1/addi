@@ -16,7 +16,7 @@ class Welcome_Form(QWidget):
         super(Welcome_Form, self).__init__()
         loadUi('./ui/bienvenida.ui', self)
 
-        self.label_Bienvenida.setText('Bienvenido ' + str(usuario))
+        self.label_Bienvenida.setText('Bienvenido')
 
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)

@@ -16,10 +16,12 @@ def cargar_citas_laboratorio(usuario):
 
 
 def agregar_cita_laboratorio(cita_laboratorio, usuario):
+    cita_laboratorio.fecha = cita_laboratorio.fecha.replace('/', '-')
     DATCitasLaboratorio.agregar_cita_laboratorio(cita_laboratorio, usuario)
 
 
 def actualizar_cita_laboratorio(cita_laboratorio):
+    cita_laboratorio.fecha = cita_laboratorio.fecha.replace('/', '-')
     DATCitasLaboratorio.actualizar_cita_laboratorio(cita_laboratorio)
 
 

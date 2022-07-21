@@ -13,6 +13,34 @@ from PyQt5 import QtCore
 
 from BLOGICA.LOGUsuario import *
 
+# class Worker(QObject):
+#     finished = pyqtSignal()
+#     progress = pyqtSignal(int)
+#
+#     def ejecucion_horaria(self):
+#         global recordatorio
+#         global usuario
+#         self.Ihr_Form = Ihr_Form
+#
+#         log_ihr = LOGIhr
+#         log_usuario = LOGUsuario
+#         self._go = True
+#         while(self._go):
+#             print(f"[{time.ctime()}] >$ ", 'start')
+#             recordatorios = log_ihr.consultar_db()
+#             if recordatorios:
+#                 recordatorio = recordatorios[0]
+#                 usuario = log_usuario.buscar_usuario_recordatorio(self, recordatorio)
+#                 self.Ihr_Form.ejecutar_recordatorio(recordatorio, usuario)
+#                 print('OK')
+#                 seconds = self.calcular_espera()
+#                 time.sleep(seconds)
+#             else:
+#                 print(f"[{time.ctime()}] >$ ", 'sleep')
+#                 seconds = self.calcular_espera()
+#                 time.sleep(seconds)
+#                 print(f"[{time.ctime()}] >$ ", 'return')
+
 
 class Ihr_Form(QWidget):
     recordatrio = Recordatorio
@@ -25,6 +53,12 @@ class Ihr_Form(QWidget):
         hilo = threading.Thread(target=self.ejecucion_horaria)
         hilo.start()
 
+        # self.thread = QThread()
+        # self.worker = Worker()
+        # self.worker.moveToThread(self.thread)
+        # self.thread.started.connect(self.worker.ejecucion_horaria)
+        # self.thread.start()
+
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
@@ -32,20 +66,21 @@ class Ihr_Form(QWidget):
         self.pushButtonConfirmar.clicked.connect(self.confirmar)
         self.pushButtonCancelar.clicked.connect(self.cancelar)
 
-
     def ejecucion_horaria(self):
         global recordatorio
         global usuario
+        self.Ihr_Form = Ihr_Form
+
         log_ihr = LOGIhr
         log_usuario = LOGUsuario
         self._go = True
-        while(self._go):
+        while (self._go):
             print(f"[{time.ctime()}] >$ ", 'start')
             recordatorios = log_ihr.consultar_db()
             if recordatorios:
                 recordatorio = recordatorios[0]
                 usuario = log_usuario.buscar_usuario_recordatorio(self, recordatorio)
-                self.ejecutar_recordatorio(recordatorio, usuario)
+                self.Ihr_Form.ejecutar_recordatorio(recordatorio, usuario)
                 print('OK')
                 seconds = self.calcular_espera()
                 time.sleep(seconds)
@@ -67,7 +102,7 @@ class Ihr_Form(QWidget):
             else:
                 print('posponer')
                 break
-            # self.labelRecordatorio.setText('Hola, te recuerdo que debes tomar en este momento ' + medicine.nombre)
+
             # self.movie = QMovie("./Iconos/giphy.gif")
             # self.Emoji.setMovie(self.movie)
             # self.iniciar_emocion_alegria()

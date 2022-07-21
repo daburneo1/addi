@@ -24,7 +24,7 @@ def agregar_cita_laboratorio(cita_laboratorio, usuario):
     connection.commit()
 
 def actualizar_cita_laboratorio(cita_laboratorio):
-    sql = "UPDATE citaslaboratorio SET tipoExamen = '%s', laboratorio = '%s', ubicacion = '%s', notas = '%s', fecha = '%s', hora = '%s' WHERE idCitasMedicas = '%s'" % (
+    sql = "UPDATE citaslaboratorio SET tipoExamen = '%s', laboratorio = '%s', ubicacion = '%s', notas = '%s', fecha = '%s', hora = '%s' WHERE idCitasLaboratorio = '%s'" % (
         cita_laboratorio.tipoExamen, cita_laboratorio.laboratorio, cita_laboratorio.ubicacion, cita_laboratorio.notas, cita_laboratorio.fecha,
         cita_laboratorio.hora, cita_laboratorio.id)
 

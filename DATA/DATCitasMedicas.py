@@ -1,9 +1,8 @@
 from DATA.DATCursor import *
 
 
-def buscar_citas_medicas(usuario):
-    sql = "SELECT idCitasMedicas, nombreMedico, especialidad, ubicacion, fecha, hora, notas, cedula FROM citamedica WHERE cedula = %s;" % (
-        usuario.cedula)
+def buscar_citas_medicas():
+    sql = "SELECT idCitasMedicas, nombreMedico, especialidad, ubicacion, fecha, hora, notas, idUsuario FROM citamedica "
 
     print(sql)
     cursor.execute(sql)
@@ -17,8 +16,8 @@ def buscar_citas_medicas(usuario):
 
 
 def agregar_cita_medica(cita_medica, usuario):
-    sql = "INSERT INTO citamedica(nombreMedico, especialidad, ubicacion, fecha, hora, notas, cedula) VALUES (" \
-          "'%s', '%s', '%s', '%s', '%s', '%s', '%s')" %(cita_medica.nombreMedico, cita_medica.especialidad, cita_medica.ubicacion, cita_medica.fecha, cita_medica.hora, cita_medica.notas, usuario.cedula)
+    sql = "INSERT INTO citamedica(nombreMedico, especialidad, ubicacion, fecha, hora, notas, idUsuario) VALUES (" \
+          "'%s', '%s', '%s', '%s', '%s', '%s', '%s')" %(cita_medica.nombreMedico, cita_medica.especialidad, cita_medica.ubicacion, cita_medica.fecha, cita_medica.hora, cita_medica.notas, usuario.idUsuario)
 
     print(sql)
 

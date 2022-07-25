@@ -9,11 +9,11 @@ from PyQt5 import QtCore
 from tkinter import messagebox
 
 from BLOGICA import LOGCitasMedicas
+from BLOGICA.LOGUsuario import *
 from BLOGICA.LOGCitasMedicas import *
 from CLASES.CitaMedica import CitaMedica
 from CLASES.Usuario import *
 
-usuario = ""
 citas_medicas = []
 global_cita_medica = CitaMedica('','','','','','','')
 row = -1
@@ -57,16 +57,10 @@ class Appointment_Form(QWidget):
         #ancho de columna
         self.tableCitasMedicas.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-    def get_user(self, user):
-        global usuario
-        usuario = user
-        # print(self.usuario)
-
     def page_db(self):
         global citas_medicas
-        global usuario
         self.stackedWidget.setCurrentWidget(self.pageDB)
-        citas_medicas = LOGCitasMedicas.cargar_citas_medicas(usuario)
+        citas_medicas = LOGCitasMedicas.cargar_citas_medicas()
         print("citas_medicas")
         print(citas_medicas)
         if citas_medicas:
@@ -75,17 +69,20 @@ class Appointment_Form(QWidget):
             tablerow = 0
             for row in citas_medicas:
                 # print(row)
+                print(str(row.get_id()))
+                usuario_nombre = LOGUsuario.buscar_usuario_cita_medica(self, str(row.get_id()))
                 self.tableCitasMedicas.setItem(tablerow, 0,QtWidgets.QTableWidgetItem(str(row.get_nombreMedico())))
                 self.tableCitasMedicas.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row.get_especialidad())))
                 self.tableCitasMedicas.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row.get_ubicacion())))
                 self.tableCitasMedicas.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row.get_fecha())))
                 self.tableCitasMedicas.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row.get_hora())))
                 self.tableCitasMedicas.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row.get_notas())))
+                self.tableCitasMedicas.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(usuario_nombre)))
                 tablerow+=1
             self.tableCitasMedicas.resizeRowsToContents()
 
     def page_registrar(self):
-        self.label_12.setText('Registrar cita médica')
+        self.label_12.setText('Nueva cita médica')
         self.stackedWidget.setCurrentWidget(self.pageRegistrar)
         self.vaciar_campos()
         self.pushButtonGuardar.setVisible(True)
@@ -93,6 +90,7 @@ class Appointment_Form(QWidget):
 
     def agregar_recordatorio_cita_medica(self):
         id = 0
+        usuario = self.lineEditUsuario.text()
         nombre_medico = self.lineEditMedico.text().capitalize()
         especialidad = self.lineEditEspecialidad.text().capitalize()
         ubicacion = self.lineEditUbicacion.text().capitalize()
@@ -103,6 +101,7 @@ class Appointment_Form(QWidget):
         cita_medica = CitaMedica(id, nombre_medico, especialidad, ubicacion, fecha, hora, notas)
 
         try:
+            usuario = LOGUsuario.registrar_usuario(self, usuario)
             LOGCitasMedicas.agregar_cita_medica(cita_medica, usuario)
             messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
             self.vaciar_campos()
@@ -113,6 +112,7 @@ class Appointment_Form(QWidget):
             messagebox.showerror(message="Error, por favor revisar los campos ingresados", title="Error")
 
     def vaciar_campos(self):
+        self.lineEditUsuario.setText('')
         self.lineEditMedico.setText('')
         self.lineEditEspecialidad.setText('')
         self.lineEditUbicacion.setText('')
@@ -135,6 +135,8 @@ class Appointment_Form(QWidget):
                         global_cita_medica = x
 
             if cita_medica != '':
+                self.lineEditUsuario.setText(LOGUsuario.buscar_usuario_cita_medica(self, str(cita_medica.id)))
+                self.lineEditUsuario.setEnabled(False)
                 self.label_12.setText('Editar Cita Médica')
                 self.stackedWidget.setCurrentWidget(self.pageRegistrar)
                 self.lineEditMedico.setText(cita_medica.nombreMedico)

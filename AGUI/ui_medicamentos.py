@@ -8,11 +8,11 @@ from PyQt5 import QtCore
 from tkinter import messagebox
 
 from BLOGICA.LOGMedicamento import *
+from BLOGICA.LOGUsuario import *
 from CLASES.Usuario import *
 
-usuario = ""
 medicamentos = []
-global_medicamento = Medicamento('','','','','','','','','')
+global_medicamento = Medicamento('','','','','','','','')
 
 class Medicine_Form(QWidget):
     def __init__(self):
@@ -24,7 +24,6 @@ class Medicine_Form(QWidget):
         layout = QVBoxLayout()
 
         self.pushButtonEliminar.clicked.connect(self.eliminar_medicamento)
-        self.pushButtonMenu.clicked.connect(self.menu)
 
         self.pushButtonActualizar.clicked.connect(self.actualizar_tabla)
         self.pushButtonGuardar.clicked.connect(self.guardar_recordatorio)
@@ -58,20 +57,10 @@ class Medicine_Form(QWidget):
         #ancho de columna
         self.tableMedicamentos.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-    def get_user(self, user):
-        global usuario
-        usuario = user
-        # print(self.usuario)
-
-    def cargar_tipo_medicina(self):
-        tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
-        print(tipo_medicina)
-
     def page_db(self):
         global medicamentos
-        global usuario
         self.stackedWidget.setCurrentWidget(self.pageDB)
-        medicamentos = LOGMedicamento.cargar_medicamentos(self, usuario)
+        medicamentos = LOGMedicamento.cargar_medicamentos(self)
         print("medicamentos")
         print(medicamentos)
         if medicamentos:
@@ -81,16 +70,18 @@ class Medicine_Form(QWidget):
             for row in medicamentos:
                 # print(row)
                 # self.tableMedicamentos.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row.get_id())))
+                usuario_nombre = LOGUsuario.buscar_usuario_medicamento(self, str(row.get_id()))
                 self.tableMedicamentos.setItem(tablerow, 0,QtWidgets.QTableWidgetItem(str(row.get_nombre())))
                 self.tableMedicamentos.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row.get_dosis())))
                 self.tableMedicamentos.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row.get_frecuencia())))
                 self.tableMedicamentos.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row.get_veces_dia())))
                 self.tableMedicamentos.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row.get_horario())))
+                self.tableMedicamentos.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(usuario_nombre)))
                 tablerow+=1
             self.tableMedicamentos.resizeRowsToContents()
 
     def page_registrar(self):
-        self.label_12.setText('Registrar Recordatorio Medicamento')
+        self.label_12.setText('Nuevo medicamento')
         self.stackedWidget.setCurrentWidget(self.pageRegistrar)
         self.vaciar_campos()
         self.pushButtonGuardar.setVisible(True)
@@ -98,8 +89,9 @@ class Medicine_Form(QWidget):
         self.spinBoxVecesDia.setEnabled(True)
         self.spinBoxVecesDia.setValue(1)
         self.spinBoxVecesDia.valueChanged.connect(self.value_change)
+        self.spinBoxVecesDia.setValue(1)
+        self.checkBoxTodos.stateChanged.connect(self.frequency_change)
         # # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
-        self.cargar_combo_box()
         # tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
         # print(tipo_medicina[2])
         #
@@ -107,29 +99,23 @@ class Medicine_Form(QWidget):
         #     self.comboBoxTipo.addItem(x[1])
         #     # self.comboBoxTipo.setCurrentIndex(-1)
 
-    def cargar_combo_box(self):
-        tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
-        for x in tipo_medicina:
-            self.comboBoxTipo.addItem(x[1])
-
     def agregar_recordatorio(self):
         id = 0
         nombre = self.lineEditMedicamento.text().capitalize()
-        tipo = self.comboBoxTipo.currentText()
         frecuencia = self.obtener_frecuencia()
         dosis = self.lineEditDosis.text()
         veces_dia = self.spinBoxVecesDia.text()
         fecha_desde = self.obtener_fecha_actual()
         numero_dias = self.spinBoxDias.text()
         fecha_hasta = self.obtener_fecha_final(fecha_desde, numero_dias)
-
+        usuario = self.lineEditUsuario.text()
         horario = self.obtener_horario()
 
         # print(medicamento, tipo, frecuencia, dosis, veces_dia, numero_dias)
-        medicamento = Medicamento(id, nombre, tipo, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario)
+        medicamento = Medicamento(id, nombre, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario)
         # print(medicamento.presentar_medicamento())
-        print(usuario)
         try:
+            usuario = LOGUsuario.registrar_usuario(self, usuario)
             LOGMedicamento.agregar_medicamento(self, medicamento, usuario)
             LOGMedicamento.agregar_recordatorio(self, medicamento, usuario)
             messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
@@ -142,20 +128,23 @@ class Medicine_Form(QWidget):
     def obtener_frecuencia(self):
         print('frecuencia')
         frecuencia = []
-        if self.checkBoxLunes.isChecked():
-            frecuencia.append('Lunes')
-        if self.checkBoxMartes.isChecked():
-            frecuencia.append('Martes')
-        if self.checkBoxMiercoles.isChecked():
-            frecuencia.append('Miercoles')
-        if self.checkBoxJueves.isChecked():
-            frecuencia.append('Jueves')
-        if self.checkBoxViernes.isChecked():
-            frecuencia.append('Viernes')
-        if self.checkBoxSabado.isChecked():
-            frecuencia.append('Sabado')
-        if self.checkBoxDomingo.isChecked():
-            frecuencia.append('Domingo')
+        if self.checkBoxTodos.isChecked():
+            frecuencia.append('Todos los días')
+        else:
+            if self.checkBoxLunes.isChecked():
+                frecuencia.append('Lunes')
+            if self.checkBoxMartes.isChecked():
+                frecuencia.append('Martes')
+            if self.checkBoxMiercoles.isChecked():
+                frecuencia.append('Miercoles')
+            if self.checkBoxJueves.isChecked():
+                frecuencia.append('Jueves')
+            if self.checkBoxViernes.isChecked():
+                frecuencia.append('Viernes')
+            if self.checkBoxSabado.isChecked():
+                frecuencia.append('Sabado')
+            if self.checkBoxDomingo.isChecked():
+                frecuencia.append('Domingo')
         return frecuencia
 
     def obtener_horario(self):
@@ -238,7 +227,42 @@ class Medicine_Form(QWidget):
             self.timeEdit_4.setVisible(True)
             self.label_time_4.setVisible(True)
 
+    def frequency_change(self):
+        if self.checkBoxTodos.isChecked():
+            print('todos')
+            self.checkBoxLunes.setChecked(False)
+            self.checkBoxLunes.setEnabled(False)
+            self.checkBoxMartes.setChecked(False)
+            self.checkBoxMartes.setEnabled(False)
+            self.checkBoxMiercoles.setChecked(False)
+            self.checkBoxMiercoles.setEnabled(False)
+            self.checkBoxJueves.setChecked(False)
+            self.checkBoxJueves.setEnabled(False)
+            self.checkBoxViernes.setChecked(False)
+            self.checkBoxViernes.setEnabled(False)
+            self.checkBoxSabado.setChecked(False)
+            self.checkBoxSabado.setEnabled(False)
+            self.checkBoxDomingo.setChecked(False)
+            self.checkBoxDomingo.setEnabled(False)
+        else:
+            print('no todos')
+            self.checkBoxLunes.setChecked(False)
+            self.checkBoxLunes.setEnabled(True)
+            self.checkBoxMartes.setChecked(False)
+            self.checkBoxMartes.setEnabled(True)
+            self.checkBoxMiercoles.setChecked(False)
+            self.checkBoxMiercoles.setEnabled(True)
+            self.checkBoxJueves.setChecked(False)
+            self.checkBoxJueves.setEnabled(True)
+            self.checkBoxViernes.setChecked(False)
+            self.checkBoxViernes.setEnabled(True)
+            self.checkBoxSabado.setChecked(False)
+            self.checkBoxSabado.setEnabled(True)
+            self.checkBoxDomingo.setChecked(False)
+            self.checkBoxDomingo.setEnabled(True)
+
     def vaciar_campos(self):
+        self.lineEditUsuario.setText('')
         self.lineEditMedicamento.setText('')
         self.checkBoxLunes.setChecked(False)
         self.checkBoxMartes.setChecked(False)
@@ -250,7 +274,6 @@ class Medicine_Form(QWidget):
         self.lineEditDosis.setText('')
         self.spinBoxVecesDia.setValue(1)
         self.spinBoxDias.setValue(1)
-        self.comboBoxTipo.clear()
 
     def page_editar(self):
         global global_medicamento
@@ -268,11 +291,11 @@ class Medicine_Form(QWidget):
                         global_medicamento = x
 
                 if medicamento != '':
-                    self.label_12.setText('Editar Recordatorio Medicamento')
+                    self.lineEditUsuario.setText(LOGUsuario.buscar_usuario_medicamento(self, str(medicamento.id)))
+                    self.lineEditUsuario.setEnabled(False)
+                    self.label_12.setText('Editar medicamento')
                     self.stackedWidget.setCurrentWidget(self.pageRegistrar)
-                    self.cargar_combo_box()
                     self.lineEditMedicamento.setText(medicamento.nombre)
-                    self.comboBoxTipo.setCurrentText(str(medicamento.tipo))
                     self.seleccionar_frecuencia(medicamento)
                     self.lineEditDosis.setText(medicamento.dosis)
                     self.mostrar_horario(medicamento)
@@ -280,6 +303,7 @@ class Medicine_Form(QWidget):
                     self.label_7.setVisible(False)
                     self.spinBoxDias.setVisible(False)
                     self.spinBoxVecesDia.valueChanged.connect(self.value_change)
+                    self.checkBoxTodos.stateChanged.connect(self.frequency_change)
                     self.pushButtonGuardar.setVisible(False)
                     self.pushButtonActualizar_2.setVisible(True)
         except:
@@ -362,14 +386,15 @@ class Medicine_Form(QWidget):
     def actualizar_recordatorio(self):
 
         print('Actualizar')
+
         nombre = self.lineEditMedicamento.text().capitalize()
-        tipo = self.comboBoxTipo.currentIndex() + 1
         frecuencia = self.obtener_frecuencia()
         dosis = self.lineEditDosis.text()
         veces_dia = self.spinBoxVecesDia.text()
         horario = self.obtener_horario()
+        usuario = self.lineEditUsuario.text()
         print(global_medicamento.id)
-        nuevo_medicamento = Medicamento(global_medicamento.id, nombre, tipo, dosis, veces_dia, frecuencia, global_medicamento.fecha_desde, global_medicamento.fecha_hasta, horario)
+        nuevo_medicamento = Medicamento(global_medicamento.id, nombre, dosis, veces_dia, frecuencia, global_medicamento.fecha_desde, global_medicamento.fecha_hasta, horario)
         try:
             LOGMedicamento.actualizar_medicamento(self, nuevo_medicamento)
             LOGMedicamento.actualizar_recordatorio(self, nuevo_medicamento)
@@ -405,9 +430,6 @@ class Medicine_Form(QWidget):
         except:
             messagebox.showerror(message="Debe seleccionar un medicamento", title="Info")
         print("Done")
-
-    def menu(self):
-        pass
 
     def actualizar_tabla(self):
         pass

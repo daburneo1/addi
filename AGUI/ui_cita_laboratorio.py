@@ -8,12 +8,12 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtCore
 from tkinter import messagebox
 
-from BLOGICA import LOGCitasMedicas, LOGCitasLaboratorio
+from BLOGICA import LOGCitasMedicas, LOGCitasLaboratorio, LOGUsuario
 from BLOGICA.LOGCitasMedicas import *
 from CLASES.CitaLaboratorio import CitaLaboratorio
+from BLOGICA.LOGUsuario import *
 from CLASES.Usuario import *
 
-usuario = ""
 citas_laboratorio = []
 global_cita_laboratorio = CitaLaboratorio('','','','','','','')
 
@@ -55,16 +55,10 @@ class Laboratory_Form(QWidget):
         #ancho de columna
         self.tableCitasLaboratorio.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-    def get_user(self, user):
-        global usuario
-        usuario = user
-        # print(self.usuario)
-
     def page_db(self):
         global citas_laboratorio
-        global usuario
         self.stackedWidget.setCurrentWidget(self.pageDB)
-        citas_laboratorio = LOGCitasLaboratorio.cargar_citas_laboratorio(usuario)
+        citas_laboratorio = LOGCitasLaboratorio.cargar_citas_laboratorio()
         print("citas_laboratorio")
         print(citas_laboratorio)
         if citas_laboratorio:
@@ -73,12 +67,14 @@ class Laboratory_Form(QWidget):
             tablerow = 0
             for row in citas_laboratorio:
                 # print(row)
+                usuario_nombre = LOGUsuario.buscar_usuario_cita_laboratorio(self, str(row.get_id()))
                 self.tableCitasLaboratorio.setItem(tablerow, 0,QtWidgets.QTableWidgetItem(str(row.get_tipoExamen())))
                 self.tableCitasLaboratorio.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row.get_laboratorio())))
                 self.tableCitasLaboratorio.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row.get_ubicacion())))
                 self.tableCitasLaboratorio.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row.get_fecha())))
                 self.tableCitasLaboratorio.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row.get_hora())))
                 self.tableCitasLaboratorio.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row.get_notas())))
+                self.tableCitasLaboratorio.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(usuario_nombre)))
                 tablerow+=1
             self.tableCitasLaboratorio.resizeRowsToContents()
 
@@ -91,6 +87,7 @@ class Laboratory_Form(QWidget):
 
     def agregar_recordatorio_cita_laboratorio(self):
         id = 0
+        usuario = self.lineEditUsuario.text()
         tipoExamen = self.lineEditTipoExamen.text().capitalize()
         laboratorio = self.lineEditLaboratorio.text().capitalize()
         ubicacion = self.lineEditUbicacion.text().capitalize()
@@ -101,6 +98,7 @@ class Laboratory_Form(QWidget):
         cita_laboratorio = CitaLaboratorio(id, tipoExamen, laboratorio, ubicacion, fecha, hora, notas)
 
         try:
+            usuario = LOGUsuario.registrar_usuario(self, usuario)
             LOGCitasLaboratorio.agregar_cita_laboratorio(cita_laboratorio, usuario)
             messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
             self.vaciar_campos()
@@ -110,6 +108,7 @@ class Laboratory_Form(QWidget):
             messagebox.showerror(message="Error, por favor revisar los campos ingresados", title="Error")
 
     def vaciar_campos(self):
+        self.lineEditUsuario.setText('')
         self.lineEditTipoExamen.setText('')
         self.lineEditLaboratorio.setText('')
         self.lineEditUbicacion.setText('')
@@ -133,6 +132,7 @@ class Laboratory_Form(QWidget):
                         global_cita_laboratorio = x
 
             if cita_laboratorio != '':
+                self.lineEditUsuario.setText(LOGUsuario.buscar_usuario_cita_laboratorio(self, str(cita_laboratorio.id)))
                 self.label_12.setText('Editar Cita Laboratorio')
                 self.stackedWidget.setCurrentWidget(self.pageRegistrar)
                 self.lineEditTipoExamen.setText(cita_laboratorio.tipoExamen)

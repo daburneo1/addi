@@ -1,8 +1,7 @@
 from DATA.DATCursor import *
 
-def buscar_citas_laboratorio(usuario):
-    sql = "SELECT idCitasLaboratorio, tipoExamen, laboratorio, ubicacion, fecha, hora, notas, cedula FROM citaslaboratorio WHERE cedula = %s;" % (
-        usuario.cedula)
+def buscar_citas_laboratorio():
+    sql = "SELECT idCitasLaboratorio, tipoExamen, laboratorio, ubicacion, fecha, hora, notas, idUsuario FROM citaslaboratorio "
 
     print(sql)
     cursor.execute(sql)
@@ -15,8 +14,8 @@ def buscar_citas_laboratorio(usuario):
     return citas_laboratorio
 
 def agregar_cita_laboratorio(cita_laboratorio, usuario):
-    sql = "INSERT INTO citaslaboratorio(tipoExamen, laboratorio, ubicacion, notas, fecha, hora, cedula) VALUES (" \
-          "'%s', '%s', '%s', '%s', '%s', '%s', '%s')" %(cita_laboratorio.tipoExamen, cita_laboratorio.laboratorio, cita_laboratorio.ubicacion, cita_laboratorio.notas, cita_laboratorio.fecha, cita_laboratorio.hora, usuario.cedula)
+    sql = "INSERT INTO citaslaboratorio(tipoExamen, laboratorio, ubicacion, notas, fecha, hora, idUsuario) VALUES (" \
+          "'%s', '%s', '%s', '%s', '%s', '%s', '%s')" %(cita_laboratorio.tipoExamen, cita_laboratorio.laboratorio, cita_laboratorio.ubicacion, cita_laboratorio.notas, cita_laboratorio.fecha, cita_laboratorio.hora, usuario.idUsuario)
 
     print(sql)
 

@@ -53,9 +53,9 @@ QPushButton:hover{
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>310</x>
       <y>10</y>
-      <width>621</width>
+      <width>681</width>
       <height>561</height>
      </rect>
     </property>
@@ -70,9 +70,9 @@ border-radius:10px;</string>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>0</y>
-      <width>401</width>
+      <width>321</width>
       <height>581</height>
      </rect>
     </property>
@@ -87,8 +87,8 @@ border-radius:10px;</string>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>30</y>
+      <x>100</x>
+      <y>40</y>
       <width>131</width>
       <height>61</height>
      </rect>
@@ -107,7 +107,7 @@ border-radius:10px;</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>10</x>
       <y>100</y>
       <width>301</width>
       <height>51</height>
@@ -130,9 +130,9 @@ border-radius:10px;</string>
    <widget class="QLabel" name="label_Bienvenida">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>40</y>
-      <width>311</width>
+      <x>600</x>
+      <y>30</y>
+      <width>131</width>
       <height>31</height>
      </rect>
     </property>
@@ -145,137 +145,11 @@ border-radius:10px;</string>
      <string>Bienvenido</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButtonRecordatorio">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>210</y>
-      <width>191</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Recordatorios</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonCumplimiento">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>330</y>
-      <width>191</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Historial</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonCitaMedica">
-    <property name="geometry">
-     <rect>
-      <x>720</x>
-      <y>210</y>
-      <width>191</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Citas Médicas</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonExamenLaboratorio">
-    <property name="geometry">
-     <rect>
-      <x>720</x>
-      <y>330</y>
-      <width>191</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Exámenes de Laboratorio</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>130</y>
-      <width>141</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Medicamentos</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>780</x>
-      <y>130</y>
-      <width>51</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Citas</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonSalir">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>470</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Salir</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>190</y>
+      <x>40</x>
+      <y>140</y>
       <width>231</width>
       <height>291</height>
      </rect>
@@ -288,6 +162,138 @@ border-radius:10px;</string>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>80</y>
+      <width>651</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>-169</x>
+       <y>0</y>
+       <width>818</width>
+       <height>362</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="minimumSize">
+         <size>
+          <width>800</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QPushButton" name="pushButtonRecordatorio">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>30</y>
+           <width>191</width>
+           <height>291</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Medicamentos</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButtonExamenLaboratorio">
+         <property name="geometry">
+          <rect>
+           <x>600</x>
+           <y>30</y>
+           <width>191</width>
+           <height>291</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+           <stylestrategy>PreferDefault</stylestrategy>
+          </font>
+         </property>
+         <property name="tabletTracking">
+          <bool>false</bool>
+         </property>
+         <property name="contextMenuPolicy">
+          <enum>Qt::DefaultContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Exámenes de
+ Laboratorio</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButtonCitaMedica">
+         <property name="geometry">
+          <rect>
+           <x>320</x>
+           <y>30</y>
+           <width>191</width>
+           <height>291</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Citas Médicas</string>
+         </property>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButtonSalir">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>500</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Salir</string>
     </property>
    </widget>
   </widget>

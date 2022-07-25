@@ -1,16 +1,11 @@
 import threading
-import time
-
 import pyttsx3
-from PyQt5.QtCore import QTimer, QDateTime, QThread, QObject, pyqtSignal
-from PyQt5.QtGui import QMovie
-
-from BLOGICA.LOGIhr import *
-
+import time
 from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore
 
+from BLOGICA.LOGIhr import *
 from BLOGICA.LOGUsuario import *
 
 # class Worker(QObject):
@@ -80,7 +75,7 @@ class Ihr_Form(QWidget):
             if recordatorios:
                 recordatorio = recordatorios[0]
                 usuario = log_usuario.buscar_usuario_recordatorio(self, recordatorio)
-                self.Ihr_Form.ejecutar_recordatorio(recordatorio, usuario)
+                self.Ihr_Form.ejecutar_recordatorio(self, recordatorio, usuario)
                 print('OK')
                 seconds = self.calcular_espera()
                 time.sleep(seconds)
@@ -110,7 +105,8 @@ class Ihr_Form(QWidget):
 
     def iniciar_emocion(self, recordatorio, usuario, contador):
         engine = pyttsx3.init()
-        engine.setProperty('voice', 'spanish-latin-am')
+        # engine.setProperty('voice', 'spanish-latin-am')
+        engine.setProperty('voice', '3')
         if contador == 1:
             print('alegria')
             self.labelRecordatorio.setText('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
@@ -139,9 +135,9 @@ class Ihr_Form(QWidget):
         return seconds
 
     def acceso(self):
-        from AGUI.ui_login import Login_Form
-        self.ui_login = Login_Form()
-        self.ui_login.show()
+        from AGUI.ui_bienvenida import Welcome_Form
+        self.ui_welcome = Welcome_Form()
+        self.ui_welcome.show()
         self.close()
 
     # def ejecutar_recordatorio(self, recordatorios):

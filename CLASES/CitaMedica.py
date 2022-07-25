@@ -30,7 +30,7 @@ class CitaMedica(object):
         self.notas = notas
 
     def get_id(self):
-        self.id = id
+       return self.id
 
     def get_nombreMedico(self):
         return self.nombreMedico

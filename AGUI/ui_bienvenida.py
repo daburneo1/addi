@@ -5,9 +5,7 @@ from PyQt5 import QtCore
 
 from AGUI.ui_cita_laboratorio import Laboratory_Form
 from AGUI.ui_cita_medica import Appointment_Form
-from AGUI.ui_login import Login_Form
 from AGUI.ui_medicamentos import Medicine_Form
-from CLASES.Usuario import Usuario
 
 usuario = ''
 class Welcome_Form(QWidget):
@@ -46,8 +44,9 @@ class Welcome_Form(QWidget):
         self.ui_laboratory.show()
 
     def cerrar_ventana(self):
-        self.ui_login = Login_Form()
-        self.ui_login.show()
+        from AGUI.ui_ihr import Ihr_Form
+        self.ui_ihr = Ihr_Form()
+        self.ui_ihr.show()
         self.close()
 
 

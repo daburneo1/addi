@@ -49,89 +49,13 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QPushButton" name="pushButtonCerrar">
-         <property name="geometry">
-          <rect>
-           <x>890</x>
-           <y>10</y>
-           <width>51</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-	color:rgba(255,255,255,200);
-	border-radius:5px;
-}
-QPushButton:pressed{
-	padding-left:5px;
-	padding-top:5px;
-	background-color:rgba(0, 119, 123, 1);
-	background-position:calc(100% - 10px)center;
-}
-QPushButton:hover{
-	background-color:rgba(0, 174, 173, 1);
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../Iconos/cerrar.png</normaloff>../Iconos/cerrar.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>40</width>
-           <height>40</height>
-          </size>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="pushButtonMenu">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>10</y>
-           <width>51</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-	color:rgba(255,255,255,200);
-	border-radius:5px;
-}
-QPushButton:pressed{
-	padding-left:5px;
-	padding-top:5px;
-	background-color:rgba(0, 119, 123, 1);
-	background-position:calc(100% - 10px)center;
-}
-QPushButton:hover{
-	background-color:rgba(0, 174, 173, 1);
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../Iconos/barra-de-menus.png</normaloff>../Iconos/barra-de-menus.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>40</width>
-           <height>40</height>
-          </size>
-         </property>
-        </widget>
         <widget class="QFrame" name="frame_3">
          <property name="geometry">
           <rect>
            <x>-30</x>
-           <y>60</y>
+           <y>-10</y>
            <width>1001</width>
-           <height>511</height>
+           <height>581</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -200,7 +124,7 @@ QPushButton:hover{
                </property>
                <property name="font">
                 <font>
-                 <pointsize>12</pointsize>
+                 <pointsize>11</pointsize>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
@@ -209,7 +133,8 @@ QPushButton:hover{
                 <string notr="true">color:rgb(255, 255, 255)</string>
                </property>
                <property name="text">
-                <string>Base de Datos</string>
+                <string>Citas médicas
+registradas</string>
                </property>
                <property name="icon">
                 <iconset>
@@ -233,7 +158,7 @@ QPushButton:hover{
                </property>
                <property name="font">
                 <font>
-                 <pointsize>12</pointsize>
+                 <pointsize>11</pointsize>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
@@ -242,7 +167,8 @@ QPushButton:hover{
                 <string notr="true">color:rgb(255, 255, 255)</string>
                </property>
                <property name="text">
-                <string>Registrar</string>
+                <string>Nueva cita
+médica</string>
                </property>
                <property name="icon">
                 <iconset>
@@ -266,7 +192,7 @@ QPushButton:hover{
                </property>
                <property name="font">
                 <font>
-                 <pointsize>12</pointsize>
+                 <pointsize>11</pointsize>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
@@ -275,7 +201,8 @@ QPushButton:hover{
                 <string notr="true">color:rgb(255, 255, 255)</string>
                </property>
                <property name="text">
-                <string>Editar</string>
+                <string>Editar cita
+médica</string>
                </property>
                <property name="icon">
                 <iconset>
@@ -299,7 +226,7 @@ QPushButton:hover{
                </property>
                <property name="font">
                 <font>
-                 <pointsize>12</pointsize>
+                 <pointsize>11</pointsize>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
@@ -308,7 +235,8 @@ QPushButton:hover{
                 <string notr="true">color:rgb(255, 255, 255)</string>
                </property>
                <property name="text">
-                <string>Eliminar</string>
+                <string>Eliminar cita
+médica</string>
                </property>
                <property name="icon">
                 <iconset>
@@ -319,6 +247,26 @@ QPushButton:hover{
                  <width>32</width>
                  <height>32</height>
                 </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonCerrar">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Atras</string>
                </property>
               </widget>
              </item>
@@ -403,7 +351,7 @@ QHeaderView::section{
                  <item>
                   <widget class="QLabel" name="label">
                    <property name="text">
-                    <string>Recordatorios Medicamentos</string>
+                    <string>Recordatorios de citas médicas</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -470,6 +418,11 @@ gridline-color:rgb(0, 206, 151);</string>
                    <column>
                     <property name="text">
                      <string>Notas</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Nombre</string>
                     </property>
                    </column>
                   </widget>
@@ -551,8 +504,8 @@ QPushButton:hover{
                 <widget class="QPushButton" name="pushButtonActualizar_2">
                  <property name="geometry">
                   <rect>
-                   <x>190</x>
-                   <y>400</y>
+                   <x>260</x>
+                   <y>510</y>
                    <width>121</width>
                    <height>41</height>
                   </rect>
@@ -591,8 +544,8 @@ QPushButton:hover{
                 <widget class="QPushButton" name="pushButtonGuardar">
                  <property name="geometry">
                   <rect>
-                   <x>360</x>
-                   <y>400</y>
+                   <x>430</x>
+                   <y>510</y>
                    <width>121</width>
                    <height>41</height>
                   </rect>
@@ -634,10 +587,17 @@ QPushButton:hover{
                    <x>1</x>
                    <y>31</y>
                    <width>116</width>
-                   <height>341</height>
+                   <height>471</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_6">
+                  <item>
+                   <widget class="QLabel" name="label_8">
+                    <property name="text">
+                     <string>Nombre:</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item>
                    <widget class="QLabel" name="label_2">
                     <property name="text">
@@ -688,12 +648,33 @@ QPushButton:hover{
                    <x>130</x>
                    <y>30</y>
                    <width>621</width>
-                   <height>341</height>
+                   <height>471</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout">
                   <item>
+                   <widget class="QLineEdit" name="lineEditUsuario">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgba(0,0,0,0);
+border:2px solid rgba(0,0,0,0);
+border-bottom-color:rgba(46,82,101,200);
+color:rgb(0,0,0);
+padding-bottom: 5px;</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QLineEdit" name="lineEditMedico">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">background-color:rgba(0,0,0,0);
 border:2px solid rgba(0,0,0,0);
@@ -705,6 +686,11 @@ padding-bottom: 5px;</string>
                   </item>
                   <item>
                    <widget class="QLineEdit" name="lineEditEspecialidad">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">background-color:rgba(0,0,0,0);
 border:2px solid rgba(0,0,0,0);
@@ -716,6 +702,11 @@ padding-bottom: 5px;</string>
                   </item>
                   <item>
                    <widget class="QLineEdit" name="lineEditUbicacion">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">background-color:rgba(0,0,0,0);
 border:2px solid rgba(0,0,0,0);
@@ -727,6 +718,11 @@ padding-bottom: 5px;</string>
                   </item>
                   <item>
                    <widget class="QDateEdit" name="dateEdit">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
                     <property name="displayFormat">
                      <string>yyyy/M/d</string>
                     </property>
@@ -734,6 +730,11 @@ padding-bottom: 5px;</string>
                   </item>
                   <item>
                    <widget class="QTimeEdit" name="timeEdit">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
                     <property name="minimumTime">
                      <time>
                       <hour>0</hour>
@@ -748,6 +749,11 @@ padding-bottom: 5px;</string>
                   </item>
                   <item>
                    <widget class="QLineEdit" name="lineEditNotas">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">background-color:rgba(0,0,0,0);
 border:2px solid rgba(0,0,0,0);

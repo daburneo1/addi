@@ -6,9 +6,9 @@ from DATA.DATCursor import *
 class DATIhr():
     # @classmethod
     def consultar_recordatorios(self, fecha_actual, hora_futura):
-        sql = "SELECT idRecordatorio, idMedicamentos, hora, nombre, dosis, frecuencia " \
+        sql = "SELECT idRecordatorio, idMedicamento, hora, nombre, dosis, frecuencia " \
               "FROM recordatoriomedicamento " \
-              "INNER JOIN medicamento ON medicamento.idmedicamentos = recordatoriomedicamento.Medicamento_idMedicamentos " \
+              "INNER JOIN medicamento ON medicamento.idMedicamento = recordatoriomedicamento.medicamento_idMedicamento " \
               "WHERE hora = '%s' and fecha_hasta > '%s'" %(hora_futura, fecha_actual)
 
         print(sql)

@@ -55,17 +55,8 @@ def convertir_horario(horario):
 class LOGMedicamento():
     c_medicamento = Medicamento
 
-    def buscar_tipo_medicamento(self):
-        tipo_medicamento = DATMedicamento.buscar_tipo_medicamento(self)
-
-        if tipo_medicamento:
-            return tipo_medicamento
-        else:
-            return None
-
     def agregar_medicamento(self, medicamento, usuario):
         convertir_lista_frecuencia(medicamento)
-        medicamento.tipo = DATMedicamento.consultar_id_tipo_medicamento(medicamento)
         DATMedicamento.agregar_medicamento(self, medicamento, usuario)
 
     def agregar_recordatorio(self, medicamento, usuario):
@@ -75,13 +66,13 @@ class LOGMedicamento():
         print('IdMedicamento: ' + id_medicamento)
         DATMedicamento.agregar_recordatorio(self, medicamento, id_medicamento)
 
-    def cargar_medicamentos(self, usuario):
-        medicamentos = DATMedicamento.buscar_medicamentos(self, usuario)
+    def cargar_medicamentos(self):
+        medicamentos = DATMedicamento.buscar_medicamentos(self)
         lista_medicamentos = []
         for x in medicamentos:
             id = x[0]
             horario_medicamento = buscar_horario_recordatorio(id)
-            medicamento = Medicamento(id, x[1], x[6], x[2], x[3], x[4], str(x[7]), str(x[8]), horario_medicamento)
+            medicamento = Medicamento(id, x[1], x[2], x[3], x[4], str(x[6]), str(x[7]), horario_medicamento)
             lista_medicamentos.append(medicamento)
         if lista_medicamentos:
             return lista_medicamentos

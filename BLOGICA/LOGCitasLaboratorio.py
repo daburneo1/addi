@@ -2,8 +2,8 @@ from CLASES.CitaLaboratorio import CitaLaboratorio
 from DATA import DATCitasLaboratorio
 
 
-def cargar_citas_laboratorio(usuario):
-    citas_laboratorio = DATCitasLaboratorio.buscar_citas_laboratorio(usuario)
+def cargar_citas_laboratorio():
+    citas_laboratorio = DATCitasLaboratorio.buscar_citas_laboratorio()
     lista_citas_laboratorio = []
     for x in citas_laboratorio:
         id = x[0]

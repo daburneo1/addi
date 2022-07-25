@@ -1,5 +1,3 @@
-import functools
-
 from DATA.DATMedicamento import *
 from CLASES.Medicamento import *
 
@@ -84,14 +82,6 @@ class LOGMedicamento():
         print(medicamento)
         medicamento = Medicamento(medicamento[0][0], medicamento[0][1], medicamento[0][6], medicamento[0][2], medicamento[0][3], medicamento[0][4], str(medicamento[0][7]), str(medicamento[0][8]), None)
         return medicamento
-
-    # def buscar_horario_recordatorio(self, id):
-    #     horario = DATMedicamento.buscar_horario(self, id)
-    #     horario = list(horario)
-    #     horario_medicamento = []
-    #     for x in horario:
-    #         horario_medicamento.append(str(x[1]))
-    #     return horario_medicamento
 
     def actualizar_medicamento(self, medicamento):
         convertir_lista_frecuencia(medicamento)

@@ -1,18 +1,15 @@
-import sys
-from datetime import datetime, date, time, timedelta
+from datetime import date, time
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
 from PyQt5.QtCore import QTime
-from PyQt5.QtWidgets import QMainWindow, QHeaderView, QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QHeaderView, QWidget
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore
 from tkinter import messagebox
 
-from BLOGICA import LOGCitasMedicas, LOGCitasLaboratorio, LOGUsuario
-from BLOGICA.LOGCitasMedicas import *
+from BLOGICA import LOGCitasLaboratorio, LOGUsuario
 from CLASES.CitaLaboratorio import CitaLaboratorio
 from BLOGICA.LOGUsuario import *
-from CLASES.Usuario import *
 
 citas_laboratorio = []
 global_cita_laboratorio = CitaLaboratorio('','','','','','','')
@@ -21,9 +18,6 @@ class Laboratory_Form(QWidget):
     def __init__(self):
         super(Laboratory_Form, self).__init__()
         loadUi('./ui/examen_laboratorio.ui', self)
-        # now = timedelta. n
-        widget = QWidget()
-        layout = QVBoxLayout()
 
         self.pushButtonCerrar.clicked.connect(lambda: self.close())
 
@@ -38,12 +32,9 @@ class Laboratory_Form(QWidget):
 
         #coneccion botones
         self.stackedWidget.setCurrentWidget(self.pageDB)
-        # self.pushButtonDB.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageDB))
         self.pushButtonDB.clicked.connect(self.page_db)
         self.pushButtonActualizar.clicked.connect(self.page_db)
-        # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonRegistrar.clicked.connect(self.page_registrar)
-        # self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonEditar.clicked.connect(self.page_editar)
         self.pushButtonEliminar.clicked.connect(self.eliminar_cita_laboratorio)
         self.pushButtonGuardar.clicked.connect(self.agregar_recordatorio_cita_laboratorio)

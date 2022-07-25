@@ -1,15 +1,12 @@
-import sys
-
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
 from PyQt5.QtCore import QTime
-from PyQt5.QtWidgets import QMainWindow, QHeaderView, QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QHeaderView, QWidget
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore
 from tkinter import messagebox
 
 from BLOGICA.LOGMedicamento import *
 from BLOGICA.LOGUsuario import *
-from CLASES.Usuario import *
 
 medicamentos = []
 global_medicamento = Medicamento('','','','','','','','')
@@ -19,14 +16,7 @@ class Medicine_Form(QWidget):
         super(Medicine_Form, self).__init__()
         loadUi('./ui/medicamentos.ui', self)
 
-
-        widget = QWidget()
-        layout = QVBoxLayout()
-
         self.pushButtonEliminar.clicked.connect(self.eliminar_medicamento)
-
-        self.pushButtonActualizar.clicked.connect(self.actualizar_tabla)
-        self.pushButtonGuardar.clicked.connect(self.guardar_recordatorio)
         self.pushButtonCerrar.clicked.connect(lambda: self.close())
 
         #eliminar barra de titulo
@@ -40,12 +30,9 @@ class Medicine_Form(QWidget):
 
         #coneccion botones
         self.stackedWidget.setCurrentWidget(self.pageDB)
-        # self.pushButtonDB.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageDB))
         self.pushButtonDB.clicked.connect(self.page_db)
         self.pushButtonActualizar.clicked.connect(self.page_db)
-        # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonRegistrar.clicked.connect(self.page_registrar)
-        # self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonEditar.clicked.connect(self.page_editar)
         self.pushButtonEliminar.clicked.connect(self.eliminar_medicamento)
         self.pushButtonGuardar.clicked.connect(self.agregar_recordatorio)
@@ -68,8 +55,6 @@ class Medicine_Form(QWidget):
             self.tableMedicamentos.setRowCount(i)
             tablerow = 0
             for row in medicamentos:
-                # print(row)
-                # self.tableMedicamentos.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row.get_id())))
                 usuario_nombre = LOGUsuario.buscar_usuario_medicamento(self, str(row.get_id()))
                 self.tableMedicamentos.setItem(tablerow, 0,QtWidgets.QTableWidgetItem(str(row.get_nombre())))
                 self.tableMedicamentos.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row.get_dosis())))
@@ -91,13 +76,6 @@ class Medicine_Form(QWidget):
         self.spinBoxVecesDia.valueChanged.connect(self.value_change)
         self.spinBoxVecesDia.setValue(1)
         self.checkBoxTodos.stateChanged.connect(self.frequency_change)
-        # # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
-        # tipo_medicina = LOGMedicamento.buscar_tipo_medicamento(self)
-        # print(tipo_medicina[2])
-        #
-        # for x in tipo_medicina:
-        #     self.comboBoxTipo.addItem(x[1])
-        #     # self.comboBoxTipo.setCurrentIndex(-1)
 
     def agregar_recordatorio(self):
         id = 0
@@ -111,9 +89,7 @@ class Medicine_Form(QWidget):
         usuario = self.lineEditUsuario.text()
         horario = self.obtener_horario()
 
-        # print(medicamento, tipo, frecuencia, dosis, veces_dia, numero_dias)
         medicamento = Medicamento(id, nombre, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario)
-        # print(medicamento.presentar_medicamento())
         try:
             usuario = LOGUsuario.registrar_usuario(self, usuario)
             LOGMedicamento.agregar_medicamento(self, medicamento, usuario)
@@ -430,9 +406,3 @@ class Medicine_Form(QWidget):
         except:
             messagebox.showerror(message="Debe seleccionar un medicamento", title="Info")
         print("Done")
-
-    def actualizar_tabla(self):
-        pass
-
-    def guardar_recordatorio(self):
-        pass

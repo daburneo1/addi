@@ -1,7 +1,6 @@
 from CLASES.CitaLaboratorio import CitaLaboratorio
 from DATA import DATCitasLaboratorio
 
-
 def cargar_citas_laboratorio():
     citas_laboratorio = DATCitasLaboratorio.buscar_citas_laboratorio()
     lista_citas_laboratorio = []

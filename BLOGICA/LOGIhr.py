@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 
 from DATA.DATIhr import *
-from DATA.DATUsuario import *
 
 class LOGIhr():
     @classmethod

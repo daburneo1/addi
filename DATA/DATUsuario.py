@@ -1,4 +1,3 @@
-import pymysql
 from DATA.DATCursor import *
 from CLASES.Usuario import *
 

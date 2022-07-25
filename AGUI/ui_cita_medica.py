@@ -1,18 +1,16 @@
 import sys
-from datetime import datetime, date, time
+from datetime import date, time
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
 from PyQt5.QtCore import QTime
-from PyQt5.QtWidgets import QMainWindow, QHeaderView, QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QHeaderView, QWidget
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore
 from tkinter import messagebox
 
 from BLOGICA import LOGCitasMedicas
 from BLOGICA.LOGUsuario import *
-from BLOGICA.LOGCitasMedicas import *
 from CLASES.CitaMedica import CitaMedica
-from CLASES.Usuario import *
 
 citas_medicas = []
 global_cita_medica = CitaMedica('','','','','','','')
@@ -22,10 +20,6 @@ class Appointment_Form(QWidget):
     def __init__(self):
         super(Appointment_Form, self).__init__()
         loadUi('./ui/cita_medica.ui', self)
-
-
-        widget = QWidget()
-        layout = QVBoxLayout()
 
         self.pushButtonCerrar.clicked.connect(lambda: self.close())
 
@@ -40,12 +34,9 @@ class Appointment_Form(QWidget):
 
         #coneccion botones
         self.stackedWidget.setCurrentWidget(self.pageDB)
-        # self.pushButtonDB.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageDB))
         self.pushButtonDB.clicked.connect(self.page_db)
         self.pushButtonActualizar.clicked.connect(self.page_db)
-        # self.pushButtonRegistrar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonRegistrar.clicked.connect(self.page_registrar)
-        # self.pushButtonEditar.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pageRegistrar))
         self.pushButtonEditar.clicked.connect(self.page_editar)
         self.pushButtonEliminar.clicked.connect(self.eliminar_cita_medica)
         self.pushButtonGuardar.clicked.connect(self.agregar_recordatorio_cita_medica)

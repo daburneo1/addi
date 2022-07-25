@@ -1,8 +1,5 @@
-import math
-
 from DATA.DATUsuario import *
 from CLASES.Usuario import *
-
 
 def buscar_usuario(usuario):
     usuario = DATUsuario.buscar_usuario(usuario)

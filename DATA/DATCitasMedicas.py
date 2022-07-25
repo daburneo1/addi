@@ -1,6 +1,5 @@
 from DATA.DATCursor import *
 
-
 def buscar_citas_medicas():
     sql = "SELECT idCitasMedicas, nombreMedico, especialidad, ubicacion, fecha, hora, notas, idUsuario FROM citamedica "
 

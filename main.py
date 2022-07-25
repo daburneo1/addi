@@ -1,9 +1,8 @@
 import sys
 import threading
 
+from PyQt5 import QtWidgets
 from AGUI.ui_ihr import Ihr_Form
-from AGUI.ui_login import *
-from AGUI.ui_registro import *
 from BLOGICA.LOGIhr import *
 from AGUI.ui_bienvenida import *
 

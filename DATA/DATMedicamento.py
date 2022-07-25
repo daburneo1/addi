@@ -1,4 +1,3 @@
-import pymysql
 from DATA.DATCursor import *
 
 def buscar_horario(id):

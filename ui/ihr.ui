@@ -176,15 +176,15 @@ border-radius:10px;
    <widget class="QPushButton" name="pushButtonAcceso">
     <property name="geometry">
      <rect>
-      <x>890</x>
+      <x>860</x>
       <y>10</y>
-      <width>81</width>
-      <height>31</height>
+      <width>111</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>15</pointsize>
      </font>
     </property>
     <property name="text">

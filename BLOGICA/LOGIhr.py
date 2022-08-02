@@ -44,7 +44,38 @@ class LOGIhr():
         print(hora_actual)
 
     @classmethod
-    def mover_brazos(cls, emocion):
+    def mover_brazos_neutro(cls):
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setwarnings(False)
+
+        pwm_gpio = 29
+        pwm_gpio2 = 31
+        frequence = 50
+
+        GPIO.setup(pwm_gpio, GPIO.OUT)
+        GPIO.setup(pwm_gpio2, GPIO.OUT)
+
+        pwm = GPIO.PWM(pwm_gpio, frequence)
+        pwm2 = GPIO.PWM(pwm_gpio2, frequence)
+
+        pwm.start(angle_to_percent(0))
+        pwm2.start(angle_to_percent(0))
+        time.sleep(3)
+
+        pwm.start(angle_to_percent(90))
+        pwm2.start(angle_to_percent(90))
+        time.sleep(3)
+
+        pwm.start(angle_to_percent(180))
+        pwm2.start(angle_to_percent(180))
+        time.sleep(3)
+
+        pwm.stop()
+        pwm2.stop()
+        GPIO.cleanup()
+
+    @classmethod
+    def mover_brazos_tristeza(cls):
         GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(False)
 

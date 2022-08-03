@@ -128,7 +128,6 @@ class Ihr_Form(QWidget):
             data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos de tu horario' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
-            LOGIhr.mover_brazos_tristeza()
 
     def calcular_espera(self):
         hora_actual = datetime.today()

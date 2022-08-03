@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1100</width>
-    <height>850</height>
+    <width>1000</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1100</width>
-    <height>850</height>
+    <width>1000</width>
+    <height>800</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1100</width>
-    <height>850</height>
+    <width>1000</width>
+    <height>800</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -72,7 +72,7 @@ border-radius:10px;</string>
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>1081</width>
+      <width>1001</width>
       <height>831</height>
      </rect>
     </property>
@@ -89,8 +89,8 @@ border-radius:10px;
    <widget class="QPushButton" name="pushButtonConfirmar">
     <property name="geometry">
      <rect>
-      <x>890</x>
-      <y>700</y>
+      <x>800</x>
+      <y>670</y>
       <width>181</width>
       <height>101</height>
      </rect>
@@ -107,8 +107,8 @@ border-radius:10px;
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>50</y>
+      <x>450</x>
+      <y>40</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -170,8 +170,8 @@ border-radius:10px;
    <widget class="QPushButton" name="pushButtonAcceso">
     <property name="geometry">
      <rect>
-      <x>1100</x>
-      <y>30</y>
+      <x>870</x>
+      <y>40</y>
       <width>111</width>
       <height>51</height>
      </rect>

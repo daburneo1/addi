@@ -114,7 +114,7 @@ class Ihr_Form(QWidget):
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
-            LOGIhr.mover_brazos_alegria()
+            # LOGIhr.mover_brazos_alegria()
         elif contador == 2:
             print('neutro')
             self.labelRecordatorio.setText('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))

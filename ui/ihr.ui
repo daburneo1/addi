@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>720</height>
+    <height>900</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>1280</width>
-    <height>720</height>
+    <height>900</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>1280</width>
-    <height>720</height>
+    <height>900</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -30,8 +30,8 @@
     <rect>
      <x>0</x>
      <y>10</y>
-     <width>1041</width>
-     <height>581</height>
+     <width>1271</width>
+     <height>881</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -72,8 +72,8 @@ border-radius:10px;</string>
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>1001</width>
-      <height>571</height>
+      <width>1261</width>
+      <height>871</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -89,8 +89,8 @@ border-radius:10px;
    <widget class="QPushButton" name="pushButtonConfirmar">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>460</y>
+      <x>1060</x>
+      <y>730</y>
       <width>181</width>
       <height>101</height>
      </rect>
@@ -107,8 +107,8 @@ border-radius:10px;
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>30</y>
+      <x>600</x>
+      <y>50</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -170,8 +170,8 @@ border-radius:10px;
    <widget class="QPushButton" name="pushButtonAcceso">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>10</y>
+      <x>1100</x>
+      <y>30</y>
       <width>111</width>
       <height>51</height>
      </rect>

@@ -30,7 +30,7 @@
     <rect>
      <x>0</x>
      <y>10</y>
-     <width>1011</width>
+     <width>1021</width>
      <height>581</height>
     </rect>
    </property>
@@ -55,7 +55,7 @@ QPushButton:hover{
      <rect>
       <x>310</x>
       <y>10</y>
-      <width>701</width>
+      <width>711</width>
       <height>551</height>
      </rect>
     </property>

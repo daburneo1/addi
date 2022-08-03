@@ -1,5 +1,6 @@
 import threading
 import pyttsx3
+from PyQt5.QtGui import QPixmap
 import time
 
 from PyQt5.QtWidgets import QWidget
@@ -98,6 +99,7 @@ class Ihr_Form(QWidget):
             else:
                 print('posponer')
                 self.labelRecordatorio.setText('')
+                self.Emoji.setText('')
                 break
 
             # self.movie = QMovie("./Iconos/giphy.gif")
@@ -111,6 +113,8 @@ class Ihr_Form(QWidget):
         engine.setProperty('voice', 'Spanish (Latin America)')
         if contador == 1:
             print('alegria')
+            emoji_alegria = ('./Iconos/emoji-feliz.png')
+            self.Emoji.setPixmap(emoji_alegria)
             self.labelRecordatorio.setText('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
@@ -125,6 +129,8 @@ class Ihr_Form(QWidget):
             LOGIhr.mover_brazos_alegria()
         elif contador == 3:
             print('tristeza')
+            emoji_tristeza = ('./Iconos/emoji-triste.png')
+            self.Emoji.setPixmap(emoji_tristeza)
             self.labelRecordatorio.setText('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (usuario.nombre, recordatorio.nombre))
             data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos de tu horario' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)

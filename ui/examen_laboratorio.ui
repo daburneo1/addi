@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>600</height>
+    <width>1020</width>
+    <height>590</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1000</width>
-    <height>600</height>
+    <width>1020</width>
+    <height>590</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
-    <height>600</height>
+    <width>1020</width>
+    <height>590</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -54,7 +54,7 @@
           <rect>
            <x>-30</x>
            <y>-10</y>
-           <width>1001</width>
+           <width>1011</width>
            <height>581</height>
           </rect>
          </property>
@@ -647,7 +647,7 @@ QPushButton:hover{
                   <rect>
                    <x>150</x>
                    <y>30</y>
-                   <width>601</width>
+                   <width>621</width>
                    <height>451</height>
                   </rect>
                  </property>

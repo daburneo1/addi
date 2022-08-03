@@ -344,7 +344,7 @@ QHeaderView::section{
                 <string notr="true">background-color:#c7f5ff</string>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="pageDB">
                 <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -500,7 +500,7 @@ QPushButton:hover{
                  <property name="geometry">
                   <rect>
                    <x>440</x>
-                   <y>520</y>
+                   <y>510</y>
                    <width>121</width>
                    <height>41</height>
                   </rect>
@@ -540,7 +540,7 @@ QPushButton:hover{
                  <property name="geometry">
                   <rect>
                    <x>620</x>
-                   <y>520</y>
+                   <y>510</y>
                    <width>121</width>
                    <height>41</height>
                   </rect>
@@ -582,7 +582,7 @@ QPushButton:hover{
                    <x>1</x>
                    <y>31</y>
                    <width>161</width>
-                   <height>481</height>
+                   <height>471</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -727,7 +727,7 @@ QPushButton:hover{
                    <x>173</x>
                    <y>31</y>
                    <width>624</width>
-                   <height>481</height>
+                   <height>471</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout">

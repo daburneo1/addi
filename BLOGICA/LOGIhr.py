@@ -44,39 +44,32 @@ class LOGIhr():
         print(hora_actual)
 
     @classmethod
-    def mover_brazos_neutro(cls):
-        GPIO.setmode(GPIO.BOARD)
+    def mover_brazos_tristeza(cls):
+        servoPIN = 13
+        servoPIN2 = 19
         GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(servoPIN, GPIO.OUT)
+        GPIO.setup(servoPIN2, GPIO.OUT)
+        p = GPIO.PWM(servoPIN, 60)  # GPIO 17 for PWM with 60Hz
+        p.start(2.5)
+        p2 = GPIO.PWM(servoPIN2, 60)
+        p2.start(2.5)
 
-        pwm_gpio = 29
-        pwm_gpio2 = 31
-        frequence = 50
+        contador = 0
+        bandera = True
 
-        GPIO.setup(pwm_gpio, GPIO.OUT)
-        GPIO.setup(pwm_gpio2, GPIO.OUT)
+        while bandera:
+            p.ChangeDutyCycle(3)
+            p2.ChangeDutyCycle(5.5)
+            time.sleep(.5)
+            p.ChangeDutyCycle(7)
+            p2.ChangeDutyCycle(1.7)
+            time.sleep(.5)
 
-        pwm = GPIO.PWM(pwm_gpio, frequence)
-        pwm2 = GPIO.PWM(pwm_gpio2, frequence)
-
-        pwm.start(angle_to_percent(20))
-        pwm2.start(angle_to_percent(20))
-        time.sleep(1)
-
-        pwm.start(angle_to_percent(90))
-        pwm2.start(angle_to_percent(90))
-        time.sleep(2)
-
-        pwm.start(angle_to_percent(20))
-        pwm2.start(angle_to_percent(20))
-        time.sleep(1)
-
-        pwm.start(angle_to_percent(180))
-        pwm2.start(angle_to_percent(180))
-        time.sleep(1)
-
-        pwm.stop()
-        pwm2.stop()
-        GPIO.cleanup()
+            contador += 1
+            if contador == 2:
+                bandera = False
 
     @classmethod
     def mover_brazos_alegria(cls):
@@ -84,8 +77,8 @@ class LOGIhr():
         GPIO.setwarnings(False)  # Disable warnings
 
         # Use pin 12 for WM signal
-        pwm_gpio = 29
-        pwm_gpio2 = 31
+        pwm_gpio = 13
+        pwm_gpio2 = 19
         frequence = 50
         GPIO.setup(pwm_gpio, GPIO.OUT)
         GPIO.setup(pwm_gpio2, GPIO.OUT)

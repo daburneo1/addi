@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1400</width>
-    <height>820</height>
+    <width>1250</width>
+    <height>825</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1400</width>
-    <height>820</height>
+    <width>1250</width>
+    <height>825</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1400</width>
-    <height>820</height>
+    <width>1250</width>
+    <height>825</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -89,8 +89,8 @@ border-radius:10px;
    <widget class="QPushButton" name="pushButtonConfirmar">
     <property name="geometry">
      <rect>
-      <x>1180</x>
-      <y>660</y>
+      <x>1050</x>
+      <y>670</y>
       <width>181</width>
       <height>101</height>
      </rect>
@@ -170,7 +170,7 @@ border-radius:10px;
    <widget class="QPushButton" name="pushButtonAcceso">
     <property name="geometry">
      <rect>
-      <x>1240</x>
+      <x>1110</x>
       <y>50</y>
       <width>111</width>
       <height>51</height>

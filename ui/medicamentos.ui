@@ -344,7 +344,7 @@ QHeaderView::section{
                 <string notr="true">background-color:#c7f5ff</string>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="pageDB">
                 <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -365,7 +365,7 @@ QHeaderView::section{
                    </property>
                    <property name="font">
                     <font>
-                     <pointsize>13</pointsize>
+                     <pointsize>14</pointsize>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -1092,7 +1092,7 @@ padding-bottom: 5px;</string>
                       </property>
                       <property name="font">
                        <font>
-                        <pointsize>14</pointsize>
+                        <pointsize>13</pointsize>
                        </font>
                       </property>
                       <property name="minimum">
@@ -1143,7 +1143,7 @@ padding-bottom: 5px;</string>
                           </property>
                           <property name="font">
                            <font>
-                            <pointsize>14</pointsize>
+                            <pointsize>13</pointsize>
                            </font>
                           </property>
                           <property name="currentSection">
@@ -1191,7 +1191,7 @@ padding-bottom: 5px;</string>
                           </property>
                           <property name="font">
                            <font>
-                            <pointsize>14</pointsize>
+                            <pointsize>13</pointsize>
                            </font>
                           </property>
                           <property name="displayFormat">
@@ -1233,7 +1233,7 @@ padding-bottom: 5px;</string>
                           </property>
                           <property name="font">
                            <font>
-                            <pointsize>14</pointsize>
+                            <pointsize>13</pointsize>
                            </font>
                           </property>
                           <property name="displayFormat">
@@ -1275,7 +1275,7 @@ padding-bottom: 5px;</string>
                           </property>
                           <property name="font">
                            <font>
-                            <pointsize>14</pointsize>
+                            <pointsize>13</pointsize>
                            </font>
                           </property>
                           <property name="displayFormat">
@@ -1331,7 +1331,7 @@ padding-bottom: 5px;</string>
                     </property>
                     <property name="font">
                      <font>
-                      <pointsize>14</pointsize>
+                      <pointsize>13</pointsize>
                      </font>
                     </property>
                     <property name="minimum">

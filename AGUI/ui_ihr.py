@@ -193,6 +193,8 @@ class Ihr_Form(QWidget):
         global recordatorio
         global usuario
         self._reminder = False
+        self.labelRecordatorio.setText('')
+        self.Emoji.setVisible(False)
         hora_actual = datetime.now().time()
 
         # LOGIhr.confirmar_medicamento(recordatorio, usuario, self.contador, hora_actual)

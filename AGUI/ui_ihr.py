@@ -92,6 +92,7 @@ class Ihr_Form(QWidget):
         self.contador = 1
         while (self._reminder and self.contador <= 4):
             if self.contador <= 3:
+                self.Emoji.setVisible(True)
                 ihr.iniciar_emocion(self, recordatorio, usuario, self.contador)
                 time.sleep(10)
                 self.contador += 1
@@ -115,7 +116,6 @@ class Ihr_Form(QWidget):
             self.labelRecordatorio.setText(
                 'Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             emoji_alegria = QPixmap('./Iconos/emoji-feliz.png')
-            self.Emoji.setVisible(True)
             self.Emoji.setPixmap(emoji_alegria)
             self.Emoji.resize(20, 20)
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))

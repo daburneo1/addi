@@ -113,7 +113,7 @@ class Ihr_Form(QWidget):
         engine.setProperty('voice', 'Spanish (Latin America)')
         if contador == 1:
             print('alegria')
-            emoji_alegria = ('./Iconos/emoji-feliz.png')
+            emoji_alegria = QPixmap('./Iconos/emoji-feliz.png')
             self.Emoji.setPixmap(emoji_alegria)
             self.labelRecordatorio.setText('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
@@ -129,7 +129,7 @@ class Ihr_Form(QWidget):
             # LOGIhr.mover_brazos_alegria()
         elif contador == 3:
             print('tristeza')
-            emoji_tristeza = ('./Iconos/emoji-triste.png')
+            emoji_tristeza = QPixmap('./Iconos/emoji-triste.png')
             self.Emoji.setPixmap(emoji_tristeza)
             self.labelRecordatorio.setText('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (usuario.nombre, recordatorio.nombre))
             data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos de tu horario' % (usuario.nombre, recordatorio.nombre))

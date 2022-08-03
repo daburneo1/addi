@@ -111,7 +111,7 @@ class LOGIhr():
             time.sleep(1)
 
             contador += 1
-            if contador == 3:
+            if contador == 2:
                 bandera = False
 
         pwm.stop()

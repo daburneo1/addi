@@ -94,7 +94,7 @@ class Ihr_Form(QWidget):
             if self.contador <= 3:
                 self.Emoji.setVisible(True)
                 ihr.iniciar_emocion(self, recordatorio, usuario, self.contador)
-                time.sleep(10)
+                time.sleep(5)
                 self.contador += 1
             else:
                 print('posponer')

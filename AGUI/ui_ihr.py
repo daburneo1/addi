@@ -121,6 +121,8 @@ class Ihr_Form(QWidget):
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
+            engine.endLoop()
+            engine.stop()
             # LOGIhr.mover_brazos_alegria()
         elif contador == 2:
             print('neutro')
@@ -128,6 +130,8 @@ class Ihr_Form(QWidget):
             data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
+            engine.endLoop()
+            engine.stop()
             # LOGIhr.mover_brazos_alegria()
         elif contador == 3:
             print('tristeza')
@@ -139,6 +143,8 @@ class Ihr_Form(QWidget):
             data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
+            engine.endLoop()
+            engine.stop()
 
     def calcular_espera(self):
         hora_actual = datetime.today()

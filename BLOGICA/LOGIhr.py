@@ -60,12 +60,12 @@ class LOGIhr():
         contador = 0
 
         while bandera:
-            p.ChangeDutyCicle(3)
-            p2.ChangeDutyCicle(5.5)
+            p.ChangeDutyCycle(3)
+            p2.ChangeDutyCycle(5.5)
             time.sleep(1)
 
-            p.ChangeDutyCicle(7)
-            p2.ChangeDutyCicle(1.7)
+            p.ChangeDutyCycle(7)
+            p2.ChangeDutyCycle(1.7)
             time.sleep(1)
 
             contador += 1
@@ -93,12 +93,12 @@ class LOGIhr():
         contador = 0
 
         while bandera:
-            p.ChangeDutyCicle(6.2)
-            p2.ChangeDutyCicle(2)
+            p.ChangeDutyCycle(6.2)
+            p2.ChangeDutyCycle(2)
             time.sleep(.5)
 
-            p.ChangeDutyCicle(10)
-            p2.ChangeDutyCicle(5)
+            p.ChangeDutyCycle(10)
+            p2.ChangeDutyCycle(5)
             time.sleep(.5)
 
             contador += 1

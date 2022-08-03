@@ -89,9 +89,9 @@ border-radius:10px;
    <widget class="QPushButton" name="pushButtonConfirmar">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>450</y>
-      <width>311</width>
+      <x>820</x>
+      <y>460</y>
+      <width>181</width>
       <height>101</height>
      </rect>
     </property>

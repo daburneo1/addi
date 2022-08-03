@@ -99,7 +99,7 @@ class Ihr_Form(QWidget):
             else:
                 print('posponer')
                 self.labelRecordatorio.setText('')
-                self.Emoji.setText('')
+                self.Emoji.setVisible(False)
                 break
 
             # self.movie = QMovie("./Iconos/giphy.gif")
@@ -114,6 +114,7 @@ class Ihr_Form(QWidget):
         if contador == 1:
             print('alegria')
             emoji_alegria = QPixmap('./Iconos/emoji-feliz.png')
+            self.Emoji.setVisible(True)
             self.Emoji.setPixmap(emoji_alegria)
             self.Emoji.resize(20, 20)
             self.labelRecordatorio.setText('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
@@ -134,7 +135,7 @@ class Ihr_Form(QWidget):
             self.Emoji.setPixmap(emoji_tristeza)
             self.labelRecordatorio.setText('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (usuario.nombre, recordatorio.nombre))
             self.Emoji.resize(20, 20)
-            data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos de tu horario' % (usuario.nombre, recordatorio.nombre))
+            data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
 

@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1020</width>
-    <height>590</height>
+    <width>1150</width>
+    <height>825</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1020</width>
-    <height>590</height>
+    <width>1150</width>
+    <height>825</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1020</width>
-    <height>590</height>
+    <width>1150</width>
+    <height>825</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -54,8 +54,8 @@
           <rect>
            <x>-30</x>
            <y>-10</y>
-           <width>1031</width>
-           <height>581</height>
+           <width>1141</width>
+           <height>801</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -124,7 +124,7 @@ QPushButton:hover{
                </property>
                <property name="font">
                 <font>
-                 <pointsize>11</pointsize>
+                 <pointsize>13</pointsize>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
@@ -158,7 +158,7 @@ registrados</string>
                </property>
                <property name="font">
                 <font>
-                 <pointsize>11</pointsize>
+                 <pointsize>13</pointsize>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
@@ -192,7 +192,7 @@ medicamento</string>
                </property>
                <property name="font">
                 <font>
-                 <pointsize>11</pointsize>
+                 <pointsize>13</pointsize>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
@@ -226,7 +226,7 @@ medicamento</string>
                </property>
                <property name="font">
                 <font>
-                 <pointsize>12</pointsize>
+                 <pointsize>13</pointsize>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
@@ -260,7 +260,7 @@ medicamento</string>
                </property>
                <property name="font">
                 <font>
-                 <pointsize>12</pointsize>
+                 <pointsize>13</pointsize>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
@@ -486,11 +486,20 @@ QPushButton:hover{
                 <widget class="QLabel" name="label_12">
                  <property name="geometry">
                   <rect>
-                   <x>210</x>
+                   <x>300</x>
                    <y>0</y>
                    <width>221</width>
                    <height>21</height>
                   </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial Black</family>
+                   <pointsize>12</pointsize>
+                   <weight>10</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
                  </property>
                  <property name="text">
                   <string>Nuevo medicamento</string>
@@ -499,15 +508,15 @@ QPushButton:hover{
                 <widget class="QPushButton" name="pushButtonActualizar_2">
                  <property name="geometry">
                   <rect>
-                   <x>440</x>
-                   <y>500</y>
+                   <x>780</x>
+                   <y>670</y>
                    <width>121</width>
                    <height>41</height>
                   </rect>
                  </property>
                  <property name="font">
                   <font>
-                   <pointsize>12</pointsize>
+                   <pointsize>14</pointsize>
                   </font>
                  </property>
                  <property name="styleSheet">
@@ -539,15 +548,15 @@ QPushButton:hover{
                 <widget class="QPushButton" name="pushButtonGuardar">
                  <property name="geometry">
                   <rect>
-                   <x>620</x>
-                   <y>500</y>
+                   <x>780</x>
+                   <y>720</y>
                    <width>121</width>
                    <height>41</height>
                   </rect>
                  </property>
                  <property name="font">
                   <font>
-                   <pointsize>12</pointsize>
+                   <pointsize>14</pointsize>
                   </font>
                  </property>
                  <property name="styleSheet">
@@ -582,7 +591,7 @@ QPushButton:hover{
                    <x>1</x>
                    <y>31</y>
                    <width>161</width>
-                   <height>471</height>
+                   <height>591</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -726,8 +735,8 @@ QPushButton:hover{
                   <rect>
                    <x>173</x>
                    <y>31</y>
-                   <width>624</width>
-                   <height>471</height>
+                   <width>731</width>
+                   <height>591</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout">

@@ -51,62 +51,60 @@ class LOGIhr():
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(servoPIN, GPIO.OUT)
         GPIO.setup(servoPIN2, GPIO.OUT)
-        p = GPIO.PWM(servoPIN, 60)  # GPIO 17 for PWM with 60Hz
+        p = GPIO.PWM(servoPIN, 60)
         p.start(2.5)
         p2 = GPIO.PWM(servoPIN2, 60)
         p2.start(2.5)
 
-        contador = 0
         bandera = True
+        contador = 0
 
         while bandera:
-            p.ChangeDutyCycle(3)
-            p2.ChangeDutyCycle(5.5)
-            time.sleep(.5)
-            p.ChangeDutyCycle(7)
-            p2.ChangeDutyCycle(1.7)
-            time.sleep(.5)
+            p.ChangeDutyCicle(3)
+            p2.ChangeDutyCicle(5.5)
+            time.sleep(1)
+
+            p.ChangeDutyCicle(7)
+            p2.ChangeDutyCicle(1.7)
+            time.sleep(1)
 
             contador += 1
             if contador == 2:
                 bandera = False
+
+        p.stop()
+        p2.stop()
+        GPIO.cleanup()
 
     @classmethod
     def mover_brazos_alegria(cls):
-        GPIO.setmode(GPIO.BOARD)  # Use Board numerotation mode
-        GPIO.setwarnings(False)  # Disable warnings
+        servoPIN = 13
+        servoPIN2 = 19
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(servoPIN, GPIO.OUT)
+        GPIO.setup(servoPIN2, GPIO.OUT)
+        p = GPIO.PWM(servoPIN, 60)
+        p.start(10)
+        p2 = GPIO.PWM(servoPIN2, 60)
+        p2.start(5)
 
-        # Use pin 12 for WM signal
-        pwm_gpio = 13
-        pwm_gpio2 = 19
-        frequence = 50
-        GPIO.setup(pwm_gpio, GPIO.OUT)
-        GPIO.setup(pwm_gpio2, GPIO.OUT)
-        pwm = GPIO.PWM(pwm_gpio, frequence)
-        pwm2 = GPIO.PWM(pwm_gpio2, frequence)
-
-        # Init at 0°
-        pwm.start(10)
-        pwm2.start(5)
-        time.sleep(1)
-
-        contador = 0
         bandera = True
+        contador = 0
 
-        # Go at 90°
         while bandera:
-            pwm.ChangeDutyCycle(6.5)
-            pwm2.ChangeDutyCycle(2)
-            time.sleep(1)
+            p.ChangeDutyCicle(6.2)
+            p2.ChangeDutyCicle(2)
+            time.sleep(.5)
 
-            pwm.ChangeDutyCycle(10)
-            pwm2.ChangeDutyCycle(5)
-            time.sleep(1)
+            p.ChangeDutyCicle(10)
+            p2.ChangeDutyCicle(5)
+            time.sleep(.5)
 
             contador += 1
             if contador == 2:
                 bandera = False
 
-        pwm.stop()
-        pwm2.stop()
+        p.stop()
+        p2.stop()
         GPIO.cleanup()

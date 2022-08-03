@@ -61,7 +61,6 @@ class Ihr_Form(QWidget):
 
         self.pushButtonAcceso.clicked.connect(self.acceso)
         self.pushButtonConfirmar.clicked.connect(self.confirmar)
-        self.pushButtonCancelar.clicked.connect(self.cancelar)
 
     def ejecucion_horaria(self):
         global recordatorio
@@ -113,11 +112,12 @@ class Ihr_Form(QWidget):
         engine.setProperty('voice', 'Spanish (Latin America)')
         if contador == 1:
             print('alegria')
+            self.labelRecordatorio.setText(
+                'Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             emoji_alegria = QPixmap('./Iconos/emoji-feliz.png')
             self.Emoji.setVisible(True)
             self.Emoji.setPixmap(emoji_alegria)
             self.Emoji.resize(20, 20)
-            self.labelRecordatorio.setText('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
@@ -131,9 +131,10 @@ class Ihr_Form(QWidget):
             # LOGIhr.mover_brazos_alegria()
         elif contador == 3:
             print('tristeza')
+            self.labelRecordatorio.setText('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (
+            usuario.nombre, recordatorio.nombre))
             emoji_tristeza = QPixmap('./Iconos/emoji-triste.png')
             self.Emoji.setPixmap(emoji_tristeza)
-            self.labelRecordatorio.setText('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (usuario.nombre, recordatorio.nombre))
             self.Emoji.resize(20, 20)
             data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
@@ -191,8 +192,5 @@ class Ihr_Form(QWidget):
         self._reminder = False
         hora_actual = datetime.now().time()
 
-        LOGIhr.confirmar_medicamento(recordatorio, usuario, self.contador, hora_actual)
+        # LOGIhr.confirmar_medicamento(recordatorio, usuario, self.contador, hora_actual)
         # self.terminar_emocion_alegria()
-
-    def cancelar(self):
-        pass

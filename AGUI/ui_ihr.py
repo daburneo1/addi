@@ -93,7 +93,7 @@ class Ihr_Form(QWidget):
         while (self._reminder and self.contador <= 4):
             if self.contador <= 3:
                 ihr.iniciar_emocion(self, recordatorio, usuario, self.contador)
-                time.sleep(5)
+                time.sleep(10)
                 self.contador += 1
             else:
                 print('posponer')
@@ -110,12 +110,16 @@ class Ihr_Form(QWidget):
         engine.setProperty('voice', 'Spanish (Latin America)')
         if contador == 1:
             print('alegria')
+            hilo_alegria = threading.Thread(target=LOGIhr.mover_brazos_alegria())
+            hilo_alegria.start()
             self.labelRecordatorio.setText('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
         elif contador == 2:
             print('neutro')
+            hilo_neutro = threading.Thread(target=LOGIhr.mover_brazos_alegria())
+            hilo_neutro.start()
             self.labelRecordatorio.setText('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
             data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)

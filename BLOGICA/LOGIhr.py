@@ -58,48 +58,61 @@ class LOGIhr():
         pwm = GPIO.PWM(pwm_gpio, frequence)
         pwm2 = GPIO.PWM(pwm_gpio2, frequence)
 
-        pwm.start(angle_to_percent(0))
-        pwm2.start(angle_to_percent(0))
-        time.sleep(3)
+        pwm.start(angle_to_percent(20))
+        pwm2.start(angle_to_percent(20))
+        time.sleep(1)
 
         pwm.start(angle_to_percent(90))
         pwm2.start(angle_to_percent(90))
-        time.sleep(3)
+        time.sleep(2)
+
+        pwm.start(angle_to_percent(20))
+        pwm2.start(angle_to_percent(20))
+        time.sleep(1)
 
         pwm.start(angle_to_percent(180))
         pwm2.start(angle_to_percent(180))
-        time.sleep(3)
+        time.sleep(1)
 
         pwm.stop()
         pwm2.stop()
         GPIO.cleanup()
 
     @classmethod
-    def mover_brazos_tristeza(cls):
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setwarnings(False)
+    def mover_brazos_alegria(cls):
+        GPIO.setmode(GPIO.BOARD)  # Use Board numerotation mode
+        GPIO.setwarnings(False)  # Disable warnings
 
+        # Use pin 12 for WM signal
         pwm_gpio = 29
         pwm_gpio2 = 31
         frequence = 50
-
         GPIO.setup(pwm_gpio, GPIO.OUT)
         GPIO.setup(pwm_gpio2, GPIO.OUT)
-
         pwm = GPIO.PWM(pwm_gpio, frequence)
         pwm2 = GPIO.PWM(pwm_gpio2, frequence)
 
-        pwm.start(angle_to_percent(0))
-        pwm2.start(angle_to_percent(0))
+        # Init at 0°
+        pwm.start(10)
+        pwm2.start(5)
         time.sleep(1)
 
-        pwm.start(angle_to_percent(90))
-        pwm2.start(angle_to_percent(90))
-        time.sleep(1)
+        contador = 0
+        bandera = True
 
-        pwm.start(angle_to_percent(180))
-        pwm2.start(angle_to_percent(180))
-        time.sleep(1)
+        # Go at 90°
+        while bandera:
+            pwm.ChangeDutyCycle(6.5)
+            pwm2.ChangeDutyCycle(2)
+            time.sleep(1)
+
+            pwm.ChangeDutyCycle(10)
+            pwm2.ChangeDutyCycle(5)
+            time.sleep(1)
+
+            contador += 1
+            if bandera == 5:
+                bandera = False
 
         pwm.stop()
         pwm2.stop()

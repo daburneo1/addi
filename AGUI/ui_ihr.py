@@ -97,6 +97,7 @@ class Ihr_Form(QWidget):
                 self.contador += 1
             else:
                 print('posponer')
+                self.labelRecordatorio.setText('')
                 break
 
             # self.movie = QMovie("./Iconos/giphy.gif")
@@ -114,7 +115,7 @@ class Ihr_Form(QWidget):
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
-            # LOGIhr.mover_brazos_alegria()
+            LOGIhr.mover_brazos_alegria()
         elif contador == 2:
             print('neutro')
             self.labelRecordatorio.setText('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
@@ -124,7 +125,7 @@ class Ihr_Form(QWidget):
             LOGIhr.mover_brazos_alegria()
         elif contador == 3:
             print('tristeza')
-            self.labelRecordatorio.setText('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos de tu horario' % (usuario.nombre, recordatorio.nombre))
+            self.labelRecordatorio.setText('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (usuario.nombre, recordatorio.nombre))
             data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos de tu horario' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()

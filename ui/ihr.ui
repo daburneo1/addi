@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>1030</width>
-    <height>580</height>
+    <height>590</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1030</width>
-    <height>580</height>
+    <width>1020</width>
+    <height>590</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -72,7 +72,7 @@ border-radius:10px;</string>
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>1031</width>
+      <width>1011</width>
       <height>531</height>
      </rect>
     </property>
@@ -145,8 +145,8 @@ border-radius:10px;
    <widget class="QLabel" name="Emoji">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>80</y>
+      <x>250</x>
+      <y>90</y>
       <width>561</width>
       <height>291</height>
      </rect>
@@ -158,15 +158,15 @@ border-radius:10px;
    <widget class="QLabel" name="labelRecordatorio">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>40</x>
       <y>379</y>
-      <width>801</width>
+      <width>951</width>
       <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>18</pointsize>
+      <pointsize>17</pointsize>
      </font>
     </property>
     <property name="text">

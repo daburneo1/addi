@@ -110,7 +110,7 @@ class Ihr_Form(QWidget):
     def iniciar_emocion(self, recordatorio, usuario, contador):
         engine = pyttsx3.init()
         # engine.setProperty('voice', 'spanish-latin-am')
-        engine.setProperty('voice', 'Spanish (Latin America)')
+        engine.setProperty('voice', 'Spanish (Spain)')
         if contador == 1:
             print('alegria')
             self.labelRecordatorio.setText(
@@ -121,7 +121,6 @@ class Ihr_Form(QWidget):
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
-            engine.stop()
             LOGIhr.mover_brazos_alegria()
         elif contador == 2:
             print('neutro')
@@ -129,7 +128,6 @@ class Ihr_Form(QWidget):
             data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
-            engine.stop()
 
         elif contador == 3:
             print('tristeza')

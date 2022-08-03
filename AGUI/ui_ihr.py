@@ -110,21 +110,18 @@ class Ihr_Form(QWidget):
         engine.setProperty('voice', 'Spanish (Latin America)')
         if contador == 1:
             print('alegria')
-            hilo_alegria = threading.Thread(target=LOGIhr.mover_brazos_alegria())
-            hilo_alegria.start()
             self.labelRecordatorio.setText('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
+            LOGIhr.mover_brazos_alegria()
         elif contador == 2:
             print('neutro')
-            hilo_neutro = threading.Thread(target=LOGIhr.mover_brazos_alegria())
-            hilo_neutro.start()
             self.labelRecordatorio.setText('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
             data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
-            LOGIhr.mover_brazos_neutro()
+            LOGIhr.mover_brazos_alegria()
         elif contador == 3:
             print('tristeza')
             self.labelRecordatorio.setText('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos de tu horario' % (usuario.nombre, recordatorio.nombre))

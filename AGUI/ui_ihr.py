@@ -121,7 +121,6 @@ class Ihr_Form(QWidget):
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
-            engine.endLoop()
             engine.stop()
             # LOGIhr.mover_brazos_alegria()
         elif contador == 2:
@@ -130,7 +129,6 @@ class Ihr_Form(QWidget):
             data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
-            engine.endLoop()
             engine.stop()
             # LOGIhr.mover_brazos_alegria()
         elif contador == 3:

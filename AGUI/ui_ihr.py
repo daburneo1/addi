@@ -90,7 +90,7 @@ class Ihr_Form(QWidget):
         ihr = Ihr_Form
         self._reminder = True
         self.contador = 1
-        while (self._reminder and self.contador <= 4):
+        while (self._reminder == True and self.contador <= 4):
             if self.contador <= 3:
                 self.Emoji.setVisible(True)
                 ihr.iniciar_emocion(self, recordatorio, usuario, self.contador)

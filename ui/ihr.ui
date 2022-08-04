@@ -127,8 +127,8 @@ border-radius:10px;
    <widget class="QLabel" name="Emoji">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>120</y>
+      <x>440</x>
+      <y>130</y>
       <width>300</width>
       <height>300</height>
      </rect>
@@ -152,9 +152,9 @@ border-radius:10px;
    <widget class="QLabel" name="labelRecordatorio">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>379</y>
-      <width>951</width>
+      <x>70</x>
+      <y>460</y>
+      <width>1011</width>
       <height>41</height>
      </rect>
     </property>

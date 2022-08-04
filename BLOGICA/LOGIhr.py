@@ -60,11 +60,11 @@ class LOGIhr():
         contador = 0
 
         while bandera:
-            p.ChangeDutyCycle(3)
+            p.ChangeDutyCycle(6)
             p2.ChangeDutyCycle(5.5)
             time.sleep(1)
 
-            p.ChangeDutyCycle(7)
+            p.ChangeDutyCycle(10)
             p2.ChangeDutyCycle(1.7)
             time.sleep(1)
 

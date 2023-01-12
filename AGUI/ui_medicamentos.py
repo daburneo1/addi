@@ -10,6 +10,15 @@ from BLOGICA.LOGUsuario import *
 
 medicamentos = []
 global_medicamento = Medicamento('','','','','','','','')
+nombreMedicamento = ''
+frecuencia = 'Todos los días'
+veces_dia = ''
+dosis = ''
+fecha_desde = ''
+numero_dias = 0
+fecha_hasta = ''
+usuario = ''
+horario = ''
 
 class Medicine_Form(QWidget):
     def __init__(self):
@@ -28,14 +37,27 @@ class Medicine_Form(QWidget):
         self.grip = QtWidgets.QSizeGrip(self)
         self.grip.resize(self.gripSize, self.gripSize)
 
-        #coneccion botones
+        #conexion botones
         self.stackedWidget.setCurrentWidget(self.pageDB)
         self.pushButtonDB.clicked.connect(self.page_db)
         self.pushButtonActualizar.clicked.connect(self.page_db)
-        self.pushButtonRegistrar.clicked.connect(self.page_registrar)
+
+        self.pushButtonRegistrar.clicked.connect(self.page_medicamento)
+        self.pushButtonNext.clicked.connect(self.page_cantidad)
+        self.pushButtonNext1.clicked.connect(self.page_dias)
+        self.pushButtonFrecuenciaSi.clicked.connect(self.frecuencia_si)
+        self.pushButtonFrecuenciaNo.clicked.connect(self.frecuencia_no)
+        self.pushButtonNext2.clicked.connect(self.page_frecuencia)
+        self.pushButtonNext3.clicked.connect(self.page_horarios)
+        self.pushButtonNext4.clicked.connect(self.page_duracion)
+        self.pushButtonContinuoSi.clicked.connect(self.continuo_si)
+        self.pushButtonContinuoNo.clicked.connect(self.continuo_no)
+        self.pushButtonNext5.clicked.connect(self.page_usuario)
+        self.pushButtonGuardar_2.clicked.connect(self.guardar_medicamento)
+
         self.pushButtonEditar.clicked.connect(self.page_editar)
         self.pushButtonEliminar.clicked.connect(self.eliminar_medicamento)
-        self.pushButtonGuardar.clicked.connect(self.agregar_recordatorio)
+        # self.pushButtonGuardar.clicked.connect(self.agregar_recordatorio)
         self.pushButtonActualizar_2.clicked.connect(self.actualizar_recordatorio)
 
         #qtable
@@ -65,7 +87,8 @@ class Medicine_Form(QWidget):
                 tablerow+=1
             self.tableMedicamentos.resizeRowsToContents()
 
-    def page_registrar(self):
+    def page_medicamento(self):
+        '''
         self.label_12.setText('Nuevo medicamento')
         self.stackedWidget.setCurrentWidget(self.pageRegistrar)
         self.vaciar_campos()
@@ -76,7 +99,143 @@ class Medicine_Form(QWidget):
         self.spinBoxVecesDia.valueChanged.connect(self.value_change)
         self.spinBoxVecesDia.setValue(1)
         self.checkBoxTodos.stateChanged.connect(self.frequency_change)
+        '''
 
+        self.stackedWidget.setCurrentWidget(self.pageMedicamento)
+        self.lineEditNombre.setText('')
+
+
+    def page_cantidad(self):
+        global nombreMedicamento
+        if self.lineEditNombreMedicamento.text() != '':
+            self.stackedWidget.setCurrentWidget(self.pageCantidad)
+            nombreMedicamento = self.lineEditNombreMedicamento.text().capitalize()
+            print(nombreMedicamento)
+        else:
+            messagebox.showerror(message="Debe ingresar un medicamento", title="Error")
+
+    def page_dias(self):
+        global dosis
+        if self.lineEditCantidad.text() != '':
+            self.frame_6.setVisible(False)
+            dosis = self.lineEditCantidad.text().capitalize()
+            self.stackedWidget.setCurrentWidget(self.pageDias)
+        else:
+            messagebox.showerror(message="Debe ingresar una cantidad (Ej. Una pastilla)", title="Error")
+
+    def frecuencia_si(self):
+        self.pushButtonNext2.setEnabled(True)
+
+    def frecuencia_no(self):
+        self.frame_6.setVisible(True)
+        self.pushButtonNext2.setEnabled(True)
+
+    def page_frecuencia(self):
+        global frecuencia
+        if (frecuencia != 'Todos los días'):
+            if self.radioButtonUnDia.isChecked():
+                frecuencia = 'Dejando un día'
+            elif self.radioButtonDosDia.isChecked():
+                frecuencia = 'Dejando dos días'
+            elif self.radioButtonTresDia.isChecked():
+                frecuencia = 'Dejando tres días'
+        self.stackedWidget.setCurrentWidget(self.pageFrecuencia)
+
+    def page_horarios(self):
+        global veces_dia
+        if self.radioButtonUno.isChecked():
+            veces_dia = 1
+            self.timeEditDosis1.setVisible(True)
+            self.timeEditDosis2.setVisible(False)
+            self.timeEditDosis3.setVisible(False)
+            self.timeEditDosis4.setVisible(False)
+        elif self.radioButtonDos.isChecked():
+            veces_dia = 2
+            self.timeEditDosis1.setVisible(True)
+            self.timeEditDosis2.setVisible(True)
+            self.timeEditDosis3.setVisible(False)
+            self.timeEditDosis4.setVisible(False)
+        elif self.radioButtonTres.isChecked():
+            veces_dia = 3
+            self.timeEditDosis1.setVisible(True)
+            self.timeEditDosis2.setVisible(True)
+            self.timeEditDosis3.setVisible(True)
+            self.timeEditDosis4.setVisible(False)
+        elif self.radioButtonCuatro.isChecked():
+            veces_dia = 4
+            self.timeEditDosis1.setVisible(True)
+            self.timeEditDosis2.setVisible(True)
+            self.timeEditDosis3.setVisible(True)
+            self.timeEditDosis4.setVisible(True)
+
+        self.stackedWidget.setCurrentWidget(self.pageHorarios)
+
+    def page_duracion(self):
+        global horario
+        if veces_dia == 1:
+            hora_1 = self.timeEditDosis1.text()
+            horario = [hora_1]
+        elif veces_dia == 2:
+            hora_1 = self.timeEditDosis1.text()
+            hora_2 = self.timeEditDosis2.text()
+            horario = [hora_1, hora_2]
+        elif veces_dia == 3:
+            hora_1 = self.timeEditDosis1.text()
+            hora_2 = self.timeEditDosis2.text()
+            hora_3 = self.timeEditDosis3.text()
+            horario = [hora_1, hora_2, hora_3]
+        elif veces_dia == 4:
+            hora_1 = self.timeEditDosis1.text()
+            hora_2 = self.timeEditDosis2.text()
+            hora_3 = self.timeEditDosis3.text()
+            hora_4 = self.timeEditDosis4.text()
+            horario = [hora_1, hora_2, hora_3, hora_4]
+
+        self.labelDuracion.setVisible(False)
+        self.spinBoxDuracion.setVisible(False)
+
+        self.stackedWidget.setCurrentWidget(self.pageDuracion)
+
+    def continuo_si(self):
+        global fecha_hasta
+        self.pushButtonNext5.setEnabled(True)
+        self.labelDuracion.setVisible(False)
+        self.spinBoxDuracion.setVisible(False)
+        fecha_hasta = None
+
+    def continuo_no(self):
+        self.labelDuracion.setVisible(True)
+        self.spinBoxDuracion.setVisible(True)
+        self.pushButtonNext5.setEnabled(True)
+
+    def page_usuario(self):
+        global fecha_desde
+        global fecha_hasta
+        if fecha_hasta != None:
+            numero_dias = self.spinBoxDuracion.text()
+            fecha_desde = self.obtener_fecha_actual()
+            fecha_hasta = self.obtener_fecha_final(fecha_desde, numero_dias)
+
+        self.stackedWidget.setCurrentWidget(self.pageNombre)
+
+    def guardar_medicamento(self):
+        global nombreMedicamento, veces_dia, dosis, frecuencia, fecha_desde, fecha_hasta, numero_dias, usuario, horario
+        usuario = self.lineEditNombre.text()
+
+        medicamento = Medicamento(0, nombreMedicamento, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario)
+
+        try:
+            NuevoUsuario = LOGUsuario.registrar_usuario(self, usuario)
+            LOGMedicamento.agregar_medicamento(self, medicamento, NuevoUsuario)
+            LOGMedicamento.agregar_recordatorio(self, medicamento, NuevoUsuario)
+            messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
+            self.vaciar_campos()
+            self.stackedWidget.setCurrentWidget(self.pageDB)
+        except Exception as e:
+            print(e)
+            messagebox.showerror(message="Error, no se pudo guardar el medicamento", title="Error")
+
+    '''
     def agregar_recordatorio(self):
         id = 0
         nombre = self.lineEditMedicamento.text().capitalize()
@@ -100,27 +259,19 @@ class Medicine_Form(QWidget):
         except Exception as e:
             print(e)
             messagebox.showerror(message="Error, por favor revisar los campos ingresados", title="Error")
+    '''
 
     def obtener_frecuencia(self):
         print('frecuencia')
-        frecuencia = []
-        if self.checkBoxTodos.isChecked():
-            frecuencia.append('Todos los días')
-        else:
-            if self.checkBoxLunes.isChecked():
-                frecuencia.append('Lunes')
-            if self.checkBoxMartes.isChecked():
-                frecuencia.append('Martes')
-            if self.checkBoxMiercoles.isChecked():
-                frecuencia.append('Miercoles')
-            if self.checkBoxJueves.isChecked():
-                frecuencia.append('Jueves')
-            if self.checkBoxViernes.isChecked():
-                frecuencia.append('Viernes')
-            if self.checkBoxSabado.isChecked():
-                frecuencia.append('Sabado')
-            if self.checkBoxDomingo.isChecked():
-                frecuencia.append('Domingo')
+        frecuencia = ''
+        if self.radioButtonTodosDias1.isChecked():
+            frecuencia = 'Todos los días'
+        elif self.radioButtonPasandoUnDia1.isChecked():
+            frecuencia = 'Dejando un día'
+        elif self.radioButtonPasandoDosDias1.isChecked():
+            frecuencia = 'Dejando dos días'
+        elif self.radioButtonPasandoTresDias1.isChecked():
+            frecuencia = 'Dejando tres días'
         return frecuencia
 
     def obtener_horario(self):
@@ -269,7 +420,6 @@ class Medicine_Form(QWidget):
                 if medicamento != '':
                     self.lineEditUsuario.setText(LOGUsuario.buscar_usuario_medicamento(self, str(medicamento.id)))
                     self.lineEditUsuario.setEnabled(False)
-                    self.label_12.setText('Editar medicamento')
                     self.stackedWidget.setCurrentWidget(self.pageRegistrar)
                     self.lineEditMedicamento.setText(medicamento.nombre)
                     self.seleccionar_frecuencia(medicamento)
@@ -288,20 +438,16 @@ class Medicine_Form(QWidget):
 
     def seleccionar_frecuencia(self, medicamento):
         frecuencia = medicamento.frecuencia
-        if 'Lunes' in frecuencia:
-            self.checkBoxLunes.setChecked(True)
-        if 'Martes' in frecuencia:
-            self.checkBoxMartes.setChecked(True)
-        if 'Miercoles' in frecuencia:
-            self.checkBoxMiercoles.setChecked(True)
-        if 'Jueves' in frecuencia:
-            self.checkBoxJueves.setChecked(True)
-        if 'Viernes' in frecuencia:
-            self.checkBoxViernes.setChecked(True)
-        if 'Sabado' in frecuencia:
-            self.checkBoxSabado.setChecked(True)
-        if 'Domingo' in frecuencia:
-            self.checkBoxDomingo.setChecked(True)
+        print(frecuencia)
+        if frecuencia == 'Todos los días':
+            print('YES')
+            self.radioButtonTodosDias1.setChecked(True)
+        if frecuencia == 'Pasando un día':
+            self.radioButtonPasandoUnDia1.setChecked(True)
+        if frecuencia == 'Pasando dos días':
+            self.radioButtonPasandoDosDias1.setChecked(True)
+        if frecuencia == 'Pasando tres días':
+            self.radioButtonPasandoTresDias1.setChecked(True)
 
     def mostrar_horario(self, medicamento):
         veces_dia = medicamento.veces_dia

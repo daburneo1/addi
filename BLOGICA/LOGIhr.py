@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 import time
 
 

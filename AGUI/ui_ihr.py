@@ -1,8 +1,12 @@
 import threading
 import pyttsx3
-from PyQt5.QtGui import QPixmap
 import time
 
+from gtts import gTTS
+from playsound import playsound
+from os import remove
+
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore
@@ -110,47 +114,69 @@ class Ihr_Form(QWidget):
     def iniciar_emocion(self, recordatorio, usuario, contador):
         if contador == 1:
             print('alegria')
-            self.labelRecordatorio.setText(
-                'Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
+            data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
+            self.labelRecordatorio.setText(data)
             emoji_alegria = QPixmap('./Iconos/emoji-feliz.png')
             self.Emoji.setPixmap(emoji_alegria)
             self.Emoji.resize(20, 20)
+            tts = gTTS(data, lang='es', tld='com.mx')
+            tts.save('Sonido/audio.mp3')
+            playsound('Sonido/audio.mp3')
+            remove('Sonido/audio.mp3')
+            """
+            pyttsx3
             engine = pyttsx3.init()
             # engine.setProperty('voice', 'spanish-latin-am')
             engine.setProperty('voice', 'Spanish (Spain)')
-            data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             engine.say(data)
             engine.runAndWait()
             engine.stop()
             engine.endLoop()
-            LOGIhr.mover_brazos_alegria()
+            """
+            # LOGIhr.mover_brazos_alegria()
         elif contador == 2:
             print('neutro')
-            self.labelRecordatorio.setText('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
+            data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
+            self.labelRecordatorio.setText(data)
+            tts = gTTS(data, lang='es', tld='com.mx')
+            tts.save('Sonido/audio.mp3')
+            playsound('Sonido/audio.mp3')
+            remove('Sonido/audio.mp3')
+            '''
+            # pyttsx3  
             engine = pyttsx3.init()
             # engine.setProperty('voice', 'spanish-latin-am')
             engine.setProperty('voice', 'Spanish (Spain)')
-            data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
+            
             engine.say(data)
             engine.runAndWait()
             engine.stop()
             engine.endLoop()
+            '''
         elif contador == 3:
             print('tristeza')
-            self.labelRecordatorio.setText('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (
-            usuario.nombre, recordatorio.nombre))
+            data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (
+                usuario.nombre, recordatorio.nombre))
+            self.labelRecordatorio.setText(data)
             emoji_tristeza = QPixmap('./Iconos/emoji-triste.png')
             self.Emoji.setPixmap(emoji_tristeza)
             self.Emoji.resize(20, 20)
+            tts = gTTS(data, lang='es', tld='com.mx')
+            tts.save('Sonido/audio.mp3')
+            playsound('Sonido/audio.mp3')
+            remove('Sonido/audio.mp3')
+            '''
+            # pyttsx3
             engine = pyttsx3.init()
             # engine.setProperty('voice', 'spanish-latin-am')
             engine.setProperty('voice', 'Spanish (Spain)')
-            data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (usuario.nombre, recordatorio.nombre))
+            
             engine.say(data)
             engine.runAndWait()
             engine.stop()
             engine.endLoop()
-            LOGIhr.mover_brazos_tristeza()
+            '''
+            # LOGIhr.mover_brazos_tristeza()
 
     def calcular_espera(self):
         hora_actual = datetime.today()

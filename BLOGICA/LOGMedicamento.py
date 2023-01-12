@@ -54,7 +54,6 @@ class LOGMedicamento():
     c_medicamento = Medicamento
 
     def agregar_medicamento(self, medicamento, usuario):
-        convertir_lista_frecuencia(medicamento)
         DATMedicamento.agregar_medicamento(self, medicamento, usuario)
 
     def agregar_recordatorio(self, medicamento, usuario):
@@ -84,7 +83,6 @@ class LOGMedicamento():
         return medicamento
 
     def actualizar_medicamento(self, medicamento):
-        convertir_lista_frecuencia(medicamento)
         DATMedicamento.actualizar_medicamento(self, medicamento)
 
     def actualizar_recordatorio(self, medicamento):

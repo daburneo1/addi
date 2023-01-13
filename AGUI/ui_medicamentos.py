@@ -125,6 +125,7 @@ class Medicine_Form(QWidget):
 
     def frecuencia_si(self):
         self.pushButtonNext2.setEnabled(True)
+        self.frame_6.setVisible(False)
 
     def frecuencia_no(self):
         self.frame_6.setVisible(True)
@@ -145,27 +146,43 @@ class Medicine_Form(QWidget):
         global veces_dia
         if self.radioButtonUno.isChecked():
             veces_dia = 1
+            self.labeDosis1.setVisible(True)
             self.timeEditDosis1.setVisible(True)
+            self.labeDosis2.setVisible(False)
             self.timeEditDosis2.setVisible(False)
+            self.labeDosis3.setVisible(False)
             self.timeEditDosis3.setVisible(False)
+            self.labeDosis4.setVisible(False)
             self.timeEditDosis4.setVisible(False)
         elif self.radioButtonDos.isChecked():
             veces_dia = 2
+            self.labeDosis1.setVisible(True)
             self.timeEditDosis1.setVisible(True)
+            self.labeDosis2.setVisible(True)
             self.timeEditDosis2.setVisible(True)
+            self.labeDosis3.setVisible(False)
             self.timeEditDosis3.setVisible(False)
+            self.labeDosis4.setVisible(False)
             self.timeEditDosis4.setVisible(False)
         elif self.radioButtonTres.isChecked():
             veces_dia = 3
+            self.labeDosis1.setVisible(True)
             self.timeEditDosis1.setVisible(True)
+            self.labeDosis2.setVisible(True)
             self.timeEditDosis2.setVisible(True)
+            self.labeDosis3.setVisible(True)
             self.timeEditDosis3.setVisible(True)
+            self.labeDosis4.setVisible(False)
             self.timeEditDosis4.setVisible(False)
         elif self.radioButtonCuatro.isChecked():
             veces_dia = 4
+            self.labeDosis1.setVisible(True)
             self.timeEditDosis1.setVisible(True)
+            self.labeDosis2.setVisible(True)
             self.timeEditDosis2.setVisible(True)
+            self.labeDosis3.setVisible(True)
             self.timeEditDosis3.setVisible(True)
+            self.labeDosis4.setVisible(True)
             self.timeEditDosis4.setVisible(True)
 
         self.stackedWidget.setCurrentWidget(self.pageHorarios)
@@ -220,20 +237,23 @@ class Medicine_Form(QWidget):
 
     def guardar_medicamento(self):
         global nombreMedicamento, veces_dia, dosis, frecuencia, fecha_desde, fecha_hasta, numero_dias, usuario, horario
+
         usuario = self.lineEditNombre.text()
-
-        medicamento = Medicamento(0, nombreMedicamento, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta, horario)
-
-        try:
-            NuevoUsuario = LOGUsuario.registrar_usuario(self, usuario)
-            LOGMedicamento.agregar_medicamento(self, medicamento, NuevoUsuario)
-            LOGMedicamento.agregar_recordatorio(self, medicamento, NuevoUsuario)
-            messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
-            self.vaciar_campos()
-            self.stackedWidget.setCurrentWidget(self.pageDB)
-        except Exception as e:
-            print(e)
-            messagebox.showerror(message="Error, no se pudo guardar el medicamento", title="Error")
+        if usuario != '':
+            medicamento = Medicamento(0, nombreMedicamento, dosis, veces_dia, frecuencia, fecha_desde, fecha_hasta,
+                                      horario)
+            try:
+                NuevoUsuario = LOGUsuario.registrar_usuario(self, usuario)
+                LOGMedicamento.agregar_medicamento(self, medicamento, NuevoUsuario)
+                LOGMedicamento.agregar_recordatorio(self, medicamento, NuevoUsuario)
+                messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
+                self.vaciar_campos()
+                self.stackedWidget.setCurrentWidget(self.pageDB)
+            except Exception as e:
+                print(e)
+                messagebox.showerror(message="Error, no se pudo guardar el medicamento", title="Error")
+        else:
+            messagebox.showerror(message="Debe ingresar un nombre", title="Error")
 
     '''
     def agregar_recordatorio(self):

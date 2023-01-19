@@ -344,7 +344,7 @@ QHeaderView::section{
                 <string notr="true">background-color:#c7f5ff</string>
                </property>
                <property name="currentIndex">
-                <number>6</number>
+                <number>7</number>
                </property>
                <widget class="QWidget" name="pageDB">
                 <layout class="QVBoxLayout" name="verticalLayout_5">

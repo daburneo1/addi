@@ -117,6 +117,7 @@ class Medicine_Form(QWidget):
     def page_dias(self):
         global dosis
         if self.lineEditCantidad.text() != '':
+            self.pushButtonNext2.setVisible(False)
             self.frame_6.setVisible(False)
             dosis = self.lineEditCantidad.text().capitalize()
             self.stackedWidget.setCurrentWidget(self.pageDias)
@@ -124,11 +125,20 @@ class Medicine_Form(QWidget):
             messagebox.showerror(message="Debe ingresar una cantidad (Ej. Una pastilla)", title="Error")
 
     def frecuencia_si(self):
-        self.pushButtonNext2.setEnabled(True)
         self.frame_6.setVisible(False)
+        global frecuencia
+        if (frecuencia != 'Todos los días'):
+            if self.radioButtonUnDia.isChecked():
+                frecuencia = 'Dejando un día'
+            elif self.radioButtonDosDia.isChecked():
+                frecuencia = 'Dejando dos días'
+            elif self.radioButtonTresDia.isChecked():
+                frecuencia = 'Dejando tres días'
+        self.stackedWidget.setCurrentWidget(self.pageFrecuencia)
 
     def frecuencia_no(self):
         self.frame_6.setVisible(True)
+        self.pushButtonNext2.setVisible(True)
         self.pushButtonNext2.setEnabled(True)
 
     def page_frecuencia(self):
@@ -210,19 +220,34 @@ class Medicine_Form(QWidget):
 
         self.labelDuracion.setVisible(False)
         self.spinBoxDuracion.setVisible(False)
+        self.pushButtonNext5.setVisible(False)
 
         self.stackedWidget.setCurrentWidget(self.pageDuracion)
 
     def continuo_si(self):
+        global fecha_desde
         global fecha_hasta
-        self.pushButtonNext5.setEnabled(True)
+        # self.pushButtonNext5.setEnabled(True)
         self.labelDuracion.setVisible(False)
         self.spinBoxDuracion.setVisible(False)
         fecha_hasta = None
 
+        if fecha_hasta != None:
+            numero_dias = self.spinBoxDuracion.text()
+            fecha_desde = self.obtener_fecha_actual()
+            fecha_hasta = self.obtener_fecha_final(fecha_desde, numero_dias)
+        else:
+            numero_dias = 365
+            fecha_desde = self.obtener_fecha_actual()
+            fecha_hasta = self.obtener_fecha_final(fecha_desde, numero_dias)
+        print('Fecha desde: ', fecha_desde)
+        print('Fecha hasta: ', fecha_hasta)
+        self.stackedWidget.setCurrentWidget(self.pageNombre)
+
     def continuo_no(self):
         self.labelDuracion.setVisible(True)
         self.spinBoxDuracion.setVisible(True)
+        self.pushButtonNext5.setVisible(True)
         self.pushButtonNext5.setEnabled(True)
 
     def page_usuario(self):
@@ -232,7 +257,12 @@ class Medicine_Form(QWidget):
             numero_dias = self.spinBoxDuracion.text()
             fecha_desde = self.obtener_fecha_actual()
             fecha_hasta = self.obtener_fecha_final(fecha_desde, numero_dias)
-
+        else:
+            numero_dias = 365
+            fecha_desde = self.obtener_fecha_actual()
+            fecha_hasta = self.obtener_fecha_final(fecha_desde, numero_dias)
+        print('Fecha desde: ', fecha_desde)
+        print('Fecha hasta: ', fecha_hasta)
         self.stackedWidget.setCurrentWidget(self.pageNombre)
 
     def guardar_medicamento(self):
@@ -249,7 +279,9 @@ class Medicine_Form(QWidget):
                 messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
                 self.vaciar_campos()
                 self.stackedWidget.setCurrentWidget(self.pageDB)
+                print('OK')
             except Exception as e:
+                print('NO OK')
                 print(e)
                 messagebox.showerror(message="Error, no se pudo guardar el medicamento", title="Error")
         else:
@@ -411,16 +443,17 @@ class Medicine_Form(QWidget):
     def vaciar_campos(self):
         self.lineEditUsuario.setText('')
         self.lineEditMedicamento.setText('')
-        self.checkBoxLunes.setChecked(False)
-        self.checkBoxMartes.setChecked(False)
-        self.checkBoxMiercoles.setChecked(False)
-        self.checkBoxJueves.setChecked(False)
-        self.checkBoxViernes.setChecked(False)
-        self.checkBoxSabado.setChecked(False)
-        self.checkBoxDomingo.setChecked(False)
+        self.radioButtonTodosDias1.setChecked(False)
+        self.radioButtonPasandoUnDia1.setChecked(False)
+        self.radioButtonPasandoDosDias1.setChecked(False)
+        self.radioButtonPasandoTresDias1.setChecked(False)
         self.lineEditDosis.setText('')
         self.spinBoxVecesDia.setValue(1)
         self.spinBoxDias.setValue(1)
+        self.lineEditNombreMedicamento.setText('')
+        self.lineEditCantidad.setText('')
+        self.lineEditNombre.setText('')
+
 
     def page_editar(self):
         global global_medicamento
@@ -449,10 +482,11 @@ class Medicine_Form(QWidget):
                     self.label_7.setVisible(False)
                     self.spinBoxDias.setVisible(False)
                     self.spinBoxVecesDia.valueChanged.connect(self.value_change)
-                    self.checkBoxTodos.stateChanged.connect(self.frequency_change)
                     self.pushButtonGuardar.setVisible(False)
                     self.pushButtonActualizar_2.setVisible(True)
-        except:
+        except Exception as e:
+            print('NO OK')
+            print(e)
             messagebox.showerror(message="Debe seleccionar un medicamento", title="Info")
 
 
@@ -549,7 +583,7 @@ class Medicine_Form(QWidget):
 
     def eliminar_medicamento(self):
         global global_medicamento
-        print('editar')
+        print('eliminar')
         try:
             row = self.tableMedicamentos.currentRow()
             nombre = self.tableMedicamentos.item(row, 0).text()
@@ -566,9 +600,13 @@ class Medicine_Form(QWidget):
                         try:
                             LOGMedicamento.eliminar_medicamento(medicamento)
                             print('medicamento eliminado')
-                        except:
+                        except Exception as e:
+                            print('NO OK')
+                            print(e)
                             messagebox.showerror(message="No se pudo eliminar el medicamento seleccionado",
                                                  title="Error")
-        except:
+        except Exception as e:
+            print('NO OK')
+            print(e)
             messagebox.showerror(message="Debe seleccionar un medicamento", title="Info")
         print("Done")

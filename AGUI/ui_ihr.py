@@ -3,7 +3,8 @@ import pyttsx3
 import time
 
 from gtts import *
-from playsound import playsound
+# from playsound import playsound
+from preferredsoundplayer import *
 from os import remove
 
 from PyQt5.QtGui import QPixmap

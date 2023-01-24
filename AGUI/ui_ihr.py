@@ -133,7 +133,8 @@ class Ihr_Form(QWidget):
             engine.stop()
             engine.endLoop()
             """
-            # LOGIhr.mover_brazos_alegria()
+            LOGIhr.mover_brazos_alegria()
+            LOGIhr.led_ojos(1)
         elif contador == 2:
             print('neutro')
             data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
@@ -142,6 +143,7 @@ class Ihr_Form(QWidget):
             tts.save('Sonido/audio.mp3')
             playsound('Sonido/audio.mp3')
             remove('Sonido/audio.mp3')
+            LOGIhr.led_ojos(2)
             '''
             # pyttsx3  
             engine = pyttsx3.init()
@@ -176,7 +178,8 @@ class Ihr_Form(QWidget):
             engine.stop()
             engine.endLoop()
             '''
-            # LOGIhr.mover_brazos_tristeza()
+            LOGIhr.mover_brazos_tristeza()
+            LOGIhr.led_ojos(3)
 
     def calcular_espera(self):
         hora_actual = datetime.today()

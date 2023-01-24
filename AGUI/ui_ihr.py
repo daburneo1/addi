@@ -2,7 +2,7 @@ import threading
 import pyttsx3
 import time
 
-from gtts import gTTS
+from gtts import *
 from playsound import playsound
 from os import remove
 

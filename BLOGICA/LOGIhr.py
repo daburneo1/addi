@@ -2,8 +2,6 @@ from datetime import datetime, timedelta
 
 import RPi.GPIO as GPIO
 import time
-import board
-import neopixel
 
 from DATA.DATIhr import *
 
@@ -113,6 +111,9 @@ class LOGIhr():
 
     @classmethod
     def led_ojos(cls, estado):
+        import board
+        import neopixel
+
         pixel_pin = board.D18
         pixel_pin2 = board.D12
 

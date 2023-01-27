@@ -112,6 +112,7 @@ class Ihr_Form(QWidget):
     def iniciar_emocion(self, recordatorio, usuario, contador):
         if contador == 1:
             print('alegria')
+            LOGIhr.led_ojos(1)
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             self.labelRecordatorio.setText(data)
             emoji_alegria = QPixmap('./Iconos/emoji-feliz.png')
@@ -132,16 +133,15 @@ class Ihr_Form(QWidget):
             engine.endLoop()
             """
             LOGIhr.mover_brazos_alegria()
-            LOGIhr.led_ojos(1)
         elif contador == 2:
             print('neutro')
+            LOGIhr.led_ojos(2)
             data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
             self.labelRecordatorio.setText(data)
             tts = gTTS(data, lang='es', tld='com.mx')
             tts.save('Sonido/audio.mp3')
             playsound('Sonido/audio.mp3')
             remove('Sonido/audio.mp3')
-            LOGIhr.led_ojos(2)
             '''
             # pyttsx3  
             engine = pyttsx3.init()
@@ -157,6 +157,7 @@ class Ihr_Form(QWidget):
             print('tristeza')
             data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (
                 usuario.nombre, recordatorio.nombre))
+            LOGIhr.led_ojos(3)
             self.labelRecordatorio.setText(data)
             emoji_tristeza = QPixmap('./Iconos/emoji-triste.png')
             self.Emoji.setPixmap(emoji_tristeza)
@@ -177,7 +178,7 @@ class Ihr_Form(QWidget):
             engine.endLoop()
             '''
             LOGIhr.mover_brazos_tristeza()
-            LOGIhr.led_ojos(3)
+
 
     def calcular_espera(self):
         hora_actual = datetime.today()

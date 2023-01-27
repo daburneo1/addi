@@ -13,7 +13,7 @@ USE `addi` ;
 -- -----------------------------------------------------
 -- Table `addi`.`Usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `addi`.`Usuario` (
+CREATE TABLE IF NOT EXISTS `addi`.`usuario` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idUsuario`))

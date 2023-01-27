@@ -112,7 +112,7 @@ class Ihr_Form(QWidget):
     def iniciar_emocion(self, recordatorio, usuario, contador):
         if contador == 1:
             print('alegria')
-            LOGIhr.led_ojos(1)
+            LOGIhr.led_ojos_alegria()
             data = ('Hola %s, te recuerdo que tienes que tomar %s en 5 minutos' % (usuario.nombre, recordatorio.nombre))
             self.labelRecordatorio.setText(data)
             emoji_alegria = QPixmap('./Iconos/emoji-feliz.png')
@@ -135,7 +135,7 @@ class Ihr_Form(QWidget):
             LOGIhr.mover_brazos_alegria()
         elif contador == 2:
             print('neutro')
-            LOGIhr.led_ojos(2)
+            LOGIhr.led_ojos_apagado()
             data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
             self.labelRecordatorio.setText(data)
             tts = gTTS(data, lang='es', tld='com.mx')
@@ -157,7 +157,7 @@ class Ihr_Form(QWidget):
             print('tristeza')
             data = ('%s, por favor tienes que tomar %s, ya te has pasado cinco minutos' % (
                 usuario.nombre, recordatorio.nombre))
-            LOGIhr.led_ojos(3)
+            LOGIhr.led_ojos_tristeza()
             self.labelRecordatorio.setText(data)
             emoji_tristeza = QPixmap('./Iconos/emoji-triste.png')
             self.Emoji.setPixmap(emoji_tristeza)

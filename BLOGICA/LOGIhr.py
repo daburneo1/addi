@@ -1,9 +1,21 @@
 from datetime import datetime, timedelta
 
 import RPi.GPIO as GPIO
+import board
+import neopixel
 import time
 
 from DATA.DATIhr import *
+print('*****************config leds********************')
+pixel_pin = board.D10
+
+num_pixels = 9
+
+ORDER = neopixel.GRB
+
+pixels = neopixel.NeoPixel(
+       pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
+)
 
 def angle_to_percent (angle):
     if angle > 180 or angle < 0:
@@ -110,39 +122,19 @@ class LOGIhr():
         GPIO.cleanup()
 
     @classmethod
-    def led_ojos(cls, estado):
-        import board
-        import neopixel
-        try:
-            pixel_pin = board.D10
+    def led_ojos_alegria(cls):
+        pixels.fill((0, 255, 0))
+        pixels.show()
+        print('verde')
 
-            num_pixels = 9
+    @classmethod
+    def led_ojos_tristeza(cls):
+        pixels.fill((0, 0, 255))
+        pixels.show()
+        print('azul')
 
-            ORDER = neopixel.GRB
-
-            pixels = neopixel.NeoPixel(
-                pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
-            )
-
-            if estado == 1:
-                pixels.fill((0, 255, 0))
-                pixels.show()
-                print('verde')
-            elif estado == 2:
-                pixels.fill((0, 0, 0))
-                pixels.show()
-                print('sin luces')
-                time.sleep(5)
-            elif estado == 3:
-                pixels.fill((0, 0, 255))
-                pixels.show()
-                print('azul')
-            else:
-                pixels.fill((0, 0, 0))
-                pixels.show()
-                print('sin luces')
-            GPIO.cleanup()
-
-        except Exception as e:
-            print(e)
-            pass
+    @classmethod
+    def led_ojos_apagado(cls):
+        pixels.fill((0, 0, 0))
+        pixels.show()
+        print('apagado')

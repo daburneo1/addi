@@ -141,6 +141,7 @@ class LOGIhr():
                 pixels.fill((0, 0, 0))
                 pixels.show()
                 print('sin luces')
+            GPIO.cleanup()
 
         except Exception as e:
             print(e)

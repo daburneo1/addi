@@ -8,7 +8,7 @@ import pymysql
 # )
 connection = pymysql.connect(
     host="localhost",
-    user="addi",
+    user="addi2023",
     password="addi2023",
     db="addi"
 )

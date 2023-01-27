@@ -113,31 +113,35 @@ class LOGIhr():
     def led_ojos(cls, estado):
         import board
         import neopixel
+        try:
+            pixel_pin = board.D10
 
-        pixel_pin = board.D10
+            num_pixels = 9
 
-        num_pixels = 9
+            ORDER = neopixel.GRB
 
-        ORDER = neopixel.GRB
+            pixels = neopixel.NeoPixel(
+                pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
+            )
 
-        pixels = neopixel.NeoPixel(
-            pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
-        )
+            if estado == 1:
+                pixels.fill((0, 255, 0))
+                pixels.show()
+                print('verde')
+            elif estado == 2:
+                pixels.fill((0, 0, 0))
+                pixels.show()
+                print('sin luces')
+                time.sleep(5)
+            elif estado == 3:
+                pixels.fill((0, 0, 255))
+                pixels.show()
+                print('azul')
+            else:
+                pixels.fill((0, 0, 0))
+                pixels.show()
+                print('sin luces')
 
-        if estado == 1:
-            pixels.fill((0, 255, 0))
-            pixels.show()
-            print('verde')
-        elif estado == 2:
-            pixels.fill((0, 0, 0))
-            pixels.show()
-            print('sin luces')
-            time.sleep(5)
-        elif estado == 3:
-            pixels.fill((0, 0, 255))
-            pixels.show()
-            print('azul')
-        else:
-            pixels.fill((0, 0, 0))
-            pixels.show()
-            print('sin luces')
+        except Exception as e:
+            print(e)
+            pass

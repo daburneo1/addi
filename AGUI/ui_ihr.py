@@ -1,9 +1,6 @@
-import threading
-import pyttsx3
-import time
+import threadingg
 
 from gtts import *
-# from playsound import playsound
 from preferredsoundplayer import *
 from os import remove
 

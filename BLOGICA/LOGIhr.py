@@ -6,7 +6,6 @@ import neopixel
 import time
 
 from DATA.DATIhr import *
-print('*****************config leds********************')
 pixel_pin = board.D10
 
 num_pixels = 9

@@ -276,7 +276,7 @@ class Medicine_Form(QWidget):
                 NuevoUsuario = LOGUsuario.registrar_usuario(self, usuario)
                 LOGMedicamento.agregar_medicamento(self, medicamento, NuevoUsuario)
                 LOGMedicamento.agregar_recordatorio(self, medicamento, NuevoUsuario)
-                messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
+                # messagebox.showinfo(message="El recordatorio se ha guardado exitosamente", title="Info")
                 self.vaciar_campos()
                 self.stackedWidget.setCurrentWidget(self.pageDB)
                 print('OK')
@@ -574,7 +574,7 @@ class Medicine_Form(QWidget):
         try:
             LOGMedicamento.actualizar_medicamento(self, nuevo_medicamento)
             LOGMedicamento.actualizar_recordatorio(self, nuevo_medicamento)
-            messagebox.showinfo(message="El recordatorio se ha actualizado exitosamente", title="Info")
+            # messagebox.showinfo(message="El recordatorio se ha actualizado exitosamente", title="Info")
             self.vaciar_campos()
             self.stackedWidget.setCurrentWidget(self.pageDB)
         except Exception as e:

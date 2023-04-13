@@ -138,9 +138,11 @@ class Ihr_Form(QWidget):
             LOGIhr.led_ojos_apagado()
             data = ('Hola %s, tienes que tomar %s en este momento' % (usuario.nombre, recordatorio.nombre))
             self.labelRecordatorio.setText(data)
+
             tts = gTTS(data, lang='es', tld='com.mx')
             tts.save('Sonido/audio.mp3')
             playsound('Sonido/audio.mp3')
+            time.sleep(5)
             remove('Sonido/audio.mp3')
             '''
             # pyttsx3  
@@ -165,6 +167,7 @@ class Ihr_Form(QWidget):
             tts = gTTS(data, lang='es', tld='com.mx')
             tts.save('Sonido/audio.mp3')
             playsound('Sonido/audio.mp3')
+            time.sleep(5)
             remove('Sonido/audio.mp3')
             '''
             # pyttsx3
